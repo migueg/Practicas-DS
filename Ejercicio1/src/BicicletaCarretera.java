@@ -8,6 +8,6 @@
  *
  * @author juanfrandm98
  */
-public class BicicletaCarretera {
+public class BicicletaCarretera extends Bicicleta{
     
 }

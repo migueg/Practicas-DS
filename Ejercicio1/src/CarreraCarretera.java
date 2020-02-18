@@ -8,6 +8,6 @@
  *
  * @author juanfrandm98
  */
-public class CarreraCarretera {
-    
+public class CarreraCarretera extends Carrera{
+
 }
