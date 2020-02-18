@@ -14,5 +14,22 @@ import java.util.ArrayList;
 public abstract class Carrera extends Thread {
     
     private ArrayList<Bicicleta> bicicletas;
+    private TipoBicicleta tipo;
+    private int porcentajeAbandono;
+    
+    public Carrera( TipoBicicleta tipo, int porcentajeAbandono ) {
+        bicicletas = new ArrayList();
+        this.tipo = tipo;
+        this.porcentajeAbandono = porcentajeAbandono;
+    }
+    
+    public void aniadirBicicleta( Bicicleta bicicleta ) {
+        
+        int nuevoIdentificador = bicicletas.size() - 1;
+        bicicleta.setIdentificador( nuevoIdentificador );
+        
+        bicicletas.add( bicicleta );
+        
+    }
     
 }

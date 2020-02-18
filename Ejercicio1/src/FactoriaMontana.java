@@ -8,6 +8,14 @@
  *
  * @author juanfrandm98
  */
-public class FactoriaMontana {
+public class FactoriaMontana implements FactoriaCarreraYBicicleta {
+    
+    public Carrera crearCarrera() {
+        return new CarreraMontana();
+    }
+    
+    public Bicicleta crearBicicleta() {
+        return new BicicletaMontana();
+    }
     
 }

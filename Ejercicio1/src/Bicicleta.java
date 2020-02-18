@@ -8,6 +8,17 @@
  *
  * @author juanfrandm98
  */
-public class Bicicleta {
+public abstract class Bicicleta {
+    
+    private int identificador;
+    private TipoBicicleta tipo;
+    
+    public Bicicleta( TipoBicicleta tipo ) {
+        this.tipo = tipo;
+    }
+    
+    public void setIdentificador( int identificador ) {
+        this.identificador = identificador;
+    }
     
 }

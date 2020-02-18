@@ -8,6 +8,10 @@
  *
  * @author juanfrandm98
  */
-public class BicicletaCarretera extends Bicicleta{
+public class BicicletaCarretera extends Bicicleta {
+    
+    public BicicletaCarretera() {
+        super( TipoBicicleta.CARRETERA );
+    }
     
 }

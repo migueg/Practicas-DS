@@ -8,10 +8,7 @@
  *
  * @author juanfrandm98
  */
-public class CarreraMontana extends Carrera {
-    
-    public CarreraMontana() {
-        super( TipoBicicleta.MONTANA, 20 );
-    }
-    
+public enum TipoBicicleta {
+    MONTANA,
+    CARRETERA
 }

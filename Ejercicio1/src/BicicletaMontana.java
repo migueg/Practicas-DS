@@ -8,6 +8,10 @@
  *
  * @author juanfrandm98
  */
-public class BicicletaMontana {
+public class BicicletaMontana extends Bicicleta {
+    
+    public BicicletaMontana() {
+        super( TipoBicicleta.MONTANA );
+    }
     
 }
