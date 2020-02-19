@@ -27,7 +27,7 @@ public class cliente {
        
         Scanner s = new Scanner (System.in);
         
-        System.out.print("Introdice el numero de bicicletas:");
+        System.out.print("Introduce el número de bicicletas: ");
           
         int n = s.nextInt();
         
@@ -42,17 +42,12 @@ public class cliente {
               cm.aniadirBicicleta(bm);
           }
          
-         long retardo = 60000;
          cm.start();
          cc.start();
          
-         Thread.sleep(retardo);
-         if(cm.isAlive() && cc.isAlive()){
-             cm.stop();
-             cc.stop();
-         }
+         while( cm.isAlive() || cc.isAlive() ){}
          
-         
+         System.out.println( "\n\nSimulación finalizada con éxito.\n\n" );
          
     }
     

@@ -21,4 +21,8 @@ public abstract class Bicicleta {
         this.identificador = identificador;
     }
     
+    public int getIdentificador() {
+        return identificador;
+    }
+    
 }
