@@ -14,4 +14,12 @@ public class CarreraMontana extends Carrera {
         super( TipoBicicleta.MONTANA, 20 );
     }
     
+    @Override 
+    public void run(){
+        int n = this.abandonarCarrera();
+        System.out.print("Bicicletas que abandonan: ");
+        System.out.print(n);
+        
+
+    }
 }

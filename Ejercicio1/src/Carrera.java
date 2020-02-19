@@ -31,5 +31,14 @@ public abstract class Carrera extends Thread {
         bicicletas.add( bicicleta );
         
     }
+    public int abandonarCarrera(){
+        int abandonan = (this.porcentajeAbandono * bicicletas.size())/100;
+        for(int i = 0 ; i < abandonan ; i++){
+            bicicletas.remove(i);
+        }
+        return abandonan;
+    }
+    
+    
     
 }
