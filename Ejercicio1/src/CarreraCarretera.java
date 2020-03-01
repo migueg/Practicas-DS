@@ -11,7 +11,9 @@
 public class CarreraCarretera extends Carrera {
     
     public CarreraCarretera() {
-        super( TipoBicicleta.CARRETERA, 10 );
+        super(10);
     }
+    
+    public String printTipo() { return "carretera"; }
 
 }

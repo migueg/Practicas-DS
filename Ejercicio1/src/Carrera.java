@@ -16,12 +16,10 @@ import java.util.logging.Logger;
 public abstract class Carrera extends Thread {
     
     private ArrayList<Bicicleta> bicicletas;
-    private TipoBicicleta tipo;
     private int porcentajeAbandono;
     
-    public Carrera( TipoBicicleta tipo, int porcentajeAbandono ) {
+    public Carrera( int porcentajeAbandono ) {
         bicicletas = new ArrayList();
-        this.tipo = tipo;
         this.porcentajeAbandono = porcentajeAbandono;
     }
     
@@ -50,7 +48,7 @@ public abstract class Carrera extends Thread {
     @Override
     public void run() {
         
-        String mensaje = "Iniciando carrera de " + tipo + " con bicicletas:";
+        String mensaje = "Iniciando carrera de " + printTipo() + " con bicicletas:";
         
         for( Bicicleta b : bicicletas )
             mensaje += " " + b.getIdentificador();
@@ -65,7 +63,7 @@ public abstract class Carrera extends Thread {
         
         int numAbandonos = abandonarCarrera();
         
-        System.out.println( "Carrera " + tipo + " - han abandonado " + numAbandonos + " bicicletas." );
+        System.out.println( "Carrera " + printTipo() + " - han abandonado " + numAbandonos + " bicicletas." );
         
         try {
             sleep(5000);
@@ -73,7 +71,7 @@ public abstract class Carrera extends Thread {
             Logger.getLogger(Carrera.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        mensaje = "Carrera de " + tipo + " terminada con bicicletas:";
+        mensaje = "Carrera de " + printTipo() + " terminada con bicicletas:";
         
         for( Bicicleta b : bicicletas )
             mensaje += " " + b.getIdentificador();
@@ -81,5 +79,7 @@ public abstract class Carrera extends Thread {
         System.out.println( mensaje );
         
     }
+    
+    public abstract String printTipo();
     
 }
