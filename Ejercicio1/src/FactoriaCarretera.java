@@ -17,6 +17,6 @@ public class FactoriaCarretera {
     }
     
     public Bicicleta crearBicicleta() {
-        return new BicicletaMontana();
+        return new BicicletaCarretera();
     }
 }

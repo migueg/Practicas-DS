@@ -11,7 +11,7 @@
 public class BicicletaMontana extends Bicicleta {
     
     public BicicletaMontana() {
-        super( TipoBicicleta.MONTANA );
+        System.out.println( "Bicicleta de montaña creada." );
     }
     
 }

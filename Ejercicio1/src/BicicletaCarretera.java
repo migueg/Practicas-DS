@@ -11,7 +11,7 @@
 public class BicicletaCarretera extends Bicicleta {
     
     public BicicletaCarretera() {
-        super( TipoBicicleta.CARRETERA );
+        System.out.println( "Bicicleta de carretera creada." );
     }
     
 }
