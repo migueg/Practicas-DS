@@ -14,7 +14,7 @@
 #ifndef BUS_H
 #define BUS_H
 
-#include "Tarjeta.h"
+
 #include "ComponenteEquipo.h"
 #include "VisitanteEquipo.h"
 

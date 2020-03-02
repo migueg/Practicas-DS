@@ -5,33 +5,34 @@
  */
 
 /* 
- * File:   Bus.h
+ * File:   Tarjeta.h
  * Author: Usuario
  *
- * Created on 1 de marzo de 2020, 18:16
+ * Created on 1 de marzo de 2020, 18:26
  */
 
-#ifndef BUS_H
-#define BUS_H
+#ifndef TARJETA_H
+#define TARJETA_H
 
-#include "Tarjeta.h"
+
 #include "ComponenteEquipo.h"
 #include "VisitanteEquipo.h"
 
-
 using namespace std;
 
-class Bus : public ComponenteEquipo {
+class Tarjeta : public ComponenteEquipo {
 
 
 public:
-	Bus(string nombre, double precio);
+	Tarjeta(string nombre, double precio);
 
 	virtual void aceptar(VisitanteEquipo visitante) override;
         
         virtual double getPrecio() override;
         
         virtual string getNombre() override;
+
+        
 };
 
 #endif

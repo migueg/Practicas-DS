@@ -5,28 +5,32 @@
  */
 
 /* 
- * File:   VisitantePrecioDetalle.h
+ * File:   VisitantePrecio.h
  * Author: Usuario
  *
- * Created on 1 de marzo de 2020, 18:31
+ * Created on 1 de marzo de 2020, 18:29
  */
 
-#ifndef VISITANTEPRECIODETALLE_H
-#define VISITANTEPRECIODETALLE_H
+#ifndef VISITANTEPRECIO_H
+#define VISITANTEPRECIO_H
 
 #include "VisitanteEquipo.h"
 
 using namespace std;
 
-class VisitantePrecioDetalle : VisitanteEquipo {
+class VisitantePrecio : VisitanteEquipo {
 
-
+private:
+    double precio;
+    
 public:
 	virtual void visitarBus(Bus b) override;
 
 	virtual void visitarTarjeta(Tarjeta t) override;
 
 	virtual void visitarDisco(Disco d) override;
+        
+        
 };
 
 #endif
