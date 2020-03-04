@@ -2,12 +2,17 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
+require './FactoriaCarreraYBicicleta'
+require './CarreraCarretera'
+require './BicicletaCarretera'
+
 class FactoriaCarretera < FactoriaCarreraYBicicleta
   
-    def initialize
+  def initialize
     @carrera = CarreraCarretera.new
     @bicicleta = BicicletaCarretera.new
   end
+  
   def crearcarrera
     return @carrera.clone
   end
@@ -15,4 +20,5 @@ class FactoriaCarretera < FactoriaCarreraYBicicleta
   def crearbicicleta
     return @bicicleta.clone
   end
+  
 end

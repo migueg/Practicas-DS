@@ -4,26 +4,19 @@
 
 
 class Bicicleta
- 
-   def initialize(tipo)
-     if self.class == Bicileta
-       
-       @tipo = tipo
-       @identificador = 0
-    else
-      raise "Clase abstracta"
-    end
-   end
-   
-   def setidentificador (id)
-     @identificador = id
-   end
-   
-   def getidentificador
-     return @identificador
-   end
-   
-   def clone
-     raise "Abstracto"
-   end
+  
+  attr_accessor :identificador
+  
+  #def setidentificador(identificador)
+  #  @identificador = identificador
+  #end
+  
+  #def getidentificador
+  #  return @identificador
+  #end
+  
+  def to_s
+    "Bicicleta n#{@identificador}"
+  end
+  
 end

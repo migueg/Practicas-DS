@@ -4,34 +4,40 @@
 
 
 class Carrera
-  def initialize(tipo, porcentajeAbandono)
+  
+  def initialize(porcentaje)
     
-      @bicicletas = []
-      @tipo = tipo
-      @pocentajeAbandono = porcentajeAbandono
+      @bicicletas = Array.new
+      @porcentajeAbandono = porcentaje
     
   end
   
-  def self.new()
-    raise "Error:Clase Abstracta"
-  end
+  #def self.new()
+  #  raise "Error:Clase Abstracta"
+  #end
   
   def aniadirbicicleta (bicicleta)
-    id = @bicicletas.size
-    bicicleta.setidentificador(id)
     
-    bicicletas.push(bicicleta)
+    id = @bicicletas.length
+    #bicicleta.setidentificador(id)
+    bicicleta.identificador = id
+    
+    #@bicicletas.push(bicicleta)
+    @bicicletas << bicicleta
+    
   end
   
   def abandonarcarrera
-    abandonan = (@porcentajeAbandono * @bicicletas.size/100)
+    
+    abandonan = ( ( @porcentajeAbandono * (@bicicletas.length) ) / 100 )
     
     abandonan.times do |num|
-      siguiente = (rand(@biciletas.size))
+      siguiente = rand(@bicicletas.count)
       @bicicletas.delete_at(siguiente)
     end
     
     return abandonan
+    
   end
   
   def clone
@@ -39,27 +45,42 @@ class Carrera
   end
   
   def run
-    mensaje = "Iniciando carrera de #{@tipo} con bicicletas"
+    mensaje = "Iniciando carrera de " + printtipo + " con bicicletas:"
     
-    @bicicletas.size.times do |num|
-      mensaje += " #{@bicicletas[num].getidentificador}"
-    end
+    #@bicicletas.size.times do |num|
+    #  mensaje += " #{@bicicletas[num].getidentificador}"
+    #end
+    
+    #for bicicleta in @bicicletas
+    #  mensaje += " #{bicicleta.identificador}"
+    #end
+    
+    @bicicletas.each { |bicicleta|
+      mensaje += " #{bicicleta.identificador}"
+    }
     
     puts mensaje
     
     sleep(5)
+    
     numAbandonos = abandonarcarrera()
     
-    puts "Carrera #{@tipo} - han abandonando #{numAbandonos} bicicletas"
+    puts "Carrera de " + printtipo + " - han abandonando #{numAbandonos} bicicletas"
     
     sleep(5)
     
-    mensaje = "Carrera de #{@tipo} terminada con biciletas: "
+    mensaje = "Carrera de " + printtipo + " terminada con biciletas: "
     
-     @bicicletas.size.times do |num|
-      mensaje += " #{@bicicletas[num].getidentificador}"
-    end
+    #@bicicletas.size.times do |num|
+    #  mensaje += " #{@bicicletas[num].getidentificador}"
+    #end
+    
+    @bicicletas.each { |bicicleta|
+      mensaje += " #{bicicleta.identificador}"
+    }
     
     puts mensaje
+    
   end
+  
 end

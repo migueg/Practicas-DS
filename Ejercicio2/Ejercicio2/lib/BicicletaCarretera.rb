@@ -2,13 +2,12 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
-class BiciletaCarretera < Bicicleta
-    def initialize
-      t = TipoBicicleta.new
-      super(t.gettipos[1])
-    end
+require './Bicicleta'
+
+class BicicletaCarretera < Bicicleta
     
-    def clone 
-      return self
-    end
+  def clone 
+    return self
+  end
+  
 end

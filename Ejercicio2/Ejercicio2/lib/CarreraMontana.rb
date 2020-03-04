@@ -3,13 +3,17 @@
 # and open the template in the editor.
 
 class CarreraMontana < Carrera
+  
   def initialize
-    t = TipoBicicleta.new
-    
-    super(t.gettipos[0],10)
+    super(20)
+  end
+  
+  def printtipo
+    return "montana"
   end
   
   def clone
     return self
   end
+  
 end
