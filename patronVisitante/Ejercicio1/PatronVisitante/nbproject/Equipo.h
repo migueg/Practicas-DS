@@ -13,11 +13,15 @@
 
 #ifndef EQUIPO_H
 #define EQUIPO_H
+#include <string>
 
-#include "Bus.h"
-#include "Disco.h"
-#include "Tarjeta.h"
 
+
+class Bus;
+class Disco;
+class Tarjeta;
+class VisitanteEquipo;
+//#include "VisitanteEquipo.h"
 using namespace std;
 
 
@@ -25,14 +29,16 @@ class Equipo {
 
 private:
 	string nombre;
-        Bus bus;
-        Tarjeta tarjeta;
-        Disco disco;
+        Bus *bus;
+        Disco *disco;
+        Tarjeta *tarjeta;
 
 public:
-	Equipo(string nombre, Bus bus, Tarjeta tarjeta, Disco disco);
+	Equipo(string nombre, Bus bus, Disco disco, Tarjeta tarjeta);
 
-	void aceptarEquipo(VisitanteEquipo visitante);
+	void aceptarEquipo(VisitanteEquipo * visitante);
+        
+        string getNombre();
 };
 
 #endif

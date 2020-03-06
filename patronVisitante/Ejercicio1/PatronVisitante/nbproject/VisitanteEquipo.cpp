@@ -13,18 +13,5 @@
 
 #include "VisitanteEquipo.h"
 
-virtual void VisitanteEquipo::visitarTarjeta(Tarjeta t) {
-	// TODO - implement VisitanteEquipo::visitarTarjeta
-	
-}
 
-virtual void VisitanteEquipo::visitarDisco(Disco d) {
-	// TODO - implement VisitanteEquipo::visitarDisco
-	throw "Not  implemented";
-}
-
-virtual void VisitanteEquipo::visitarBus(Bus b) {
-	// TODO - implement VisitanteEquipo::visitarBus
-	throw "Not implemented";
-}
 

@@ -15,9 +15,7 @@
 #define TARJETA_H
 
 
-#include "ComponenteEquipo.h"
-#include "VisitanteEquipo.h"
-
+class ComponenteEquipo;
 using namespace std;
 
 class Tarjeta : public ComponenteEquipo {
@@ -26,11 +24,11 @@ class Tarjeta : public ComponenteEquipo {
 public:
 	Tarjeta(string nombre, double precio);
 
-	virtual void aceptar(VisitanteEquipo visitante) override;
+        void aceptar(VisitanteEquipo & visitante) ;
         
-        virtual double getPrecio() override;
+        double getPrecio() ;
         
-        virtual string getNombre() override;
+        string getNombre() ;
 
         
 };

@@ -15,18 +15,25 @@
 #define VISITANTEPRECIODETALLE_H
 
 #include "VisitanteEquipo.h"
-
+//class VisitanteEquipo;
+class Bus;
+class Disco;
+class Tarjeta;
 using namespace std;
 
-class VisitantePrecioDetalle : VisitanteEquipo {
+class VisitantePrecioDetalle : public VisitanteEquipo {
 
 
 public:
-	virtual void visitarBus(Bus b) override;
+        VisitantePrecioDetalle();
+        
+	void visitarBus(Bus * b) ;
 
-	virtual void visitarTarjeta(Tarjeta t) override;
+	void visitarTarjeta(Tarjeta * t) ;
 
-	virtual void visitarDisco(Disco d) override;
+	void visitarDisco(Disco * d) ;
+        
+        double getPrecio();
 };
 
 #endif

@@ -14,21 +14,24 @@
 #ifndef VISITANTEPRECIO_H
 #define VISITANTEPRECIO_H
 
-#include "VisitanteEquipo.h"
-
+class VisitanteEquipo;
 using namespace std;
 
-class VisitantePrecio : VisitanteEquipo {
+class VisitantePrecio : public VisitanteEquipo {
 
 private:
     double precio;
     
 public:
-	virtual void visitarBus(Bus b) override;
+        VisitantePrecio();
+        
+	void visitarBus(Bus * b) ;
 
-	virtual void visitarTarjeta(Tarjeta t) override;
+	void visitarTarjeta(Tarjeta * t) ;
 
-	virtual void visitarDisco(Disco d) override;
+	void visitarDisco(Disco * d) ;
+        
+        double getPrecio();
         
         
 };

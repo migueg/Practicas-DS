@@ -19,15 +19,12 @@ ComponenteEquipo::ComponenteEquipo(string nombre, double precio) {
     this->precio = precio;
 }
 
-virtual void ComponenteEquipo::aceptar(VisitanteEquipo visitante) {
-	// TODO - implement ComponenteEquipo::aceptar
-	throw "Not  implemented";
-}
 
-virtual double ComponenteEquipo::getPrecio(){
+
+  double ComponenteEquipo::getPrecio() {
     return precio;
 }
 
-virtual string ComponenteEquipo::getNombre(){
+  string ComponenteEquipo::getNombre(){
     return nombre;
 }

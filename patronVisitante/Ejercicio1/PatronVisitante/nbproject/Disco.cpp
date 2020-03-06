@@ -11,22 +11,22 @@
  * Created on 1 de marzo de 2020, 18:23
  */
 
+#include "VisitanteEquipo.h"
+#include "ComponenteEquipo.h"
 #include "Disco.h"
-
-Disco::Disco(string nombre, double precio) {
+Disco::Disco(string nombre, double precio):ComponenteEquipo(nombre,precio) {
 	// TODO - implement Disco::Disco
-	ComponenteEquipo ::ComponenteEquipo(nombre,precio);
 }
 
-virtual void Disco::aceptar(VisitanteEquipo visitante) override{
+ void Disco::aceptar(VisitanteEquipo & visitante) {
 	// TODO - implement Disco::aceptar
     visitante.visitarDisco(this);
 }
 
-virtual double Disco::getPrecio() override {
+ double Disco::getPrecio()  {
     return ComponenteEquipo::getPrecio();
 }
 
-virtual string Disco::getNombre() override{
+ string Disco::getNombre() {
     return ComponenteEquipo::getNombre();
 }

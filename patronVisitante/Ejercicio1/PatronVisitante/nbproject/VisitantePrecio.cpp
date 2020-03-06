@@ -12,25 +12,36 @@
  */
 
 
-
+#include "VisitanteEquipo.h"
 #include "VisitantePrecio.h"
+#include "Bus.h"
+#include "Tarjeta.h"
+#include "Disco.h"
 
 
-virtual void VisitantePrecio::visitarBus(Bus b) override {
+ void VisitantePrecio::visitarBus(Bus * b)  {
 	// TODO - implement VisitantePrecio::visitarBus
-    double preciobus = b.getPrecio();
+    double preciobus = b->getPrecio();
     this->precio += preciobus;
     
 }
 
-virtual void VisitantePrecio::visitarTarjeta(Tarjeta t) override{
+ void VisitantePrecio::visitarTarjeta(Tarjeta * t) {
 	// TODO - implement VisitantePrecio::visitarTarjeta
-    double p = t.getPrecio();
+    double p = t->getPrecio();
     this->precio += p;
 }
 
-virtual void VisitantePrecio::visitarDisco(Disco d) override {
+ void VisitantePrecio::visitarDisco(Disco * d)  {
    
-    double preciodisco = d.getPrecio();
+    double preciodisco = d->getPrecio();
     this->precio += preciodisco;
 }
+ 
+ double VisitantePrecio::getPrecio(){
+     return precio;
+ }
+ 
+ VisitantePrecio::VisitantePrecio(){
+     precio = 0;
+ }

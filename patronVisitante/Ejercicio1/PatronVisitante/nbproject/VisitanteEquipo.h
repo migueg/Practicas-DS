@@ -12,22 +12,29 @@
  */
 
 
-#include "Tarjeta.h"
 
-#include "Equipo.h"
 
-#include "Bus.h"
 
 using namespace std;
 
+
+class Tarjeta;
+class Disco;
+class Bus;
+
 class VisitanteEquipo {
 
-
+private:
+    double precio;
 public:
-	virtual void visitarTarjeta(Tarjeta t);
+	virtual void visitarTarjeta(Tarjeta * t)= 0;
 
-	virtual void visitarDisco(Disco d);
-
-	virtual void visitarBus(Bus b);
+	virtual void visitarDisco(Disco * d) = 0;
+ 
+	virtual void visitarBus(Bus * b) = 0;
+        
+        void setPrecio(double precio);
+        
+        virtual double getPrecio() = 0;
 };
 

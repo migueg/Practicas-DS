@@ -15,8 +15,8 @@
 #define DISCO_H
 
 
-#include "ComponenteEquipo.h"
-#include "VisitanteEquipo.h"
+class ComponenteEquipo;
+
 
 using namespace std;
 
@@ -26,11 +26,11 @@ class Disco : public ComponenteEquipo {
 public:
 	Disco(string nombre, double equipo);
 
-	void virtual aceptar(VisitanteEquipo visitante) override;
+	void aceptar(VisitanteEquipo & visitante) ;
         
-        void virtual getPrecio () override;
+        double getPrecio () ;
         
-        virtual string getNombre() override;
+        string getNombre() ;
 
 };
 

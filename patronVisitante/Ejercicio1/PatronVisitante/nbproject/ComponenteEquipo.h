@@ -16,8 +16,7 @@
 #include <string>
 
 
-
-#include "VisitanteEquipo.h"
+class VisitanteEquipo;
 
 using namespace std;
 
@@ -31,10 +30,10 @@ private:
 public:
 	ComponenteEquipo(string nombre, double precio);
 
-	virtual void aceptar(VisitanteEquipo visitante);
+	virtual void aceptar(VisitanteEquipo & visitante) =0;
         
         virtual double getPrecio() ;
         
-        virtual string getNombre();
+        virtual string getNombre() ;
 };
 

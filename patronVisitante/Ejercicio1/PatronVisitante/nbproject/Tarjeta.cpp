@@ -11,23 +11,25 @@
  * Created on 1 de marzo de 2020, 18:26
  */
 
+#include "ComponenteEquipo.h"
+#include "VisitanteEquipo.h"
 #include "Tarjeta.h"
 
 
-Tarjeta::Tarjeta(string nombre, double precio) {
+Tarjeta::Tarjeta(string nombre, double precio):ComponenteEquipo(nombre,precio){
 	// TODO - implement Tarjeta::Tarjeta
-	ComponenteEquipo ::ComponenteEquipo(nombre,precio);
+	
 }
 
-virtual void Tarjeta::aceptar(VisitanteEquipo visitante) override {
+ void Tarjeta::aceptar(VisitanteEquipo & visitante)  {
 	// TODO - implement Tarjeta::aceptar
 	visitante.visitarTarjeta(this);
 }
 
-virtual double Tarjeta::getPrecio() override{
+ double Tarjeta::getPrecio() {
     return ComponenteEquipo::getPrecio();
 }
 
-virtual string Tarjeta::getNombre() override {
+ string Tarjeta::getNombre()  {
     return ComponenteEquipo::getNombre();
 }

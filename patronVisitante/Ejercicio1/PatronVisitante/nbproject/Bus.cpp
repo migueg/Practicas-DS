@@ -10,24 +10,24 @@
  * 
  * Created on 1 de marzo de 2020, 18:16
  */
-
+#include "VisitanteEquipo.h"
 #include "Bus.h"
 
 
-Bus::Bus(string nombre, double precio){
+Bus::Bus(string nombre, double precio):ComponenteEquipo(nombre,precio){
 	// TODO - implement Bus::Bus
-    ComponenteEquipo ::ComponenteEquipo(nombre,precio);
+    //ComponenteEquipo::ComponenteEquipo(nombre,precio);
 }
 
-virtual void Bus::aceptar(VisitanteEquipo visitante) override {
+void Bus::aceptar(VisitanteEquipo & visitante)  {
 	// TODO - implement Bus::aceptar
     visitante.visitarBus(this);
 }
 
-virtual double Bus::getPrecio() override {
+ double Bus::getPrecio()  {
     return ComponenteEquipo::getPrecio();
 }
 
-virtual string Bus::getNombre() override {
+ string Bus::getNombre()  {
     return ComponenteEquipo::getNombre();
 }
