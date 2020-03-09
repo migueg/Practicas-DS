@@ -15,23 +15,18 @@ public class Cliente {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+
+        SujetoObservable sujeto = new SujetoObservable();
         
-        SujetoObservable sujeto;
+        BotonCambio botonCambio= new BotonCambio();
+        botonCambio.setSujetoObservable(sujeto);
+        sujeto.addObserver( botonCambio );
+        botonCambio.setVisible(true);
         //PantallaTemperatura pantallaTemperatura;
-        //BotonCambio botonCambio;
         //GraficaTemperatura graficaTemperatura;
         
-        sujeto = new SujetoObservable();
-        sujeto.start();
-        
-        //pantallaTemperatura = new PantallaTemperatura();
-        //botonCambio = new BotonCambio();
-        //graficaTemperatura = new GraficaTemperatura();
-        
-        //sujeto.agregarObservador( pantallaTemperatura );
-        //sujeto.agregarObservador( botonCambio );
-        //sujeto.agregarObservador( graficaTemperatura );
-        
+        Thread t = new Thread( sujeto );
+        t.start();
     }
     
 }

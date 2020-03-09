@@ -6,31 +6,34 @@
 package patronobservador;
 
 import java.util.Random;
+import java.util.Observable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author juanfrandm98
  */
-public class SujetoObservable extends Observable {
+public class SujetoObservable extends Observable implements Runnable {
     
-    private int temperatura, tmin, tmax;
+    private float temperatura;
+    private float tmin, tmax;
     
-    public int getTemperatura() {
+    public float getTemperatura() {
         return temperatura;
     }
     
-    public void setTemperatura( int temperatura ) {
+    public void setTemperatura( float temperatura ) {
         System.out.println( "SUJETO - Cambio de temperatura: " + this.temperatura
                             + " -> " + temperatura + ".\n" );
         this.temperatura = temperatura;
-        notificarObservadores();
+        setChanged();
+        notifyObservers( this.temperatura );
     }
     
     private void setMinYMax() {
-        Random r = new Random();
-        
-        tmin = -50 + r.nextInt(99);
-        tmax = tmin + r.nextInt( 50 - tmin );
+        tmin = -50;
+        tmax = 100;
     }
     
     @Override
@@ -40,12 +43,12 @@ public class SujetoObservable extends Observable {
         setMinYMax();
         
         while( true ) {
-            
+          
             try {
-                setTemperatura( tmin + r.nextInt( tmax - tmin ) );
-                sleep(2000);
-            } catch( java.lang.InterruptedException e ) {
-                e.printStackTrace();
+                setTemperatura( tmin + r.nextFloat() * ( tmax - tmin ) );
+                Thread.sleep( 2000 );
+            } catch (InterruptedException ex) {
+                Logger.getLogger(SujetoObservable.class.getName()).log(Level.SEVERE, null, ex);
             }
             
         }
