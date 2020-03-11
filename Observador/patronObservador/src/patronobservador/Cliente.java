@@ -22,8 +22,15 @@ public class Cliente {
         botonCambio.setSujetoObservable(sujeto);
         sujeto.addObserver( botonCambio );
         botonCambio.setVisible(true);
-        //PantallaTemperatura pantallaTemperatura;
-        //GraficaTemperatura graficaTemperatura;
+        
+        PantallaTemperatura pantallaTemperatura = new PantallaTemperatura();
+        pantallaTemperatura.setSujetoObservable( sujeto );
+        sujeto.addObserver( pantallaTemperatura );
+        pantallaTemperatura.setVisible(true);
+        
+        GraficaTemperatura graficaTemperatura = new GraficaTemperatura();
+        sujeto.addObserver( graficaTemperatura );
+        graficaTemperatura.setVisible(true);
         
         Thread t = new Thread( sujeto );
         t.start();

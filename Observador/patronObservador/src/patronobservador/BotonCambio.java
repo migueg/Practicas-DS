@@ -19,6 +19,7 @@ public class BotonCambio extends javax.swing.JFrame implements Observer {
      */
     public BotonCambio() {
         initComponents();
+        this.setLocation( 20, 173 );
     }
 
     /**
@@ -132,7 +133,7 @@ public class BotonCambio extends javax.swing.JFrame implements Observer {
         
         if( temperatura < 0 )
             temperaturaActual.setForeground( Color.blue );
-        else if( temperatura > 50 )
+        else if( temperatura > 40 )
             temperaturaActual.setForeground( Color.red );
         else
             temperaturaActual.setForeground( Color.green );
