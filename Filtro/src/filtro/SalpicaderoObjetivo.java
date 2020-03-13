@@ -1,11 +1,16 @@
 package filtro;
 
-public class SalpicaderoObjetivo {
-
+import javax.swing.JPanel;
+public class SalpicaderoObjetivo extends JPanel {
+    
 	private EstadoMotor estadoMotor;
 	private int velocidadAngular;
 	private int velocidadLineal;
 	private int distanciaRecorrida;
+        Velocimetro velocimetro;
+        CuentaKilometros cuentaKilometros;
+        CuentaRevoluciones cuentaRevoluciones;
+        
 
 	public void ejecutar() {
 		// TODO - implement SalpicaderoObjetivo.ejecutar
