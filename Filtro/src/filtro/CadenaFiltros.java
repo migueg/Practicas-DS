@@ -10,8 +10,10 @@ public class CadenaFiltros {
            Filtro velocidad = new CalcularVelocidad();
            Filtro revoluciones = new RepercutirRozamiento();
            
-           ArrayList listaFiltros = new ArrayList();
+            listaFiltros = new ArrayList();
            
+            listaFiltros.add(velocidad);
+            listaFiltros.add(revoluciones);
            
            
            
