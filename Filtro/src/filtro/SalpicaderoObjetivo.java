@@ -2,19 +2,22 @@ package filtro;
 
 import javax.swing.JPanel;
 public class SalpicaderoObjetivo extends JPanel {
-    
+        static final double RADIO = 0.15;
 	private EstadoMotor estadoMotor;
-	private int velocidadAngular;
-	private int velocidadLineal;
-	private int distanciaRecorrida;
+	private double velocidadAngular;
+	private double velocidadLineal;
+	private double distanciaRecorrida;
         Velocimetro velocimetro;
         CuentaKilometros cuentaKilometros;
         CuentaRevoluciones cuentaRevoluciones;
         
 
-	public void ejecutar() {
+	public void ejecutar(double revoluciones , EstadoMotor estadoMotor) {
 		// TODO - implement SalpicaderoObjetivo.ejecutar
-		throw new UnsupportedOperationException();
+		velocidadLineal = 2*Math.PI*RADIO * revoluciones * (60/100);
+                velocidadAngular = revoluciones;
+                distanciaRecorrida += velocidadLineal;
+                
 	}
 
 	public void getVelocidadAngular() {

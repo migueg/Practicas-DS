@@ -1,10 +1,21 @@
 package filtro;
-import java.util.Arrays;
+import java.util.ArrayList;
         
 public class CadenaFiltros {
-        private Filtro listaFiltros[];
+        
+        private ArrayList listaFiltros;
         private SalpicaderoObjetivo salpicadero;
         
+        public CadenaFiltros(){
+           Filtro velocidad = new CalcularVelocidad();
+           Filtro revoluciones = new RepercutirRozamiento();
+           
+           ArrayList listaFiltros = new ArrayList();
+           
+           
+           
+           
+        }
 	public void ejecutar() {
 		// TODO - implement CadenaFiltros.ejecutar
 		throw new UnsupportedOperationException();
