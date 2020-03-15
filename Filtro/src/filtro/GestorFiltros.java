@@ -2,9 +2,18 @@ package filtro;
 
 public class GestorFiltros {
 
-	public void crear() {
-		// TODO - implement GestorFiltros.crear
-		throw new UnsupportedOperationException();
-	}
+	private CadenaFiltros filtros;
+        
+        public GestorFiltros( SalpicaderoObjetivo salpicadero ) {
+            filtros = new CadenaFiltros( salpicadero );
+        }
+        
+        public void addFiltro( Filtro filtro ) {
+            filtros.addFiltro( filtro );
+        }
+        
+        public void peticionFiltro( double peticion ) {
+            filtros.ejecutar();
+        }
 
 }

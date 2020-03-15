@@ -1,76 +1,38 @@
 package filtro;
 
 import javax.swing.JPanel;
-public class SalpicaderoObjetivo extends JPanel {
-        static final double RADIO = 0.15;
-	private EstadoMotor estadoMotor;
-	private double velocidadAngular;
-	private double velocidadLineal;
-	private double distanciaRecorrida;
-        Velocimetro velocimetro;
-        CuentaKilometros cuentaKilometros;
-        CuentaRevoluciones cuentaRevoluciones;
+public class SalpicaderoObjetivo {
+      
+        PanelBotones panelBotones;
+        PanelSalpicadero panelSalpicadero;
         
-
-	public void ejecutar(double revoluciones , EstadoMotor estadoMotor) {
-		// TODO - implement SalpicaderoObjetivo.ejecutar
-		velocidadLineal = 2*Math.PI*RADIO * revoluciones * (60/100);
-                velocidadAngular = revoluciones;
-                distanciaRecorrida += velocidadLineal;
+        public SalpicaderoObjetivo() {
+            panelBotones = new PanelBotones();
+            panelSalpicadero = new PanelSalpicadero();
+            
+            panelBotones.aniadirSalpicadero(this);
+            panelSalpicadero.aniadirSalpicadero(this);
+            
+            panelBotones.setVisible(true);
+            panelSalpicadero.setVisible(true);
+        }
+        
+	public double getVelocidadAngular() {
+            return panelSalpicadero.getVelocidadAngular();
+	}
+        
+        public EstadoMotor getEstado() {
+            return panelBotones.getEstado();
+        }
+        
+        public void reiniciarKM() {
+            panelSalpicadero.reiniciarKM();
+        }
+        
+        public void ejecutar( double revoluciones , EstadoMotor estadoMotor ) {
+		
+                panelSalpicadero.setVelocidadAngular(revoluciones );
                 
 	}
-
-	public void getVelocidadAngular() {
-		// TODO - implement SalpicaderoObjetivo.getVelocidadAngular
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param velocidadAngular
-	 */
-	public void setVelocidadAngular(int velocidadAngular) {
-		this.velocidadAngular = velocidadAngular;
-	}
-
-	public void getVelocidadLineal() {
-		// TODO - implement SalpicaderoObjetivo.getVelocidadLineal
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param velocidadLineal
-	 */
-	public void setVelocidadLineal(int velocidadLineal) {
-		this.velocidadLineal = velocidadLineal;
-	}
-
-	public void getDistanciaRecorrida() {
-		// TODO - implement SalpicaderoObjetivo.getDistanciaRecorrida
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param distanciaRecorrida
-	 */
-	public void setDistanciaRecorrida(int distanciaRecorrida) {
-		this.distanciaRecorrida = distanciaRecorrida;
-	}
-
-	public void getAttribute() {
-		// TODO - implement SalpicaderoObjetivo.getAttribute
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param attribute
-	 */
-	public void setAttribute(int attribute) {
-		// TODO - implement SalpicaderoObjetivo.setAttribute
-		throw new UnsupportedOperationException();
-	}
-
+        
 }
