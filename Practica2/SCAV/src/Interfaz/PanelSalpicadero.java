@@ -5,6 +5,7 @@
  */
 package Interfaz;
 import Salpicadero.SalpicaderoObjetivo;
+import Salpicadero.SalpicaderoObjetivo;
 
 /**
  *
@@ -32,8 +33,6 @@ public class PanelSalpicadero extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        etiqTitulo = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -43,14 +42,11 @@ public class PanelSalpicadero extends javax.swing.JFrame {
         etiqrpm = new javax.swing.JLabel();
         etiqkmt = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        etiqTitulo = new javax.swing.JLabel();
         etiqkmr = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        etiqTitulo.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        etiqTitulo.setText("Salpicadero");
-
-        jLabel1.setText("Velocímetro");
 
         jLabel2.setText("Cuentakilómetros");
 
@@ -70,7 +66,12 @@ public class PanelSalpicadero extends javax.swing.JFrame {
 
         jLabel7.setText("RPM:");
 
+        etiqTitulo.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        etiqTitulo.setText("Salpicadero");
+
         etiqkmr.setText("0");
+
+        jLabel1.setText("Velocímetro");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,7 +112,7 @@ public class PanelSalpicadero extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(114, 114, 114)
                         .addComponent(etiqTitulo)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,7 +141,7 @@ public class PanelSalpicadero extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(etiqrpm))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
@@ -172,12 +173,10 @@ public class PanelSalpicadero extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(PanelSalpicadero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                System.out.println( "HOLA" );
                 new PanelSalpicadero().setVisible(true);
             }
         });

@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 package Salpicadero;
-import Filtros.*;
 
+import Filtros.GestorFiltros;
+import Filtros.Filtro;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

@@ -7,6 +7,8 @@
 package Interfaz;
 import Salpicadero.SalpicaderoObjetivo;
 import Salpicadero.EstadoMotor;
+import Salpicadero.EstadoMotor;
+import Salpicadero.SalpicaderoObjetivo;
 
 /**
  *

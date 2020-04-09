@@ -5,6 +5,7 @@
  */
 package Filtros;
 import Salpicadero.EstadoMotor; 
+import Salpicadero.EstadoMotor;
 
 /**
  *

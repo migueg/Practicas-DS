@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Filtros;
-import Salpicadero.SalpicaderoObjetivo; 
+import Salpicadero.SalpicaderoObjetivo;
 
 /**
  *

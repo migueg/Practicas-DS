@@ -1,12 +1,16 @@
-package Salpicadero;
+
+
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import Filtros.FiltroRepercutirRozamiento;
+import Filtros.GestorFiltros;
+import Filtros.FiltroCalcularVelocidad;
 import Salpicadero.*;
-import Filtros.*;
 
 /**
  *
