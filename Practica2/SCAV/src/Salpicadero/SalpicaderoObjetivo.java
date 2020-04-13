@@ -5,9 +5,8 @@
  */
 package Salpicadero;
 
-import Interfaz.PanelBotones;
-import Interfaz.PanelSalpicadero;
-import Interfaz.Velocimetro;
+import Interfaz.*;
+import Monitorizacion.GestorMonitores;
 
 /**
  *
@@ -17,6 +16,7 @@ public class SalpicaderoObjetivo {
       
         PanelBotones panelBotones;
         PanelSalpicadero panelSalpicadero;
+        GestorMonitores gestorMonitores;
         Velocimetro velocimetro;
         
         public SalpicaderoObjetivo() {
@@ -26,6 +26,8 @@ public class SalpicaderoObjetivo {
             
             panelBotones.aniadirSalpicadero(this);
             panelSalpicadero.aniadirSalpicadero(this);
+            
+            gestorMonitores = new GestorMonitores( this );
             
             panelBotones.setVisible(true);
             panelSalpicadero.setVisible(true);
@@ -48,7 +50,24 @@ public class SalpicaderoObjetivo {
 		
                 panelSalpicadero.setVelocidadAngular(revoluciones );
                 velocimetro.setVelocidad( getVelocidadAngular() );
+                gestorMonitores.actualizarRevoluciones( revoluciones );
                 
 	}
+        
+        public void revisarAceite() {
+            gestorMonitores.revisarAceite();
+        }
+        
+        public void revisarFrenos() {
+            gestorMonitores.revisarFrenos();
+        }
+        
+        public void revisarGeneral() {
+            gestorMonitores.revisarGeneral();
+        }
+        
+        public void setMotorApagado( boolean apagado ){
+            gestorMonitores.setMotorApagado( apagado );
+        }
         
 }

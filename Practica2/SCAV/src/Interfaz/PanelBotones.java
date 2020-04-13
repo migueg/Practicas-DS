@@ -121,6 +121,9 @@ public class PanelBotones extends javax.swing.JFrame {
             // Modificamos el botón de Encender
             botonEncender.setText( "Apagar" );
             
+            // Comunicamos al salpicadero que ya no puede realizar revisiones
+            salpicadero.setMotorApagado( false );
+            
         } else {
             
             // Cambiamos el estado
@@ -138,6 +141,9 @@ public class PanelBotones extends javax.swing.JFrame {
             
             // Modificamos el botón de Encender
             botonEncender.setText( "Encender" );
+            
+            // Comunicamos al salpicadero que ya no puede realizar revisiones
+            salpicadero.setMotorApagado( true );
             
         }
         
