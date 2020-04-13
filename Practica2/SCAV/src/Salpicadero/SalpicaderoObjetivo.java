@@ -66,8 +66,12 @@ public class SalpicaderoObjetivo {
             gestorMonitores.revisarGeneral();
         }
         
-        public void setMotorApagado( boolean apagado ){
-            gestorMonitores.setMotorApagado( apagado );
+        public void tieneGasolina( boolean estado ) {
+            panelBotones.tieneGasolina( estado );
+        }
+        
+        public boolean getApagado() {
+            return panelBotones.getApagado();
         }
         
 }

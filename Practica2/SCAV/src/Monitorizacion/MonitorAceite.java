@@ -12,7 +12,7 @@ package Monitorizacion;
 public class MonitorAceite extends Monitor {
     
     public MonitorAceite() {
-        super(500);
+        super(5000000);
     }
     
     public String getComponente() {

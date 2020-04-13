@@ -23,7 +23,7 @@ public class GestorFiltros {
         }
         
         public void peticionFiltro( double peticion ) {
-            filtros.ejecutar();
+            filtros.ejecutar( peticion );
         }
 
 }

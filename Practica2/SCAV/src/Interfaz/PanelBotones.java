@@ -22,7 +22,7 @@ public class PanelBotones extends javax.swing.JFrame {
         
         estado = EstadoMotor.APAGADO;
         botonAcelerar.setEnabled(false);
-        botonFrenar.setEnabled(false);
+        encendido = false;
     }
 
     /** This method is called from within the constructor to
@@ -107,32 +107,42 @@ public class PanelBotones extends javax.swing.JFrame {
         this.salpicadero = salpicadero;
     }
     
+    public void tieneGasolina( boolean estado ) {
+        
+        if( estado == false && encendido == true ) {
+            encendido = false;
+            this.estado = EstadoMotor.APAGADO;
+            etiqEstado.setText( this.estado.toString() );
+            botonEncender.setText( "Encender" );
+        }
+        
+        botonEncender.setEnabled( estado );
+        botonAcelerar.setEnabled( estado );
+        
+    }
+    
     private void botonEncenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEncenderActionPerformed
         
         if( estado == EstadoMotor.APAGADO ) {
             
             // Cambiamos el estado
             estado = EstadoMotor.ENCENDIDO;
+            encendido = true;
             
             // Activamos los pedales
             botonAcelerar.setEnabled( true );
-            botonFrenar.setEnabled( true );
             
             // Modificamos el botón de Encender
             botonEncender.setText( "Apagar" );
             
-            // Comunicamos al salpicadero que ya no puede realizar revisiones
-            salpicadero.setMotorApagado( false );
-            
         } else {
             
             // Cambiamos el estado
-            botonEncender.setText( "Encender" );
             estado = EstadoMotor.APAGADO;
+            encendido = false;
             
             // Desactivamos los pedales
             botonAcelerar.setEnabled( false );
-            botonFrenar.setEnabled( false );
             botonAcelerar.setSelected(false);
             botonFrenar.setSelected(false);
             
@@ -141,9 +151,6 @@ public class PanelBotones extends javax.swing.JFrame {
             
             // Modificamos el botón de Encender
             botonEncender.setText( "Encender" );
-            
-            // Comunicamos al salpicadero que ya no puede realizar revisiones
-            salpicadero.setMotorApagado( true );
             
         }
         
@@ -165,8 +172,10 @@ public class PanelBotones extends javax.swing.JFrame {
 
     private void botonFrenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFrenarActionPerformed
 
-        if( estado == EstadoMotor.FRENANDO )
+        if( estado == EstadoMotor.FRENANDO && encendido == true )
             estado = EstadoMotor.ENCENDIDO;
+        else if( estado == EstadoMotor.FRENANDO && encendido == false )
+            estado = EstadoMotor.APAGADO;
         else {
             estado = EstadoMotor.FRENANDO;
             botonAcelerar.setSelected( false );
@@ -212,7 +221,12 @@ public class PanelBotones extends javax.swing.JFrame {
             }
         });
     }
+    
+    public boolean getApagado() {
+        return !encendido;
+    }
 
+    boolean encendido;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton botonAcelerar;
     private javax.swing.JButton botonEncender;

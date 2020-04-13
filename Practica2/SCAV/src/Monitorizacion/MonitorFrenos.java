@@ -12,7 +12,7 @@ package Monitorizacion;
 public class MonitorFrenos extends Monitor {
     
     public MonitorFrenos() {
-        super(1000);
+        super(1000000000);
     }
     
     public String getComponente() {

@@ -30,7 +30,7 @@ public class GestorMonitores {
         monitorAceite = new MonitorAceite();
         monitorFrenos = new MonitorFrenos();
         monitorGeneral = new MonitorGeneral();
-        gestorGasolina = new GestorGasolina( this, salpicadero );
+        gestorGasolina = new GestorGasolina( salpicadero );
         
         this.salpicadero = salpicadero;
         
@@ -62,16 +62,17 @@ public class GestorMonitores {
         monitorGeneral.actualizarRevoluciones(revoluciones);
         gestorGasolina.gastoGasolina(revoluciones);
         
-        panelMonitorizacion.comprobarAceite( monitorAceite.comprobarRevision() );
-        panelMonitorizacion.comprobarFrenos( monitorFrenos.comprobarRevision() );
-        panelMonitorizacion.comprobarGeneral( monitorGeneral.comprobarRevision() );
+        panelMonitorizacion.comprobarAceite( monitorAceite.comprobarRevision(),
+                                             monitorAceite.getRevolucionesAcumuladas() );
+        panelMonitorizacion.comprobarFrenos( monitorFrenos.comprobarRevision(),
+                                             monitorFrenos.getRevolucionesAcumuladas() );
+        panelMonitorizacion.comprobarGeneral( monitorGeneral.comprobarRevision(),
+                                              monitorGeneral.getRevolucionesAcumuladas() );
+        
         panelMonitorizacion.actualizarRevoluciones(revoluciones);
-        panelMonitorizacion.actualizarGasolina( gestorGasolina.getCantidadGasolina() );
-        panelMonitorizacion.comprobarPosibilidadRevision();
-    }
-    
-    public void setMotorApagado( boolean apagado ) {
-        panelMonitorizacion.setMotorApagado(apagado);
+        panelMonitorizacion.actualizarGasolina( gestorGasolina.getCantidadGasolina(),
+                                                gestorGasolina.getRevolucionesAcumuladas() );
+        panelMonitorizacion.comprobarPosibilidadRevision( salpicadero.getApagado() );
     }
     
     public void repostar() {

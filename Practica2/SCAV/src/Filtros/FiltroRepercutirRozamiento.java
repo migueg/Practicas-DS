@@ -15,11 +15,6 @@ public class FiltroRepercutirRozamiento implements Filtro {
         
         private final int ROZAMIENTO = 1;
         
-	/**
-	 * 
-	 * @param revoluciones
-	 * @param estadoMotor
-	 */
 	public double ejecutar( double revoluciones, EstadoMotor estadoMotor ) {
             
             double nuevasRevoluciones = revoluciones;

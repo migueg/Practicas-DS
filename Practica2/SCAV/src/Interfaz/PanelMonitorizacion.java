@@ -19,6 +19,7 @@ public class PanelMonitorizacion extends javax.swing.JFrame {
      */
     public PanelMonitorizacion() {
         initComponents();
+        ta = tf = tg = tc = 0;
     }
 
     /**
@@ -45,6 +46,21 @@ public class PanelMonitorizacion extends javax.swing.JFrame {
         botonRepostar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         etiqGasolina = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        revAceite = new javax.swing.JLabel();
+        revFrenos = new javax.swing.JLabel();
+        revGeneral = new javax.swing.JLabel();
+        revCombustible = new javax.swing.JLabel();
+        tAceite = new javax.swing.JLabel();
+        tFrenos = new javax.swing.JLabel();
+        tGeneral = new javax.swing.JLabel();
+        tCombustible = new javax.swing.JLabel();
 
         etiqTitulo.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         etiqTitulo.setText("Salpicadero");
@@ -101,10 +117,109 @@ public class PanelMonitorizacion extends javax.swing.JFrame {
 
         etiqGasolina.setText("100%");
 
+        jLabel5.setText("Revoluciones");
+
+        jLabel6.setText("Tiempo");
+
+        jLabel7.setText("Aceite");
+
+        jLabel8.setText("Frenos");
+
+        jLabel9.setText("General");
+
+        jLabel10.setText("Combust.");
+
+        revAceite.setText("jLabel11");
+
+        revFrenos.setText("jLabel11");
+
+        revGeneral.setText("jLabel11");
+
+        revCombustible.setText("jLabel11");
+
+        tAceite.setText("jLabel11");
+
+        tFrenos.setText("jLabel11");
+
+        tGeneral.setText("jLabel11");
+
+        tCombustible.setText("jLabel11");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel5)
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel6))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(revFrenos)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tFrenos))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(revAceite)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tAceite))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(revCombustible)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tCombustible))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(revGeneral)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tGeneral)))))
+                .addContainerGap(42, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(revAceite)
+                    .addComponent(tAceite))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(revFrenos)
+                    .addComponent(tFrenos))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(revGeneral)
+                    .addComponent(tGeneral))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(revCombustible)
+                    .addComponent(tCombustible))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(113, 113, 113)
+                .addComponent(etiqTitulo1)
+                .addGap(85, 517, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -122,25 +237,28 @@ public class PanelMonitorizacion extends javax.swing.JFrame {
                         .addComponent(jLabel3)))
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(etiqGeneral)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(etiqFrenos, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(etiqFrenos)
+                            .addComponent(etiqGeneral))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(etiqAceite)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(etiqAceite)
-                                .addGap(139, 139, 139)
+                                .addGap(69, 69, 69)
+                                .addComponent(etiqTitulo2)
+                                .addGap(54, 54, 54))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(botonRepostar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel4)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(etiqGasolina)))
-                .addContainerGap(31, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(113, 113, 113)
-                .addComponent(etiqTitulo1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(etiqTitulo2)
-                .addGap(85, 85, 85))
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(etiqGasolina)))
+                        .addGap(49, 49, 49))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,17 +275,20 @@ public class PanelMonitorizacion extends javax.swing.JFrame {
                     .addComponent(botonRepostar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(etiqGasolina))
-                .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonFrenos, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(etiqFrenos))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(etiqGeneral))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(botonFrenos, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(etiqFrenos))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(botonGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(etiqGeneral)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -175,18 +296,22 @@ public class PanelMonitorizacion extends javax.swing.JFrame {
 
     private void botonAceiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceiteActionPerformed
         salpicadero.revisarAceite();
+        ta = 0;
     }//GEN-LAST:event_botonAceiteActionPerformed
 
     private void botonGeneralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGeneralActionPerformed
         salpicadero.revisarGeneral();
+        tg = 0;
     }//GEN-LAST:event_botonGeneralActionPerformed
 
     private void botonFrenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFrenosActionPerformed
         salpicadero.revisarFrenos();
+        tf = 0;
     }//GEN-LAST:event_botonFrenosActionPerformed
 
     private void botonRepostarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRepostarActionPerformed
         gestor.repostar();
+        tc = 0;
     }//GEN-LAST:event_botonRepostarActionPerformed
 
     /**
@@ -232,17 +357,13 @@ public class PanelMonitorizacion extends javax.swing.JFrame {
         this.gestor = gestor;
     }
     
-    public void setMotorApagado( boolean apagado ) {     
-        this.apagado = apagado;
-    }
-    
     public void setCapacidadGasolina( double capacidadGasolina ) {
         this.capacidadGasolina = capacidadGasolina;
     }
     
-    public void comprobarPosibilidadRevision() {
+    public void comprobarPosibilidadRevision( boolean motorApagado ) {
         
-        if( apagado == true && rpm == 0.0 )
+        if( motorApagado == true && rpm == 0.0 )
             activarBotones( true );
         else
             activarBotones( false );
@@ -256,7 +377,45 @@ public class PanelMonitorizacion extends javax.swing.JFrame {
         botonRepostar.setEnabled( estado );
     }
     
-    public void comprobarAceite( boolean necesita ) {
+    private void calcularTiempo( String componente ) {
+        
+        javax.swing.JLabel etiqueta = new javax.swing.JLabel();
+        int tiempo = 0;
+        String unidad = "s";
+        
+        switch( componente ) {
+            case "ACEITE":
+                ta += 0.1;
+                tiempo = (int)ta;
+                etiqueta = tAceite;
+                break;
+            case "FRENOS":
+                tf += 0.1;
+                tiempo = (int)tf;
+                etiqueta = tFrenos;
+                break;
+            case "GENERAL":
+                tg += 0.1;
+                tiempo = (int)tg;
+                etiqueta = tGeneral;
+                break;
+            case "COMBUSTIBLE":
+                tc += 0.1;
+                tiempo = (int)tc;
+                etiqueta = tCombustible;
+                break;
+        }
+        
+        if( tiempo >= 60 ) {
+            tiempo /= 60;
+            unidad = "min";
+        }
+        
+        etiqueta.setText( tiempo + unidad );
+        
+    }
+    
+    public void comprobarAceite( boolean necesita, double revolucionesAcumuladas ) {
         
         if( necesita ) {
             etiqAceite.setText( "Revisión necesaria" );
@@ -266,9 +425,12 @@ public class PanelMonitorizacion extends javax.swing.JFrame {
             etiqAceite.setForeground( Color.green );
         }
         
+        revAceite.setText( String.format( "%.2f", revolucionesAcumuladas ) );
+        calcularTiempo( "ACEITE" );
+        
     }
     
-    public void comprobarFrenos( boolean necesita ) {
+    public void comprobarFrenos( boolean necesita, double revolucionesAcumuladas ) {
         
         if( necesita ) {
             etiqFrenos.setText( "Revisión necesaria" );
@@ -278,9 +440,12 @@ public class PanelMonitorizacion extends javax.swing.JFrame {
             etiqFrenos.setForeground( Color.green );
         }
         
+        revFrenos.setText( String.format( "%.2f", revolucionesAcumuladas ) );
+        calcularTiempo( "FRENOS" );
+        
     }
     
-    public void comprobarGeneral( boolean necesita ) {
+    public void comprobarGeneral( boolean necesita, double revolucionesAcumuladas ) {
         
         if( necesita ) {
             etiqGeneral.setText( "Revisión necesaria" );
@@ -290,18 +455,24 @@ public class PanelMonitorizacion extends javax.swing.JFrame {
             etiqGeneral.setForeground(Color.green );
         }
         
+        revGeneral.setText( String.format( "%.2f", revolucionesAcumuladas ) );
+        calcularTiempo( "GENERAL" );
+        
     }
     
     public void actualizarRevoluciones( double rpm ) {
         this.rpm = rpm;
     }
     
-    public void actualizarGasolina( double cantidadGasolina ) {
+    public void actualizarGasolina( double cantidadGasolina, double revolucionesAcumuladas ) {
         
         int porcentaje = (int) ( cantidadGasolina * 100 / capacidadGasolina );
         
         etiqGasolina.setText( Integer.toString( porcentaje ) + "%" );
         colorGasolina( porcentaje );
+        
+        revCombustible.setText( String.format( "%.2f", revolucionesAcumuladas ) );
+        calcularTiempo( "COMBUSTIBLE" );
         
     }
     
@@ -321,9 +492,11 @@ public class PanelMonitorizacion extends javax.swing.JFrame {
     // Salpicadero
     SalpicaderoObjetivo salpicadero;
     GestorMonitores gestor;
-    private boolean apagado = true;
     private double rpm = 0.0;
     private double capacidadGasolina;
+    
+    // Tiempos monitorización
+    double ta, tf, tg, tc;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAceite;
@@ -338,8 +511,23 @@ public class PanelMonitorizacion extends javax.swing.JFrame {
     private javax.swing.JLabel etiqTitulo1;
     private javax.swing.JLabel etiqTitulo2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel revAceite;
+    private javax.swing.JLabel revCombustible;
+    private javax.swing.JLabel revFrenos;
+    private javax.swing.JLabel revGeneral;
+    private javax.swing.JLabel tAceite;
+    private javax.swing.JLabel tCombustible;
+    private javax.swing.JLabel tFrenos;
+    private javax.swing.JLabel tGeneral;
     // End of variables declaration//GEN-END:variables
 }

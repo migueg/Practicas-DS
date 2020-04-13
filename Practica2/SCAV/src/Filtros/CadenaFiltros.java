@@ -42,14 +42,12 @@ public class CadenaFiltros {
             
         }
         
-	public void ejecutar() {
-		
-            double nuevaVelocidad = salpicadero.getVelocidadAngular();
+	public void ejecutar( double peticion ) {
             
             for( Filtro filtro : listaFiltros )
-                nuevaVelocidad = filtro.ejecutar( nuevaVelocidad, salpicadero.getEstado() );
+                peticion = filtro.ejecutar( peticion, salpicadero.getEstado() );
             
-            salpicadero.ejecutar( nuevaVelocidad, salpicadero.getEstado() );
+            salpicadero.ejecutar( peticion, salpicadero.getEstado() );
             
 	}
 

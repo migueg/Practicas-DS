@@ -5,6 +5,7 @@
  */
 package Monitorizacion;
 import Salpicadero.*;
+import java.util.Random;
 
 /**
  *
@@ -16,33 +17,34 @@ public class GestorGasolina {
     private final double capacidad = 10;
     // Capacidad actual del tanque
     private double cantidadGasolina;
+    // Revoluciones acumuladas desde el último 
+    private double revolucionesAcumuladas;
     // Salpicadero
     private SalpicaderoObjetivo salpicadero;
-    // Gestor de monitorizacion
-    private GestorMonitores gestor;
     
-    public GestorGasolina( GestorMonitores gestor, SalpicaderoObjetivo salpicadero ) {
+    public GestorGasolina( SalpicaderoObjetivo salpicadero ) {
         
-        cantidadGasolina = capacidad;
+        Random r = new Random();
+        cantidadGasolina = 1 + ( 10 - 1 ) * r.nextDouble();
+                
         this.salpicadero = salpicadero;
-        this.gestor = gestor;
         
     }
     
     private double calcularGasto( double rpm ) {
-        return rpm * rpm * 50 * 0.000000001;
+        return rpm * rpm * 5 * 0.000000001;
     }
     
     public void gastoGasolina( double rpm ) {
         
         double gasto = calcularGasto( rpm );
+        revolucionesAcumuladas += rpm * 0.006;
         
         if( cantidadGasolina - gasto <= 0 ) {
             
             cantidadGasolina = 0;
             
-            //if( salpicadero.getEstado() != EstadoMotor.APAGADO )
-                //salpicadero.sinGasolina( true );
+            salpicadero.tieneGasolina( false );
             
         } else 
             cantidadGasolina -= gasto;
@@ -51,7 +53,8 @@ public class GestorGasolina {
     
     public void repostar() {
         cantidadGasolina = capacidad;
-        //salpicadero.sinGasolina( false );
+        revolucionesAcumuladas = 0;
+        salpicadero.tieneGasolina( true );
     }
     
     public double getCantidadGasolina() {
@@ -60,6 +63,10 @@ public class GestorGasolina {
     
     public double getCapacidad() {
         return capacidad;
+    }
+    
+    public double getRevolucionesAcumuladas() {
+        return revolucionesAcumuladas;
     }
     
 }

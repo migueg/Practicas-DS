@@ -12,7 +12,7 @@ package Monitorizacion;
 public class MonitorGeneral extends Monitor {
     
     public MonitorGeneral() {
-        super(1500);
+        super(1999999999);
     }
     
     public String getComponente() {

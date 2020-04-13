@@ -12,7 +12,7 @@ package Monitorizacion;
 public abstract class Monitor {
     
     // Revoluciones acumuladas desde la última revisión
-    private long revolucionesAcumuladas;
+    private double revolucionesAcumuladas;
     // Revoluciones recomendadas a partir de las cuales debe revisarse un
     // componente
     private long revolucionesParaRevision;
@@ -26,12 +26,16 @@ public abstract class Monitor {
     
     public void actualizarRevoluciones( double revoluciones ) {
         
-        double ultimoCiclo = revoluciones / 600;
+        double ultimoCiclo = revoluciones * 0.006;
         revolucionesAcumuladas += ultimoCiclo;
         
         System.out.println( getComponente() + ": " + revolucionesAcumuladas +
                             "/" + revolucionesParaRevision);
         
+    }
+    
+    public double getRevolucionesAcumuladas() {
+        return revolucionesAcumuladas;
     }
     
     public boolean comprobarRevision() {
