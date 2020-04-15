@@ -32,6 +32,7 @@ public class PanelMonitorizacion extends javax.swing.JFrame {
     private void initComponents() {
 
         etiqTitulo = new javax.swing.JLabel();
+        etiqTitulo3 = new javax.swing.JLabel();
         etiqTitulo1 = new javax.swing.JLabel();
         botonAceite = new javax.swing.JButton();
         botonGeneral = new javax.swing.JButton();
@@ -64,6 +65,9 @@ public class PanelMonitorizacion extends javax.swing.JFrame {
 
         etiqTitulo.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         etiqTitulo.setText("Salpicadero");
+
+        etiqTitulo3.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        etiqTitulo3.setText("Revisiones");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -217,10 +221,6 @@ public class PanelMonitorizacion extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(113, 113, 113)
-                .addComponent(etiqTitulo1)
-                .addGap(85, 517, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -241,7 +241,7 @@ public class PanelMonitorizacion extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(etiqFrenos)
                             .addComponent(etiqGeneral))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
@@ -250,15 +250,18 @@ public class PanelMonitorizacion extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(69, 69, 69)
-                                .addComponent(etiqTitulo2)
-                                .addGap(54, 54, 54))
+                                .addComponent(etiqTitulo2))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(botonRepostar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(etiqGasolina)))
-                        .addGap(49, 49, 49))))
+                        .addGap(62, 62, 62))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(113, 113, 113)
+                .addComponent(etiqTitulo1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -267,7 +270,7 @@ public class PanelMonitorizacion extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etiqTitulo1)
                     .addComponent(etiqTitulo2))
-                .addGap(18, 18, 18)
+                .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonAceite, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
@@ -288,7 +291,7 @@ public class PanelMonitorizacion extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(etiqGeneral)))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -344,7 +347,10 @@ public class PanelMonitorizacion extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PanelMonitorizacion().setVisible(true);
+                PanelMonitorizacion panel = new PanelMonitorizacion();
+                 panel.setLocation(1000,400);
+               // panel.setVisible(true);
+               
             }
         });
     }
@@ -510,6 +516,7 @@ public class PanelMonitorizacion extends javax.swing.JFrame {
     private javax.swing.JLabel etiqTitulo;
     private javax.swing.JLabel etiqTitulo1;
     private javax.swing.JLabel etiqTitulo2;
+    private javax.swing.JLabel etiqTitulo3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

@@ -207,6 +207,9 @@ public class PanelSalpicadero extends javax.swing.JFrame {
         return velocidadAngular;
     }
     
+    public double getVelocidadLineal (){
+        return velocidadLineal;
+    }
     private double calcularVelocidadLineal( double revoluciones ) {
         //double velocidad = ( 2 * Math.PI * RADIO * revoluciones/600 * (60/100) );
         double velocidad = 2 * Math.PI * revoluciones * 0.06;

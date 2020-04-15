@@ -32,6 +32,8 @@ public class SalpicaderoObjetivo {
             panelBotones.setVisible(true);
             panelSalpicadero.setVisible(true);
             velocimetro.setVisible( true );
+            panelBotones.setLocation(500, 500);
+            panelSalpicadero.setLocation(170,500);
         }
         
 	public double getVelocidadAngular() {
@@ -49,7 +51,7 @@ public class SalpicaderoObjetivo {
         public void ejecutar( double revoluciones , EstadoMotor estadoMotor ) {
 		
                 panelSalpicadero.setVelocidadAngular(revoluciones );
-                velocimetro.setVelocidad( getVelocidadAngular() );
+                velocimetro.setVelocidad( this.panelSalpicadero.getVelocidadLineal() );
                 gestorMonitores.actualizarRevoluciones( revoluciones );
                 
 	}

@@ -3,16 +3,25 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/juanfrandm98/GitHub/Practicas-DS/Practica2/SCAV/src/Monitorizacion/Monitor.java</file>
-            <file>file:/home/juanfrandm98/GitHub/Practicas-DS/Practica2/SCAV/src/Interfaz/PanelMonitorizacion.java</file>
-            <file>file:/home/juanfrandm98/GitHub/Practicas-DS/Practica2/SCAV/src/Monitorizacion/MonitorGeneral.java</file>
-            <file>file:/home/juanfrandm98/GitHub/Practicas-DS/Practica2/SCAV/src/Salpicadero/SalpicaderoObjetivo.java</file>
-            <file>file:/home/juanfrandm98/GitHub/Practicas-DS/Practica2/SCAV/src/Interfaz/PanelBotones.java</file>
-            <file>file:/home/juanfrandm98/GitHub/Practicas-DS/Practica2/SCAV/src/Monitorizacion/MonitorFrenos.java</file>
-            <file>file:/home/juanfrandm98/GitHub/Practicas-DS/Practica2/SCAV/src/Interfaz/PanelSalpicadero.java</file>
-            <file>file:/home/juanfrandm98/GitHub/Practicas-DS/Practica2/SCAV/src/Monitorizacion/GestorMonitores.java</file>
-            <file>file:/home/juanfrandm98/GitHub/Practicas-DS/Practica2/SCAV/src/Monitorizacion/GestorGasolina.java</file>
-            <file>file:/home/juanfrandm98/GitHub/Practicas-DS/Practica2/SCAV/src/Monitorizacion/MonitorAceite.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Ingenieria%20informática/DS/Practicas-DS/Practica2/SCAV/src/Monitorizacion/GestorGasolina.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Ingenieria%20informática/DS/Practicas-DS/Practica2/SCAV/src/Salpicadero/EstadoMotor.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Ingenieria%20informática/DS/Practicas-DS/Practica2/SCAV/src/Monitorizacion/GestorMonitores.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Ingenieria%20informática/DS/Practicas-DS/Practica2/SCAV/src/Monitorizacion/MonitorAceite.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Ingenieria%20informática/DS/Practicas-DS/Practica2/SCAV/src/Filtros/FiltroCalcularVelocidad.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Ingenieria%20informática/DS/Practicas-DS/Practica2/SCAV/src/Monitorizacion/Monitor.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Ingenieria%20informática/DS/Practicas-DS/Practica2/SCAV/src/Filtros/FiltroRepercutirRozamiento.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Ingenieria%20informática/DS/Practicas-DS/Practica2/SCAV/src/Salpicadero/SalpicaderoObjetivo.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Ingenieria%20informática/DS/Practicas-DS/Practica2/SCAV/src/Filtros/CadenaFiltros.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Ingenieria%20informática/DS/Practicas-DS/Practica2/SCAV/src/Interfaz/PanelBotones.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Ingenieria%20informática/DS/Practicas-DS/Practica2/SCAV/src/Monitorizacion/MonitorFrenos.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Ingenieria%20informática/DS/Practicas-DS/Practica2/SCAV/src/Salpicadero/Cliente.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Ingenieria%20informática/DS/Practicas-DS/Practica2/SCAV/src/Filtros/Filtro.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Ingenieria%20informática/DS/Practicas-DS/Practica2/SCAV/src/Interfaz/Velocimetro.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Ingenieria%20informática/DS/Practicas-DS/Practica2/SCAV/src/Interfaz/PanelMonitorizacion.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Ingenieria%20informática/DS/Practicas-DS/Practica2/SCAV/src/Filtros/GestorFiltros.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Ingenieria%20informática/DS/Practicas-DS/Practica2/SCAV/src/Main.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Ingenieria%20informática/DS/Practicas-DS/Practica2/SCAV/src/Monitorizacion/MonitorGeneral.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Ingenieria%20informática/DS/Practicas-DS/Practica2/SCAV/src/Interfaz/PanelSalpicadero.java</file>
         </group>
     </open-files>
 </project-private>

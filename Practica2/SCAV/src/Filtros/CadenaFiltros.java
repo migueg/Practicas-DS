@@ -15,7 +15,7 @@ public class CadenaFiltros {
         
         private ArrayList<Filtro> listaFiltros;
         private SalpicaderoObjetivo salpicadero;
-        
+       
         /*
         public CadenaFiltros(){
             

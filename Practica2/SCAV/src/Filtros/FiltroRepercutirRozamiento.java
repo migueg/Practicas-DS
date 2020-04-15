@@ -16,8 +16,8 @@ public class FiltroRepercutirRozamiento implements Filtro {
         private final int ROZAMIENTO = 1;
         
 	public double ejecutar( double revoluciones, EstadoMotor estadoMotor ) {
-            
-            double nuevasRevoluciones = revoluciones;
+            if(estadoMotor != EstadoMotor.MANTENIENDO){
+                 double nuevasRevoluciones = revoluciones;
             
             if( nuevasRevoluciones - ROZAMIENTO > 0 )
                 nuevasRevoluciones -= ROZAMIENTO;
@@ -27,7 +27,11 @@ public class FiltroRepercutirRozamiento implements Filtro {
             System.out.println( "Filtro Rozamiento: " + revoluciones + " -> " +
                                 nuevasRevoluciones + "." );
             
-            return nuevasRevoluciones;
+               return nuevasRevoluciones;
+            }else{
+                return revoluciones;
+            }
+           
             
 	}
 

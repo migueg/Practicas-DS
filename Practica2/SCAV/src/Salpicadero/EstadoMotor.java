@@ -13,5 +13,8 @@ public enum EstadoMotor {
 	ACELERANDO,
 	FRENANDO,
 	APAGADO,
-	ENCENDIDO
+	ENCENDIDO,
+        MANTENIENDO,
+        ACELERANDOSIS,
+        REINICIAR
 }

@@ -35,11 +35,12 @@ public class GestorMonitores {
         this.salpicadero = salpicadero;
         
         panelMonitorizacion = new PanelMonitorizacion();
+        
         panelMonitorizacion.setGestor( this );
         panelMonitorizacion.setSalpicadero(salpicadero);
         panelMonitorizacion.setCapacidadGasolina( gestorGasolina.getCapacidad() );
         panelMonitorizacion.setVisible(true);
-        
+        panelMonitorizacion.setLocation(500, 200);
     }
     
     public void revisarFrenos() {

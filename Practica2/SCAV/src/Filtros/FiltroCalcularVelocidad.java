@@ -14,7 +14,8 @@ import Salpicadero.EstadoMotor;
 public class FiltroCalcularVelocidad implements Filtro {
     
     	public double incrementoVelocidad ;
-        private final double VELOCIDADMAXIMA = 742; // Para que no supere los 280 km/h
+        private final double VELOCIDADMAXIMA = 680; // Para que no supere los 280 km/h
+        private double velocidadAlmacenada = 0;
 
 	/**
 	 * 
@@ -31,7 +32,7 @@ public class FiltroCalcularVelocidad implements Filtro {
                 
                 incrementoVelocidad = 0;
                 
-            }else if (estadoMotor == EstadoMotor.ACELERANDO){
+            }else if (estadoMotor == EstadoMotor.ACELERANDO || estadoMotor == EstadoMotor.REINICIAR){
                 
                 incrementoVelocidad = 3;
                 
@@ -39,9 +40,23 @@ public class FiltroCalcularVelocidad implements Filtro {
                 
                 incrementoVelocidad = -3;
                 
+            }else if (estadoMotor == EstadoMotor.MANTENIENDO){
+                incrementoVelocidad = 0;
+                velocidadAlmacenada = revoluciones;
+                
             }
             
-            double nuevasRevoluciones = revoluciones + incrementoVelocidad;
+            double nuevasRevoluciones ;
+            if(estadoMotor == EstadoMotor.REINICIAR){
+               if(revoluciones < velocidadAlmacenada){
+                  nuevasRevoluciones = revoluciones + incrementoVelocidad;
+                  
+               }else {
+                  nuevasRevoluciones = revoluciones - incrementoVelocidad;
+               }
+            }else{
+                 nuevasRevoluciones = revoluciones + incrementoVelocidad;
+            }
             
             if( nuevasRevoluciones < 0 )
                 nuevasRevoluciones = 0;
