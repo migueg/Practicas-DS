@@ -482,7 +482,7 @@ public class PanelMonitorizacion extends javax.swing.JFrame {
         
     }
     
-    public void colorGasolina( int porcentaje ) {
+    private void colorGasolina( int porcentaje ) {
         
         if( porcentaje >= 50 )
             etiqGasolina.setForeground( Color.green );
