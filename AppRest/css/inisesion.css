@@ -1,0 +1,32 @@
+.centro{
+    float: left;
+    width: 33%;
+    margin-left: 35%;
+    background-color:  rgba(240, 93, 93, 0.411);
+    text-align: center;
+    padding-bottom: 5%;
+    border-radius: 20%;
+    border-style: groove;
+}
+.centro form{
+    margin-top: 10%;
+}
+.centro form input{
+    margin-top: 2%;
+}
+.titulo{
+    
+    float: left;
+    width: 33%;
+    margin-left:35%;
+    text-align: center;
+    margin-top: 5%;
+}
+.titulo h1{
+    border-radius: 20%;
+    border-style: groove;
+    margin-top: 0;
+    padding-bottom: 2%;
+    background-color:  rgba(23, 171, 240, 0.411);;
+   
+}

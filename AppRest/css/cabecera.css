@@ -1,0 +1,148 @@
+html{
+    background: url("../img/fondo2.jpg");
+   
+    background-repeat: repeat-x;
+    background-size: cover;
+}
+header{
+    width: 100%;
+    float: left;
+    background-color: #817B7B;
+    top: 0;
+    padding-top: 1%;
+    text-align: center;
+    
+ 
+}
+header h1{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    width: 30%;
+    float: right;
+    margin-right: 35%;
+}
+body{
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+}
+.clearfix::after {
+	content: "";
+	clear: both;
+	display: table;
+}
+.centro{
+    width: 100%;
+}
+
+.ini{
+    display: block;
+    float: left;
+    width: 33%;
+    margin-left: 10%;
+    padding-top: 5%;
+    background-color:  rgba(240, 93, 93, 0.411);
+    text-align: center;
+    padding-bottom: 2%;
+    margin-top:2%;
+    border-radius: 10%;
+
+}
+
+.ini a{
+    margin-top: 10%;
+    background-color:#817B7B;
+    border-radius: 10%;
+    padding: 5%;
+    float: left;
+    margin-left: 37%;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+.ini a:visited{
+    border-top: 1px solid #cccccc;
+    border-bottom: 2px solid #666666;
+    border-left: 1px solid #cccccc;
+    border-right: 2px solid #666666; 
+}
+.ini a:hover{
+    border-bottom: 1px solid #cccccc;
+    border-top: 2px solid #666666;
+    border-right: 1px solid #cccccc;
+    border-left: 2px solid #666666; 
+}
+.registro{
+    display: block;
+    float: right;
+    width: 33%;
+    margin-right: 10%;
+    padding-top: 5%;
+    background-color:  rgba(240, 93, 93, 0.411);
+    text-align: center;
+    padding-bottom: 2%;
+    margin-top:2%;
+    border-radius: 10%;
+    
+}
+
+.registro a{
+    margin-top: 10%;
+    background-color:#817B7B;
+    border-radius: 10%;
+    padding: 5%;
+    float: left;
+    margin-left: 40%;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+
+}
+.registro a:visited{
+    border-top: 1px solid #cccccc;
+    border-bottom: 2px solid #666666;
+    border-left: 1px solid #cccccc;
+    border-right: 2px solid #666666; 
+}
+.registro a:hover{
+    border-bottom: 1px solid #cccccc;
+    border-top: 2px solid #666666;
+    border-right: 1px solid #cccccc;
+    border-left: 2px solid #666666; 
+}
+
+div.gallery {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 180px;
+    width: 20%;
+    margin-top: 2%;
+    margin-left: 10%;
+  }
+  
+  div.gallery:hover {
+    border: 1px solid #777;
+  }
+  
+  div.gallery img {
+    width: 100%;
+    height: auto;
+  }
+  
+  div.desc {
+    padding: 15px;
+    text-align: center;
+  }
+
+#sub{
+    text-align: center;
+    margin-top: 2%;
+    background-color:  rgb(240, 93, 93);
+ 
+    
+}
+
+#imcabecera{
+    float: left;
+}
