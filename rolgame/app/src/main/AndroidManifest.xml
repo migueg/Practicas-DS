@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".Perfil"></activity>
+        <activity android:name=".BuyObject"></activity>
+        <activity android:name=".Shop" />
+        <activity android:name=".ChangePassword" />
+        <activity android:name=".Perfil" />
         <activity android:name=".selectClase" />
         <activity android:name=".Registro" />
         <activity android:name=".MainMenu" />

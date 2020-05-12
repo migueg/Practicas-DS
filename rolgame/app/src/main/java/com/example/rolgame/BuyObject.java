@@ -5,21 +5,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
-public class Perfil extends AppCompatActivity {
+public class BuyObject extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_perfil);
+        setContentView(R.layout.activity_buy_object);
     }
 
     public void goBack( android.view.View V ) {
-        Intent intent = new Intent( this, MainMenu.class );
+        Intent intent = new Intent( this, Shop.class );
         startActivity( intent );
     }
 
-    public void goToChangePass( android.view.View V ) {
-        Intent intent = new Intent( this, ChangePassword.class );
+    public void buyObj( android.view.View V ) {
+        Intent intent = new Intent( this, Shop.class );
         startActivity( intent );
     }
 }

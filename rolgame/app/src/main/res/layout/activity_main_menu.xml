@@ -58,7 +58,7 @@
                 android:layout_width="250dp"
                 android:layout_height="250dp"
                 android:layout_gravity="center_horizontal"
-                app:srcCompat="@drawable/personaje_prueba" />
+                app:srcCompat="@drawable/warrior_1" />
 
             <Space
                 android:layout_width="match_parent"
@@ -80,9 +80,10 @@
                 android:id="@+id/button5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tienda"
+                android:layout_marginHorizontal="50dp"
                 android:background="#AA0F0F"
-                android:layout_marginHorizontal="50dp" />
+                android:onClick="goToShop"
+                android:text="Tienda" />
 
             <Space
                 android:layout_width="match_parent"

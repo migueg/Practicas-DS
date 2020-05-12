@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Perfil">
+    tools:context=".BuyObject">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -51,13 +51,24 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="75dp" />
+                android:layout_height="23dp" />
+
+            <ImageView
+                android:id="@+id/imageObj"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_gravity="center_horizontal"
+                app:srcCompat="@drawable/wand_icon" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="21dp" />
 
             <TextView
                 android:id="@+id/nameObj"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nombre de Usuario"
+                android:text="Varita de olivo"
                 android:textAlignment="center"
                 android:textColor="#AA0F0F"
                 android:textSize="40sp"
@@ -65,7 +76,20 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="119dp" />
+                android:layout_height="21dp" />
+
+            <TextView
+                android:id="@+id/descripcionObj"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_marginHorizontal="20dp"
+                android:text="Varita de gran fuerza que posee el poder de hacerlo arder todo como el aceite."
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="14dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -73,36 +97,36 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView7"
-                    android:layout_width="40sp"
+                    android:id="@+id/textView12"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="right|center_vertical"
-                    android:text="Record"
+                    android:text="Precio"
                     android:textColor="#AA0F0F"
                     android:textSize="24sp"
                     app:fontFamily="sans-serif-medium" />
 
                 <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
                     android:layout_weight="1" />
 
                 <TextView
-                    android:id="@+id/recordUsuario"
+                    android:id="@+id/goldObj"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|center_vertical"
                     android:layout_weight="1"
                     android:gravity="left|center_vertical"
                     android:text="50"
-                    android:textSize="24sp" />
-
+                    android:textSize="24sp"
+                    tools:text="50" />
             </LinearLayout>
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="32dp" />
+                android:layout_height="14dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -110,35 +134,36 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView13"
-                    android:layout_width="40sp"
+                    android:id="@+id/textView16"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="right|center_vertical"
-                    android:text="Oro"
+                    android:text="Disponible"
                     android:textColor="#AA0F0F"
                     android:textSize="24sp"
-                    app:fontFamily="sans-serif-condensed-medium" />
+                    app:fontFamily="sans-serif-medium" />
 
                 <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
                     android:layout_weight="1" />
 
                 <TextView
-                    android:id="@+id/textView14"
+                    android:id="@+id/goldPlayer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="left|center_vertical"
-                    android:text="500"
+                    android:text="50"
                     android:textSize="24sp"
-                    app:fontFamily="sans-serif-condensed-medium" />
+                    tools:text="50" />
             </LinearLayout>
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="122dp" />
+                android:layout_height="17dp" />
 
             <Button
                 android:id="@+id/button10"
@@ -146,9 +171,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="50dp"
                 android:background="#AA0F0F"
-                android:onClick="goToChangePass"
-                android:text="Cambiar contraseña" />
+                android:onClick="buyObj"
+                android:text="Comprar" />
         </LinearLayout>
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
