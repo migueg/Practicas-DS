@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BuyObject">
+    tools:context=".Combat">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -38,8 +38,8 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="20dp"
                 android:background="#741010"
-                android:onClick="goBack"
-                android:text="Atrás"
+                android:onClick="giveUp"
+                android:text="Rendirse"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
 
@@ -49,47 +49,36 @@
             android:background="#817B7B"
             android:orientation="vertical">
 
+
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="23dp" />
+                android:layout_height="19dp" />
 
             <ImageView
-                android:id="@+id/imageObj"
-                android:layout_width="180dp"
-                android:layout_height="180dp"
+                android:id="@+id/EnemyImage"
+                android:layout_width="250sp"
+                android:layout_height="250sp"
                 android:layout_gravity="center_horizontal"
-                app:srcCompat="@drawable/wand_icon" />
+                app:srcCompat="@drawable/bat" />
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="21dp" />
+                android:layout_height="11dp" />
 
             <TextView
-                android:id="@+id/nameObj"
+                android:id="@+id/EnemyName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Varita de olivo"
-                android:textAlignment="center"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:text="Murciélago"
                 android:textColor="#AA0F0F"
-                android:textSize="40sp"
-                app:fontFamily="sans-serif-black" />
+                android:textSize="30sp"
+                app:fontFamily="sans-serif-medium" />
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="21dp" />
-
-            <TextView
-                android:id="@+id/descripcionObj"
-                android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:layout_marginHorizontal="20dp"
-                android:text="Varita de gran fuerza que posee el poder de hacerlo arder todo como el aceite."
-                android:textAlignment="center"
-                android:textSize="20sp" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="14dp" />
+                android:layout_height="15dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -97,73 +86,47 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/EnemyActualHP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="right|center_vertical"
-                    android:text="Precio"
-                    android:textColor="#AA0F0F"
-                    android:textSize="24sp"
-                    app:fontFamily="sans-serif-medium" />
-
-                <Space
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_weight="1" />
+                    android:gravity="right"
+                    android:text="100"
+                    android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/goldObj"
+                    android:id="@+id/textView18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="left|center_vertical"
-                    android:text="50"
-                    android:textSize="24sp"
-                    tools:text="50" />
+                    android:gravity="center_horizontal"
+                    android:text="/"
+                    android:textSize="20sp"
+                    app:fontFamily="sans-serif-medium" />
+
+                <TextView
+                    android:id="@+id/EnemyMaxHP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="100"
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="14dp" />
+                android:layout_height="64dp" />
 
-            <LinearLayout
+            <Spinner
+                android:id="@+id/spinnerAtaques"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textView16"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right|center_vertical"
-                    android:text="Disponible"
-                    android:textColor="#AA0F0F"
-                    android:textSize="24sp"
-                    app:fontFamily="sans-serif-medium" />
-
-                <Space
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:id="@+id/goldPlayer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="left|center_vertical"
-                    android:text="50"
-                    android:textSize="24sp"
-                    tools:text="50" />
-            </LinearLayout>
+                android:layout_height="35sp"
+                android:layout_marginHorizontal="50dp" />
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="17dp" />
+                android:layout_height="57dp" />
 
             <Button
                 android:id="@+id/botonAtacar"
@@ -171,8 +134,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="50dp"
                 android:background="#AA0F0F"
-                android:onClick="buyObj"
-                android:text="Comprar" />
+                android:onClick="sendAttack"
+                android:text="Atacar" />
         </LinearLayout>
 
     </LinearLayout>

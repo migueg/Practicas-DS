@@ -10,8 +10,11 @@
         android:label="RolGame"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".BuyObject"></activity>
+        android:theme="@style/Theme.AppCompat.NoActionBar"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Equipment"></activity>
+        <activity android:name=".Combat" />
+        <activity android:name=".BuyObject" />
         <activity android:name=".Shop" />
         <activity android:name=".ChangePassword" />
         <activity android:name=".Perfil" />

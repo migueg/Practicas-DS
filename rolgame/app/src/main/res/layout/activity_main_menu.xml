@@ -68,8 +68,9 @@
                 android:id="@+id/button3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#AA0F0F"
                 android:layout_marginHorizontal="50dp"
+                android:background="#AA0F0F"
+                android:onClick="goToCombat"
                 android:text="Combatir" />
 
             <Space
@@ -93,9 +94,10 @@
                 android:id="@+id/button6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Equipamiento"
+                android:layout_marginHorizontal="50dp"
                 android:background="#AA0F0F"
-                android:layout_marginHorizontal="50dp" />
+                android:onClick="goToEquipment"
+                android:text="Equipamiento" />
 
             <Space
                 android:layout_width="match_parent"

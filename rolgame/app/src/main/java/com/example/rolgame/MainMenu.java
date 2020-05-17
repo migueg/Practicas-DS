@@ -18,8 +18,18 @@ public class MainMenu extends AppCompatActivity {
         startActivity( intent );
     }
 
+    public void goToCombat( android.view.View V ) {
+        Intent intent = new Intent( this, Combat.class );
+        startActivity( intent );
+    }
+
     public void goToShop( android.view.View V ) {
         Intent intent = new Intent( this, Shop.class );
+        startActivity( intent );
+    }
+
+    public void goToEquipment( android.view.View V ) {
+        Intent intent = new Intent( this, Equipment.class );
         startActivity( intent );
     }
 

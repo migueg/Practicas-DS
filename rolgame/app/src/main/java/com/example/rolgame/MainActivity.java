@@ -28,7 +28,8 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    public static final String LOGIN_URL = "http://localhost:8080/ServerREST/server/rolgame/login";
+    //public static final String LOGIN_URL = "http://localhost:8080/ServerREST/server/rolgame/login";
+    public static final String LOGIN_URL = "http://192.168.1.40:8080/ServerREST/server/rolgame/login";
     public static final String KEY_USERNAME = "username";
     public static final String KEY_PASSWORD = "password";
 
@@ -62,9 +63,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    /*
     @Override
     public void onClick( View v ) {
         login();
+    }*/
+    @Override
+    public void onClick( View v ) {
+        goToMainMenu();
     }
 
     public void login() {
