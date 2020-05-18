@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -29,7 +30,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     //public static final String LOGIN_URL = "http://localhost:8080/ServerREST/server/rolgame/login";
-    public static final String LOGIN_URL = "http://192.168.1.40:8080/ServerREST/server/rolgame/login";
+    public static final String LOGIN_URL = "http://192.168.1.40:8080/ServerREST/demo/rolgame/login";
     public static final String KEY_USERNAME = "username";
     public static final String KEY_PASSWORD = "password";
 
@@ -63,21 +64,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    /*
+
     @Override
     public void onClick( View v ) {
         login();
-    }*/
+    }
+    /*
     @Override
     public void onClick( View v ) {
         goToMainMenu();
-    }
+    }*/
 
     public void login() {
 
         username = textUsername.getText().toString().trim();
         password = textPassword.getText().toString().trim();
 
+        /*
         JSONObject js = new JSONObject();
 
         try {
@@ -85,9 +88,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             js.put( "password", password );
         } catch( JSONException e ) {
             e.printStackTrace();
-        }
+        }*/
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest( Request.Method.POST, LOGIN_URL, js,
+        Map<String, String> postParam= new HashMap<String, String>();
+        postParam.put("username", username );
+        postParam.put("password", password );
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest( Request.Method.POST, LOGIN_URL, new JSONObject(postParam),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse( JSONObject response ) {
@@ -107,19 +114,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse( VolleyError error ) {
-                        Toast.makeText( MainActivity.this, error.toString(), Toast.LENGTH_LONG ).show();
+                        Toast.makeText( MainActivity.this, error.toString() + " - code: " + error.networkResponse.statusCode, Toast.LENGTH_LONG ).show();
                     }
                 }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String,String> headers = new HashMap<String,String>();
-                headers.put( "Content-Type", "application/json; charset=utf-8" );
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                //headers.put("Content-Type", "application/json");
                 return headers;
             }
+
         };
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonObjectRequest);
+        jsonObjectRequest.setRetryPolicy( new DefaultRetryPolicy(50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT ) );
     }
 
     public void goToMainMenu() {
