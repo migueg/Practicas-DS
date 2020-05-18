@@ -57,11 +57,13 @@ public class Servicio {
     @Path("login")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public String login( JsonObject js ) {
+    public String login( datosConexion datos ) {
+        
+        System.out.println("Me ha llegado cosas.");
         
         for ( Jugador j : jugadores ){
-            if( j.getUsername().equals(js.get("username").toString()) &&
-                j.getPassword().equals(js.get("password").toString()) )
+            if( (j.getUsername().equals(datos.getUsername())) &&
+                (j.getPassword().equals(datos.getPassword())) )
                 return "OK";
         }
         

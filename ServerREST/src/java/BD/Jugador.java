@@ -15,6 +15,9 @@ public class Jugador {
     private String username;
     private String password;
     private Personaje personaje;
+    private ArrayList<Arma> armas;
+    private ArrayList<Armadura> armaduras;
+    private ArrayList<Accesorio> accesorio;
     private int record;
     private int combateActual;
     private int oro;
