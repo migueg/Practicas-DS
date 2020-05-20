@@ -13,13 +13,64 @@ import java.util.ArrayList;
 
 public class InventarioArma {
     private String nombreJugador;
-    private String vida;
-    private String nombreArma;
+
+ 
+    private String personaje;
+    private int vida;
+    private int daño;
+    
     private String tipo;
+    
+    private String nombreArma;
     private int vidaArma;
     private int dañoArma;
     
+    private String nombreArmadura;
+    private int  plusVida;
+    private int vidaArmadura;
+    
     public InventarioArma(){}
+
+    public String getNombreArmadura() {
+        return nombreArmadura;
+    }
+
+    public void setNombreArmadura(String nombreArmadura) {
+        this.nombreArmadura = nombreArmadura;
+    }
+
+    public int getPlusVida() {
+        return plusVida;
+    }
+
+    public void setPlusVida(int plusVida) {
+        this.plusVida = plusVida;
+    }
+
+    public int getVidaArmadura() {
+        return vidaArmadura;
+    }
+
+    public void setVidaArmadura(int vidaArmadura) {
+        this.vidaArmadura = vidaArmadura;
+    }
+
+    
+    public int getDaño() {
+        return daño;
+    }
+
+    public void setDaño(int daño) {
+        this.daño = daño;
+    }
+    
+    public String getPersonaje() {
+        return personaje;
+    }
+
+    public void setPersonaje(String personaje) {
+        this.personaje = personaje;
+    }
     
     public String getNombreJugador() {
         return nombreJugador;
@@ -29,11 +80,11 @@ public class InventarioArma {
         this.nombreJugador = nombreJugador;
     }
 
-    public String getVida() {
+    public int getVida() {
         return vida;
     }
 
-    public void setVida(String vida) {
+    public void setVida(int vida) {
         this.vida = vida;
     }
 

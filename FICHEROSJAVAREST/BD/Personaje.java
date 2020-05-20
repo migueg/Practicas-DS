@@ -11,12 +11,12 @@ package BD;
  * @author juanfrandm98
  */
 public class Personaje {
-    
+     
     private String codigo;
     private String nombre;
     private int PV;
     private int PA;
-    
+
     public Personaje( String codigo, String nombre, int PV, int PA ) {
         this.codigo = codigo;
         this.nombre = nombre;
@@ -24,6 +24,42 @@ public class Personaje {
         this.PA = PA;
     }
     
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getNombre() {
+       System.out.println("ii");
+
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getPV() {
+        return PV;
+    }
+
+    public void setPV(int PV) {
+        this.PV = PV;
+    }
+
+    public int getPA() {
+        return PA;
+    }
+
+    public void setPA(int PA) {
+        this.PA = PA;
+    }
+    
+  
+
     public Personaje getBase() {
         return new Personaje( codigo, nombre, PV, PA );
     }

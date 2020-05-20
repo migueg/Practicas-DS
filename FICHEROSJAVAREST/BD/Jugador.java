@@ -20,7 +20,11 @@ public class Jugador {
     private int record;
     private int combateActual;
     private int oro;
+    private Arma equipada;
+    private Armadura  armadura;
+    
     private ArrayList<Arma> armas =  new ArrayList();
+    private ArrayList<Armadura> armaduras =  new ArrayList();
     
     public Jugador( String username, String password ) {
         this.username = username;
@@ -29,14 +33,29 @@ public class Jugador {
         record = 0;
         combateActual = 0;
         oro = 0;
-        Arma defaultGun = new Arma("colt","pistola",5,100);
         
-        armas.add(defaultGun);
+        this.armadura = new Armadura("Escudo","armadura",5,100);
+        this.armaduras.add(this.armadura);
+        this.equipada = new Arma("colt","arma",5,100);
+        armas.add(equipada);
     }
     
     public String getUsername() { return username; }
     
     public String getPassword() { return password; }
+     
+    public String getNombrePersonaje() {
+        System.out.println("JJ");
+        return this.personaje.getNombre();
+    }
+    
+    public int getVida(){
+        return this.personaje.getPV();
+    }
+    
+    public int getDaño(){
+        return this.personaje.getPA();
+    }
     
     public void setPassword( String password ) {
         this.password = password;
@@ -49,4 +68,32 @@ public class Jugador {
     public ArrayList<Arma> getArmas(){
         return armas;
     }
+
+    public Arma getEquipada() {
+        return equipada;
+    }
+
+    public void setEquipada(Arma equipada) {
+        this.equipada = equipada;
+    }
+
+    public Armadura getArmadura() {
+        return armadura;
+    }
+
+    public void setArmadura(Armadura armadura) {
+        this.armadura = armadura;
+    }
+
+    public ArrayList<Armadura> getArmaduras() {
+        System.out.println("2222");
+        return armaduras;
+    }
+
+    public void setArmaduras(ArrayList<Armadura> armaduras) {
+        this.armaduras = armaduras;
+    }
+    
+    
+    
 }

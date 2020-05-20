@@ -29,6 +29,7 @@ import BD.Jugador;
 import BD.Personaje;
 import BD.InventarioArma;
 import BD.Arma;
+import BD.Armadura;
 
 /**
  *
@@ -48,6 +49,8 @@ public class Servicio {
         personajes.add( new Personaje( "GRR0", "Guerrero", 50, 5 ) );
         personajes.add( new Personaje( "ARQ1", "Arquero", 40, 10 ) );
         personajes.add( new Personaje( "MAG2", "Mago", 45, 7 ) );
+        
+        jugadores.get(0).setPersonaje(personajes.get(0));
     }
     
     private int indexofJugador(String user){
@@ -67,7 +70,6 @@ public class Servicio {
     @GET
     @Produces( MediaType.TEXT_PLAIN )
     public String compruebaConexion() {
-         System.out.println("HOLA");
         return "Servidor levantado";
     }
 
@@ -79,20 +81,61 @@ public class Servicio {
         System.out.println(user);
          Jugador j = this.jugadores.get(indexofJugador(user));
          System.out.println((indexofJugador(user)));
-         ArrayList<Arma> armas = j.getArmas();
          
-        for(int i = 0; i < armas.size(); i++){
-             InventarioArma nuevo = new InventarioArma();
-             
-             nuevo.setDañoArma(armas.get(i).getPlusDaño());
-             nuevo.setNombreArma(armas.get(i).getNombreArma());
-             nuevo.setTipo(armas.get(i).getTipo());
-             nuevo.setVidaArma(armas.get(i).getVida());
-             
-             nuevo.setNombreJugador(user);
+        // Obtengo el inventario
+        ArrayList<Arma> armas = j.getArmas();
+        ArrayList<Armadura> armaduras = j.getArmaduras();
+        
+        //Obtengo el material equipado
+        Arma equipada = j.getEquipada();
+        Armadura armadura = j.getArmadura();
+        //La posicion 0 y 1 del json serán el arma y armadura por defecto
+        InventarioArma actual = new InventarioArma();
+        actual.setPersonaje(j.getNombrePersonaje());
+        actual.setDaño(j.getDaño());
+        actual.setVida(j.getVida());
+        actual.setDañoArma(equipada.getPlusDaño());
+        actual.setNombreArma(equipada.getNombreArma());
+        actual.setTipo(equipada.getTipo());
+        actual.setVidaArma(equipada.getVida());
+        
+        inventario.add(actual);
+        InventarioArma a = new InventarioArma();
+        a.setNombreArmadura(armadura.getNombre());
+        a.setVidaArmadura(armadura.getVida());
+        a.setPlusVida(armadura.getPlusVida());
+        a.setTipo(armadura.getTipo());
+        
+        inventario.add(a);
+         
+        for(int i = 2; i < armas.size(); i++){
+            InventarioArma nuevo = new InventarioArma();
+            nuevo.setPersonaje(j.getNombrePersonaje());
+            nuevo.setDaño(j.getDaño());
+            nuevo.setVida(j.getVida());
+            nuevo.setDañoArma(armas.get(i).getPlusDaño());
+            nuevo.setNombreArma(armas.get(i).getNombreArma());
+            nuevo.setTipo(armas.get(i).getTipo());
+            nuevo.setVidaArma(armas.get(i).getVida());
+            
+            
+            nuevo.setNombreArmadura(armaduras.get(i).getNombre());
+            nuevo.setVidaArmadura(armaduras.get(i).getVida());
+            nuevo.setPlusVida(armaduras.get(i).getPlusVida());
             
             inventario.add(nuevo);
          }
+        
+        for(int i = 2; i < armaduras.size(); i++){
+            InventarioArma nuevo = new InventarioArma();
+            nuevo.setTipo(armaduras.get(i).getTipo());
+            nuevo.setNombreArmadura(armaduras.get(i).getNombre());
+            nuevo.setVidaArmadura(armaduras.get(i).getVida());
+            nuevo.setPlusVida(armaduras.get(i).getPlusVida());
+
+            inventario.add(nuevo);
+        }
+        
          
          return inventario;
          
