@@ -22,7 +22,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-
+import java.util.Calendar;
 import com.eclipsesource.json.JsonObject;
 
 import BD.Jugador;
@@ -30,6 +30,7 @@ import BD.Personaje;
 import BD.InventarioArma;
 import BD.Arma;
 import BD.Armadura;
+import BD.Accesorio;
 
 /**
  *
@@ -40,7 +41,9 @@ public class Servicio {
     
     private static ArrayList<Jugador> jugadores = new ArrayList();
     private static ArrayList<Personaje> personajes = new ArrayList();
-    
+     private static ArrayList<Arma> armas = new ArrayList();
+    private static ArrayList<Armadura> armaduras = new ArrayList();
+    private static ArrayList<Accesorio> accesorios = new ArrayList();
     static {
         jugadores.add( new Jugador( "juanfrandm98", "jfdm" ) );
         jugadores.add( new Jugador("administrador", "admin"));
@@ -51,8 +54,24 @@ public class Servicio {
         personajes.add( new Personaje( "MAG2", "Mago", 45, 7 ) );
         
         jugadores.get(0).setPersonaje(personajes.get(0));
+        armas.add( new Arma( "Cachiporra", 5, 50, "Arma inútil, pero es mejor que nada", 20 ) );
+        armas.add( new Arma( "Espada de cobre", 12, 100, "Espada de metal algo roma", 60 ) );
+        armas.add( new Arma( "Varita de olivo", 8, 100, "Varita que crea llamas con el poder del aceite", 50 ) );
+        armas.add( new Arma( "Arco sencillo", 10, 100, "Arco ideal para los que quieren aprender", 40 ) );
+
+        armaduras.add( new Armadura( "Ropa vieja", 5, 50, "Suficiente para tapar tus partes", 20 ) );
+        armaduras.add( new Armadura( "Armadura de cuero", 20, 100, "Armadura de piel básica", 60 ) );
+        armaduras.add( new Armadura( "Armadura de hierro", 30, 100, "Armadura de metal resistente", 120 ) );
+
+        accesorios.add( new Accesorio( "Amuleto de la suerte", 1, 1, "Talismán que guardas desde pequeño", 10 ) );
+        accesorios.add( new Accesorio( "Anillo verde", 0, 10, "Anillo que te hace sentir más vivo", 80 ) );
+        accesorios.add( new Accesorio( "Anillo rojo", 5, 0, "Anillo que te hace sentir más fuerte", 80 ) );
+        accesorios.add( new Accesorio( "Biblia", 3, 8, "Libro que te inspira en la batalla", 100 ) );
+
+        jugadores.get(0).setPersonaje(personajes.get(0));
     }
     
+  
     private int indexofJugador(String user){
         int index = -1;
         boolean paro = false;
@@ -64,7 +83,7 @@ public class Servicio {
                 paro = true;
             }
         }
-       ;
+       
         return index;
     }
     @GET
@@ -109,6 +128,7 @@ public class Servicio {
         inventario.add(a);
          
         for(int i = 0; i < armas.size(); i++){
+            System.out.println("GG");
             InventarioArma nuevo = new InventarioArma();
             nuevo.setPersonaje(j.getNombrePersonaje());
             nuevo.setDaño(j.getDaño());
@@ -118,14 +138,12 @@ public class Servicio {
             nuevo.setTipo(armas.get(i).getTipo());
             nuevo.setVidaArma(armas.get(i).getVida());
             
-            
-            nuevo.setNombreArmadura(armaduras.get(i).getNombre());
-            nuevo.setVidaArmadura(armaduras.get(i).getVida());
-            nuevo.setPlusVida(armaduras.get(i).getPlusVida());
+       
             
             inventario.add(nuevo);
          }
         
+        System.out.println("HH");
         for(int i = 0; i < armaduras.size(); i++){
             InventarioArma nuevo = new InventarioArma();
             nuevo.setTipo(armaduras.get(i).getTipo());
@@ -140,6 +158,8 @@ public class Servicio {
          return inventario;
          
     }
+    
+    
     
     @POST
     @Path("login")
@@ -203,4 +223,150 @@ public class Servicio {
         
     }
     
+    @PUT
+    @Path("equipar")
+    @Consumes({"application/json"})
+    public void cambiarArma(datosEquipo d){
+        System.out.println("ME LLEGA:");
+        System.out.println(d.getUsername());
+        Jugador j = jugadores.get(this.indexofJugador(d.getUsername()));
+
+        j.equipar(d.getTipo(), d.getNombre());
+    }
+    
+       private int calcularSemilla() {
+
+        int semilla = 0;
+
+        Calendar fecha = Calendar.getInstance();
+
+        semilla += fecha.get( Calendar.DAY_OF_MONTH );
+        semilla += fecha.get( Calendar.MONTH );
+        semilla += fecha.get( Calendar.YEAR );
+
+        return semilla;
+
+    }
+
+    @GET  
+    @Produces({"application/json"})
+    @Path("shop/{user}")
+    public ArrayList<ObjetoTienda> tienda( @PathParam("user") String user ) {
+
+        ArrayList<ObjetoTienda> objetos = new ArrayList();
+
+        Jugador jugador = this.jugadores.get( indexofJugador( user ) );
+        int oro = jugador.getOro();
+        int semilla = calcularSemilla();
+
+        // SELECCIÓN DEL ARMA DE LA TIENDA
+        Arma armaSeleccionada = armas.get( semilla % armas.size() );
+        ObjetoTienda armaTienda = new ObjetoTienda();
+        armaTienda.setNombre( armaSeleccionada.getNombreArma() );
+        armaTienda.setBonusAtaque( armaSeleccionada.getPlusDaño() );
+        armaTienda.setBonusVida(0);
+        armaTienda.setCoste( armaTienda.getCoste() );
+        armaTienda.setDescripcion( armaSeleccionada.getDescripcion() );
+        armaTienda.setDineroTotal( oro );
+        objetos.add( armaTienda );
+
+        // SELECCIÓN DE LA ARMADURA DE LA TIENDA
+        Armadura armaduraSeleccionada = armaduras.get( semilla % armaduras.size() );
+        ObjetoTienda armaduraTienda = new ObjetoTienda();
+        armaduraTienda.setNombre( armaduraSeleccionada.getNombre() );
+        armaduraTienda.setBonusAtaque(0);
+        armaduraTienda.setBonusVida( armaduraSeleccionada.getPlusVida() );
+        armaduraTienda.setCoste( armaduraSeleccionada.getCoste() );
+        armaduraTienda.setDescripcion( armaduraSeleccionada.getDescripcion() );
+        armaduraTienda.setDineroTotal( oro );
+        objetos.add( armaduraTienda );
+
+        // SELECCIÓN DEL ACCESORIO DE LA TIENDA
+        Accesorio accesorioSeleccionado = accesorios.get( semilla % accesorios.size() );
+        ObjetoTienda accesorioTienda = new ObjetoTienda();
+        accesorioTienda.setNombre( accesorioSeleccionado.getNombreAccesorio() );
+        accesorioTienda.setBonusAtaque( accesorioSeleccionado.getBonusAtaque() );
+        accesorioTienda.setBonusVida( accesorioSeleccionado.getBonusVida() );
+        accesorioTienda.setCoste( accesorioSeleccionado.getCoste() );
+        accesorioTienda.setDescripcion( accesorioSeleccionado.getDescripcion() );
+        accesorioTienda.setDineroTotal( oro );
+        objetos.add( accesorioTienda );
+
+        return objetos;
+
+    }
+
+    private boolean puedoComprar( int coste, int dinero ) {
+        return coste <= dinero;
+    }
+
+    private int indexofHerramienta(String tipo , String nombre){
+        boolean paro = false;
+        int index = -1;
+        if(tipo.equals("arma")){
+            for(int i = 0; i < armas.size() && !paro; i++){
+                if(armas.get(i).getNombreArma().equals(nombre)){
+                    paro = true;
+                    index= i;
+                }
+            }
+        }else if(tipo.equals("armadura")){
+              for(int i = 0; i < armaduras.size() && !paro; i++){
+                if(armaduras.get(i).getNombre().equals(nombre)){
+                    paro = true;
+                    index= i;
+                }
+              }
+        }
+
+        return index;
+    }
+
+    @POST
+    @Consumes({"application/json"})
+    @Produces({"application/json"})
+    @Path("buy")
+    public jsonResponse comprarObjeto( ObjetoCompra compra ) {
+
+        Jugador jugador = this.jugadores.get( indexofJugador( compra.getUsername() ) );
+        int posicion = indexofHerramienta( compra.getTipo(), compra.getNombre() );
+
+        jsonResponse js = new jsonResponse();
+
+        switch( compra.getTipo() ) {
+            case "arma":
+                Arma arma = armas.get(posicion);
+                if( puedoComprar( arma.getCoste(), jugador.getOro() ) ) {
+                    jugador.restarOro( arma.getCoste() );
+                    jugador.addArma( arma );
+                    js.setResultado( "Compra realizada." );
+                } else {
+                    js.setResultado( "Oro insuficiente." );
+                }
+                break;
+            case "armadura":
+                Armadura armadura = armaduras.get(posicion);
+                if( puedoComprar( armadura.getCoste(), jugador.getOro() ) ) {
+                    jugador.restarOro( armadura.getCoste() );
+                    jugador.addArmadura( armadura );
+                    js.setResultado( "Compra realizada." );
+                } else {
+                    js.setResultado( "Oro insuficiente." );
+                }
+                break;
+            default:
+                Accesorio accesorio = accesorios.get(posicion);
+                if( puedoComprar( accesorio.getCoste(), jugador.getOro() ) ) {
+                    jugador.restarOro( accesorio.getCoste() );
+                    jugador.addAccesorio( accesorio );
+                    js.setResultado( "Compra realizada." );
+                } else {
+                    js.setResultado( "Oro insuficiente." );
+                }
+                break;
+
+        }
+
+        return js;
+    }
 }

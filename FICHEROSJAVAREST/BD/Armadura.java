@@ -10,19 +10,23 @@ package BD;
  * @author Usuario
  */
 public class Armadura {
-        
+
     private String nombre;
     private String tipo;
     //private String rutaImagen;
-    
+    private String descripcion;
+    private int coste;
+
     private int plusVida;
     private int vida;
 
-    public Armadura(String nombre, String tipo, int plusVida, int vida) {
+    public Armadura(String nombre, int plusVida, int vida, String descripcion, int coste ) {
         this.nombre = nombre;
-        this.tipo = tipo;
+        this.tipo = "armadura";
         this.plusVida = plusVida;
         this.vida = vida;
+        this.descripcion = descripcion;
+        this.coste = coste;
     }
 
     public String getNombre() {
@@ -56,8 +60,9 @@ public class Armadura {
     public void setVida(int vida) {
         this.vida = vida;
     }
-    
 
-  
-    
+
+    public String getDescripcion() { return descripcion; }
+    public int getCoste() { return coste; }
+
 }
