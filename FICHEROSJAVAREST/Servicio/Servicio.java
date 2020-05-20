@@ -108,7 +108,7 @@ public class Servicio {
         
         inventario.add(a);
          
-        for(int i = 2; i < armas.size(); i++){
+        for(int i = 0; i < armas.size(); i++){
             InventarioArma nuevo = new InventarioArma();
             nuevo.setPersonaje(j.getNombrePersonaje());
             nuevo.setDaño(j.getDaño());
@@ -126,7 +126,7 @@ public class Servicio {
             inventario.add(nuevo);
          }
         
-        for(int i = 2; i < armaduras.size(); i++){
+        for(int i = 0; i < armaduras.size(); i++){
             InventarioArma nuevo = new InventarioArma();
             nuevo.setTipo(armaduras.get(i).getTipo());
             nuevo.setNombreArmadura(armaduras.get(i).getNombre());

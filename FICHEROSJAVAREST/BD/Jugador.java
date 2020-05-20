@@ -35,9 +35,9 @@ public class Jugador {
         oro = 0;
         
         this.armadura = new Armadura("Escudo","armadura",5,100);
-        this.armaduras.add(this.armadura);
         this.equipada = new Arma("colt","arma",5,100);
-        armas.add(equipada);
+        
+       
     }
     
     public String getUsername() { return username; }
