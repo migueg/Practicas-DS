@@ -55,13 +55,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Para que la sesión se mantenga iniciada
         SharedPreferences preferences = getSharedPreferences( "temp", getApplicationContext().MODE_PRIVATE );
         String login_name = preferences.getString( "username", "" );
-
+/*
         if( login_name != "" ) {
             Intent i = new Intent( this, MainMenu.class );
 
             startActivity(i);
             finish();
-        }
+        }*/
     }
 
 
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         username = textUsername.getText().toString().trim();
         password = textPassword.getText().toString().trim();
 
-        /*
+
         JSONObject js = new JSONObject();
 
         try {
@@ -88,18 +88,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             js.put( "password", password );
         } catch( JSONException e ) {
             e.printStackTrace();
-        }*/
-
+        }
+    /*
         Map<String, String> postParam= new HashMap<String, String>();
         postParam.put("username", username );
-        postParam.put("password", password );
+        postParam.put("password", password );*/
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest( Request.Method.POST, LOGIN_URL, new JSONObject(postParam),
-                new Response.Listener<JSONObject>() {
+        StringRequest stringRequest = new StringRequest( Request.Method.POST, LOGIN_URL,
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse( JSONObject response ) {
-                        if( response.toString().trim().equals("Los datos introducidos no son correctos."))
+                    public void onResponse( String response ) {
+
+                        String resultado = response;
+/*
+                        try {
+                            resultado = response.get("resultado").toString();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }*/
+
+                        if( resultado.equals("Los datos introducidos no son correctos."))
                             Toast.makeText(MainActivity.this, response.toString(), Toast.LENGTH_LONG).show();
+                        else if( resultado.equals("") )
+                            Toast.makeText( MainActivity.this, "Error al leer el json", Toast.LENGTH_LONG ).show();
                         else {
                             SharedPreferences preferences = getSharedPreferences( "temp", getApplicationContext().MODE_PRIVATE );
                             SharedPreferences.Editor editor = preferences.edit();
@@ -114,22 +125,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse( VolleyError error ) {
-                        Toast.makeText( MainActivity.this, error.toString() + " - code: " + error.networkResponse.statusCode, Toast.LENGTH_LONG ).show();
+                        Toast.makeText( MainActivity.this, error.toString(), Toast.LENGTH_LONG ).show();
                     }
                 }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("Content-Type", "application/json; charset=utf-8");
+                //headers.put("Content-Type", "application/json; charset=utf-8");
                 //headers.put("Content-Type", "application/json");
                 return headers;
+            }
+            @Override
+            public String getBodyContentType() {
+                return "application/json";
+            }
+            @Override
+            public Map<String,String> getParams() {
+                HashMap<String,String> params = new HashMap<>();
+                params.put(KEY_USERNAME,username);
+                params.put(KEY_PASSWORD,password);
+                return params;
             }
 
         };
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(jsonObjectRequest);
-        jsonObjectRequest.setRetryPolicy( new DefaultRetryPolicy(50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT ) );
+        requestQueue.add(stringRequest);
+        stringRequest.setRetryPolicy( new DefaultRetryPolicy(50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT ) );
     }
 
     public void goToMainMenu() {

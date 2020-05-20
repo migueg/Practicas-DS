@@ -36,5 +36,6 @@ public class MainMenu extends AppCompatActivity {
     public void logOut( android.view.View V ) {
         Intent intent = new Intent( this, MainActivity.class );
         startActivity( intent );
+        finish();
     }
 }
