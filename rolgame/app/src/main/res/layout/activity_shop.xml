@@ -84,7 +84,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <TextView
@@ -95,7 +95,7 @@
                         android:textAlignment="center"
                         android:textColor="#AA0F0F"
                         android:textSize="30sp"
-                        app:fontFamily="sans-serif-medium"/>
+                        app:fontFamily="sans-serif-medium" />
 
                     <Space
                         android:layout_width="match_parent"
@@ -108,7 +108,7 @@
                         android:text="Arma"
                         android:textAlignment="center"
                         android:textSize="20sp"
-                        app:fontFamily="sans-serif-condensed-medium"/>
+                        app:fontFamily="sans-serif-condensed-medium" />
 
                     <Space
                         android:layout_width="match_parent"
@@ -121,7 +121,7 @@
                         android:layout_marginHorizontal="20dp"
                         android:background="#AA0F0F"
                         android:onClick="goObj0"
-                        android:text="Ver más"/>
+                        android:text="Ver más" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -147,7 +147,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <TextView
@@ -158,7 +158,7 @@
                         android:textAlignment="center"
                         android:textColor="#AA0F0F"
                         android:textSize="30sp"
-                        app:fontFamily="sans-serif-medium"/>
+                        app:fontFamily="sans-serif-medium" />
 
                     <Space
                         android:layout_width="match_parent"
@@ -171,7 +171,7 @@
                         android:text="Armadura"
                         android:textAlignment="center"
                         android:textSize="20sp"
-                        app:fontFamily="sans-serif-condensed-medium"/>
+                        app:fontFamily="sans-serif-condensed-medium" />
 
                     <Space
                         android:layout_width="match_parent"
@@ -184,7 +184,7 @@
                         android:layout_marginHorizontal="20dp"
                         android:background="#AA0F0F"
                         android:onClick="goObj1"
-                        android:text="Ver más"/>
+                        android:text="Ver más" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -210,7 +210,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <TextView
@@ -221,7 +221,7 @@
                         android:textAlignment="center"
                         android:textColor="#AA0F0F"
                         android:textSize="30sp"
-                        app:fontFamily="sans-serif-medium"/>
+                        app:fontFamily="sans-serif-medium" />
 
                     <Space
                         android:layout_width="match_parent"
@@ -234,7 +234,7 @@
                         android:text="Accesorio"
                         android:textAlignment="center"
                         android:textSize="20sp"
-                        app:fontFamily="sans-serif-condensed-medium"/>
+                        app:fontFamily="sans-serif-condensed-medium" />
 
                     <Space
                         android:layout_width="match_parent"
@@ -247,7 +247,7 @@
                         android:layout_marginHorizontal="20dp"
                         android:background="#AA0F0F"
                         android:onClick="goObj2"
-                        android:text="Ver más"/>
+                        android:text="Ver más" />
                 </LinearLayout>
             </LinearLayout>
 

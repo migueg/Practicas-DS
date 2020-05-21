@@ -22,9 +22,9 @@ public class Accesorio {
     public Accesorio( String nombreAccesorio, int bonusAtaque, int bonusVida, String descripcion, int coste ) {
         
         this.nombreAccesorio = nombreAccesorio;
+        this.tipo = "accesorio";
         this.bonusAtaque = bonusAtaque;
         this.bonusVida = bonusVida;
-        this.tipo = "accesorio";
         this.descripcion = descripcion;
         this.coste = coste;
         

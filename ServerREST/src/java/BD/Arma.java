@@ -16,13 +16,14 @@ public class Arma {
     private String tipo;
     //private String rutaImagen;
     private String descripcion;
-    private int coste;
     
     private int plusDaño;
     private int vida;
+     private int coste;
+
+  
     
-    
-    public Arma (String nombre , int daño , int vida, String descripcion, int coste ){
+     public Arma (String nombre , int daño , int vida, String descripcion, int coste ){
         this.nombreArma = nombre;
         this.tipo = "arma";
         this.plusDaño = daño;
@@ -30,6 +31,7 @@ public class Arma {
         this.descripcion = descripcion;
         this.coste = coste;
     }
+
     
     public String getNombreArma() {
         return nombreArma;
@@ -47,7 +49,19 @@ public class Arma {
         return vida;
     }
     
-    public int getCoste() { return coste; }
-    public String getDescripcion() { return descripcion; }
-  
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public int getCoste() {
+        return coste;
+    }
+
+    public void setCoste(int coste) {
+        this.coste = coste;
+    }
 }

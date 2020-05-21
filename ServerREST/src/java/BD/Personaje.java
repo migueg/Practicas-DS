@@ -33,7 +33,7 @@ public class Personaje {
     }
 
     public String getNombre() {
-       System.out.println("ii");
+      
 
         return nombre;
     }
@@ -58,7 +58,13 @@ public class Personaje {
         this.PA = PA;
     }
     
-  
+    public void modificarPA(int v){
+        this.PA += v;
+    }
+    
+    public void modificarPV(int v){
+        this.PV += v;
+    }
 
     public Personaje getBase() {
         return new Personaje( codigo, nombre, PV, PA );

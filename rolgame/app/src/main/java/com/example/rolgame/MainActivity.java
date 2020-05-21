@@ -30,7 +30,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     //public static final String LOGIN_URL = "http://localhost:8080/ServerREST/server/rolgame/login";
-    public static final String LOGIN_URL = "http://192.168.1.40:8080/ServerREST/demo/rolgame/login";
+    private static final String LOGIN_URL = "http://192.168.1.40:8080/ServerREST/demo/rolgame/loginjs";
     public static final String KEY_USERNAME = "username";
     public static final String KEY_PASSWORD = "password";
 
@@ -94,21 +94,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         postParam.put("username", username );
         postParam.put("password", password );*/
 
-        StringRequest stringRequest = new StringRequest( Request.Method.POST, LOGIN_URL,
-                new Response.Listener<String>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest( Request.Method.POST, LOGIN_URL, js,
+                new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse( String response ) {
+                    public void onResponse( JSONObject response ) {
 
-                        String resultado = response;
-/*
+                        String resultado = "";
+
                         try {
                             resultado = response.get("resultado").toString();
                         } catch (JSONException e) {
                             e.printStackTrace();
-                        }*/
+                        }
 
                         if( resultado.equals("Los datos introducidos no son correctos."))
-                            Toast.makeText(MainActivity.this, response.toString(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this, resultado, Toast.LENGTH_LONG).show();
                         else if( resultado.equals("") )
                             Toast.makeText( MainActivity.this, "Error al leer el json", Toast.LENGTH_LONG ).show();
                         else {
@@ -150,8 +150,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         };
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-        stringRequest.setRetryPolicy( new DefaultRetryPolicy(50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT ) );
+        requestQueue.add(jsonObjectRequest);
+        jsonObjectRequest.setRetryPolicy( new DefaultRetryPolicy(50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT ) );
     }
 
     public void goToMainMenu() {

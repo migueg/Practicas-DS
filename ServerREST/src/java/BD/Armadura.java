@@ -10,13 +10,13 @@ package BD;
  * @author Usuario
  */
 public class Armadura {
-        
+
     private String nombre;
     private String tipo;
     //private String rutaImagen;
     private String descripcion;
     private int coste;
-    
+
     private int plusVida;
     private int vida;
 
@@ -60,9 +60,9 @@ public class Armadura {
     public void setVida(int vida) {
         this.vida = vida;
     }
-    
+
 
     public String getDescripcion() { return descripcion; }
     public int getCoste() { return coste; }
-    
+
 }
