@@ -347,6 +347,13 @@ public class Servicio {
                     index= i;
                 }
               }
+        } else if( tipo.equals( "accesorio" ) ) {
+            for( int i = 0; i < accesorios.size() && !paro; i++ ) {
+                if( accesorios.get(i).getNombreAccesorio().equals( nombre ) ) {
+                    paro = true;
+                    index = i;
+                }
+            }
         }
 
         return index;
