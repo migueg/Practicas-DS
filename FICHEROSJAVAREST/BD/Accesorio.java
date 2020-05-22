@@ -14,19 +14,21 @@ public class Accesorio {
     
     private String nombreAccesorio;
     private String tipo;
+    private String url;
     private int bonusAtaque;
     private int bonusVida;
     private String descripcion;
     private int coste;
     
-    public Accesorio( String nombreAccesorio, int bonusAtaque, int bonusVida, String descripcion, int coste ) {
+    public Accesorio( String nombreAccesorio, int bonusAtaque, int bonusVida, String descripcion, int coste, String url ) {
         
         this.nombreAccesorio = nombreAccesorio;
+        this.tipo = "accesorio";
         this.bonusAtaque = bonusAtaque;
         this.bonusVida = bonusVida;
-        this.tipo = "accesorio";
         this.descripcion = descripcion;
         this.coste = coste;
+        this.url = url;
         
     }
     
@@ -36,5 +38,6 @@ public class Accesorio {
     public int getBonusVida() { return bonusVida; }
     public String getDescripcion() { return descripcion; }
     public int getCoste() { return coste; }
+    public String getUrl() { return url; }
     
 }

@@ -13,20 +13,21 @@ public class Armadura {
 
     private String nombre;
     private String tipo;
-    //private String rutaImagen;
+    private String url;
     private String descripcion;
     private int coste;
 
     private int plusVida;
     private int vida;
 
-    public Armadura(String nombre, int plusVida, int vida, String descripcion, int coste ) {
+    public Armadura(String nombre, int plusVida, int vida, String descripcion, int coste, String url ) {
         this.nombre = nombre;
         this.tipo = "armadura";
         this.plusVida = plusVida;
         this.vida = vida;
         this.descripcion = descripcion;
         this.coste = coste;
+        this.url = url;
     }
 
     public String getNombre() {
@@ -64,5 +65,6 @@ public class Armadura {
 
     public String getDescripcion() { return descripcion; }
     public int getCoste() { return coste; }
+    public String getUrl() { return url; }
 
 }

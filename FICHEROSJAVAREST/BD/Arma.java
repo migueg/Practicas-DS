@@ -14,8 +14,8 @@ public class Arma {
     
     private String nombreArma;
     private String tipo;
-    //private String rutaImagen;
     private String descripcion;
+    private String url;
     
     private int plusDaño;
     private int vida;
@@ -23,13 +23,14 @@ public class Arma {
 
   
     
-     public Arma (String nombre , int daño , int vida, String descripcion, int coste ){
+     public Arma (String nombre , int daño , int vida, String descripcion, int coste, String url ){
         this.nombreArma = nombre;
         this.tipo = "arma";
         this.plusDaño = daño;
         this.vida = vida;
         this.descripcion = descripcion;
         this.coste = coste;
+        this.url = url;
     }
 
     
@@ -64,4 +65,7 @@ public class Arma {
     public void setCoste(int coste) {
         this.coste = coste;
     }
+    
+    public void setUrl( String url ) { this.url = url; }
+    public String getUrl() { return url; }
 }

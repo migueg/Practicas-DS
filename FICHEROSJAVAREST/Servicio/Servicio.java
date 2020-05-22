@@ -47,28 +47,31 @@ public class Servicio {
     static {
         jugadores.add( new Jugador( "juanfrandm98", "jfdm" ) );
         jugadores.add( new Jugador("administrador", "admin"));
+        jugadores.add(new Jugador("migue" ,"migue"));
+        
+        jugadores.get(2).setRecord(200);
         
         
-        personajes.add( new Personaje( "GRR0", "Guerrero", 50, 5 ) );
-        personajes.add( new Personaje( "ARQ1", "Arquero", 40, 10 ) );
-        personajes.add( new Personaje( "MAG2", "Mago", 45, 7 ) );
+        personajes.add( new Personaje( "GRR0", "Guerrero", 50, 5, "https://image.freepik.com/vector-gratis/ilustracion-dibujos-animados-guerrero-vikingo_14588-144.jpg" ) );
+        personajes.add( new Personaje( "ARQ1", "Arquero", 40, 10, "https://w7.pngwing.com/pngs/387/276/png-transparent-cartoon-longbow-drawing-archer-legendary-creature-bow-cartoon.png" ) );
+        personajes.add( new Personaje( "MAG2", "Mago", 45, 7, "https://i0.pngocean.com/files/908/588/1003/chibi-magician-anime-drawing-dark-magician.jpg" ) );
         
         jugadores.get(0).setPersonaje(personajes.get(0));
-        armas.add( new Arma( "Cachiporra", 5, 50, "Arma inútil, pero es mejor que nada", 20 ) );
-        armas.add( new Arma( "Espada de cobre", 12, 100, "Espada de metal algo roma", 60 ) );
-        armas.add( new Arma( "Varita de olivo", 8, 100, "Varita que crea llamas con el poder del aceite", 50 ) );
-        armas.add( new Arma( "Arco sencillo", 10, 100, "Arco ideal para los que quieren aprender", 40 ) );
+        armas.add( new Arma( "Cachiporra", 5, 50, "Arma inútil, pero es mejor que nada", 20, "https://raicesdeperaleda.com/recursos/diccionario/af9190fc88e3c83936ef77ab9b16822e.jpg" ) );
+        armas.add( new Arma( "Espada de cobre", 12, 100, "Espada de metal algo roma", 60, "https://dragonquest.fandom.com/es/wiki/Espada_de_Cobre?file=Espada_de_cobre.png" ) );
+        armas.add( new Arma( "Varita de olivo", 8, 100, "Varita que crea llamas con el poder del aceite", 50, "https://lh3.googleusercontent.com/proxy/7Ufi4jyEfUHjhenOjjP6MMP8V_JBB7NO50l9M0YIpapWCvDYRpb1jz1cAxp8e-HaND88n7cbDLrXkdqITr_l0TMKuJKHD8PPrK01dv0RSSGaBkN4qK8KwE6Fsph-vw" ) );
+        armas.add( new Arma( "Arco sencillo", 10, 100, "Arco ideal para los que quieren aprender", 40, "https://w7.pngwing.com/pngs/472/879/png-transparent-longbow-larp-bows-bow-and-arrow-recurve-bow-arrow-bow-weapon-bow-and-arrow.png" ) );
 
-        armaduras.add( new Armadura( "Ropa vieja", 5, 50, "Suficiente para tapar tus partes", 20 ) );
-        armaduras.add( new Armadura( "Armadura de cuero", 20, 100, "Armadura de piel básica", 60 ) );
-        armaduras.add( new Armadura( "Armadura de hierro", 30, 100, "Armadura de metal resistente", 120 ) );
+        armaduras.add( new Armadura( "Ropa vieja", 5, 50, "Suficiente para tapar tus partes", 20, "https://i.pinimg.com/originals/28/da/a3/28daa3663498c909d99715cc1eaced8b.jpg" ) );
+        armaduras.add( new Armadura( "Armadura de cuero", 20, 100, "Armadura de piel básica", 60, "https://www.eltallerdelarosa.com/636-large_default/armadura-dragon.jpg" ) );
+        armaduras.add( new Armadura( "Armadura de hierro", 30, 100, "Armadura de metal resistente", 120, "https://previews.123rf.com/images/vitaliygaydukov/vitaliygaydukov1705/vitaliygaydukov170500020/81168807-armadura-de-cadena-de-hierro-sobre-fondo-blanco-aislado-ilustraci%C3%B3n-3d.jpg" ) );
 
-        accesorios.add( new Accesorio( "Amuleto de la suerte", 1, 1, "Talismán que guardas desde pequeño", 10 ) );
-        accesorios.add( new Accesorio( "Anillo verde", 0, 10, "Anillo que te hace sentir más vivo", 80 ) );
-        accesorios.add( new Accesorio( "Anillo rojo", 5, 0, "Anillo que te hace sentir más fuerte", 80 ) );
-        accesorios.add( new Accesorio( "Biblia", 3, 8, "Libro que te inspira en la batalla", 100 ) );
+        accesorios.add( new Accesorio( "Amuleto de la suerte", 1, 1, "Talismán que guardas desde pequeño", 10, "https://images-na.ssl-images-amazon.com/images/I/61YZjlF2U8L._AC_UX395_.jpg" ) );
+        accesorios.add( new Accesorio( "Anillo verde", 0, 10, "Anillo que te hace sentir más vivo", 80, "https://beautifulpromiserings.com/wp-content/uploads/2014/01/Emerald-Heart-Shaped-Ring-Green-Cubic-Zirconia.jpg" ) );
+        accesorios.add( new Accesorio( "Anillo rojo", 5, 0, "Anillo que te hace sentir más fuerte", 80, "https://di2ponv0v5otw.cloudfront.net/posts/2020/01/13/5e1d0c4808d2c25532d3a458/m_5e1d0c522cc51523773cb525.jpg" ) );
+        accesorios.add( new Accesorio( "Biblia", 3, 8, "Libro que te inspira en la batalla", 100, "https://www.christiantruthcenter.com/wp-content/uploads/2016/10/Bible-is-not-the-Word-1024x1024.jpg" ) );
 
-        jugadores.get(0).setPersonaje(personajes.get(0));
+        jugadores.get(0).setPersonaje(personajes.get(1));
     }
     
   
@@ -90,6 +93,46 @@ public class Servicio {
     @Produces( MediaType.TEXT_PLAIN )
     public String compruebaConexion() {
         return "Servidor levantado";
+    }
+    @GET
+    @Produces({"application/json"})
+     @Path("ranking")
+    public ArrayList<ranking>  getRanking(){
+        ArrayList<ranking> lista = new ArrayList();
+        ArrayList<Jugador> aux = new ArrayList();
+        aux = this.jugadores;
+      
+        
+        Jugador tmp ;
+         for(int i = 1 ; i < aux.size() ; i++){
+              for(int j = aux.size()-1 ; j >= i ; j--){
+                    if(aux.get(j).getRecord()> aux.get(j-1).getRecord()){
+                        tmp = aux.get(j);
+                        aux.set(j, aux.get(j-1));
+                        aux.set(j-1, tmp);
+                    }else if(aux.get(j).getRecord() == aux.get(j-1).getRecord()){
+                        if(aux.get(j).getOro()> aux.get(j-1).getOro()){
+                            tmp = aux.get(j);
+                            aux.set(j, aux.get(j-1));
+                            aux.set(j-1, tmp);
+                        }
+                    }
+              }
+         }
+        
+       
+        for( int i = 0 ; i < aux.size(); i++ ){
+           ranking r = new ranking();
+           if(!(aux.get(i).getUsername().equals("administrador"))){
+                r.setUsername(aux.get(i).getUsername());
+                r.setRecord(aux.get(i).getRecord());
+                r.setOro(aux.get(i).getOro());
+           
+                lista.add(r);
+           }
+         
+        }
+        return lista;
     }
 
     @GET
@@ -179,6 +222,29 @@ public class Servicio {
     }
     
     @POST
+    @Path("loginjs")
+    @Consumes( MediaType.APPLICATION_JSON )
+    @Produces( MediaType.APPLICATION_JSON )
+    public jsonResponse loginjs( datosConexion datos ) {
+        
+        System.out.println("Dispositivo móvil solicita login." );
+        jsonResponse js = new jsonResponse();
+        js.setResultado( "Los datos introducidos no son correctos." );
+        
+        for( Jugador j : jugadores ) {
+            if( j.getUsername().equals( datos.getUsername() ) &&
+                j.getPassword().equals( datos.getPassword() ) ) {
+                System.out.println( "Login correcto: " + datos.getUsername() );
+                js.setResultado("OK");
+                return js;
+            }
+        }
+        
+        System.out.println( "Login incorrecto: " + datos.getUsername() );
+        return js;
+    }
+    
+    @POST
     @Path("registro")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
@@ -247,11 +313,21 @@ public class Servicio {
         return semilla;
 
     }
+       
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    @Path("fotoClase/{user}")
+    public String fotoClase( @PathParam("user") String user ) {
+        Jugador jugador = this.jugadores.get( indexofJugador( user ) );
+        return jugador.getFotoPersonaje();
+    }
 
     @GET  
     @Produces({"application/json"})
     @Path("shop/{user}")
     public ArrayList<ObjetoTienda> tienda( @PathParam("user") String user ) {
+        
+        System.out.println( user + " quiere consultar la tienda." );
 
         ArrayList<ObjetoTienda> objetos = new ArrayList();
 
@@ -263,9 +339,11 @@ public class Servicio {
         Arma armaSeleccionada = armas.get( semilla % armas.size() );
         ObjetoTienda armaTienda = new ObjetoTienda();
         armaTienda.setNombre( armaSeleccionada.getNombreArma() );
+        armaTienda.setTipo( armaSeleccionada.getTipo() );
+        armaTienda.setUrl( armaSeleccionada.getUrl() );
         armaTienda.setBonusAtaque( armaSeleccionada.getPlusDaño() );
         armaTienda.setBonusVida(0);
-        armaTienda.setCoste( armaTienda.getCoste() );
+        armaTienda.setCoste( armaSeleccionada.getCoste() );
         armaTienda.setDescripcion( armaSeleccionada.getDescripcion() );
         armaTienda.setDineroTotal( oro );
         objetos.add( armaTienda );
@@ -274,6 +352,8 @@ public class Servicio {
         Armadura armaduraSeleccionada = armaduras.get( semilla % armaduras.size() );
         ObjetoTienda armaduraTienda = new ObjetoTienda();
         armaduraTienda.setNombre( armaduraSeleccionada.getNombre() );
+        armaduraTienda.setTipo( armaduraSeleccionada.getTipo() );
+        armaduraTienda.setUrl( armaduraSeleccionada.getUrl() );
         armaduraTienda.setBonusAtaque(0);
         armaduraTienda.setBonusVida( armaduraSeleccionada.getPlusVida() );
         armaduraTienda.setCoste( armaduraSeleccionada.getCoste() );
@@ -285,12 +365,16 @@ public class Servicio {
         Accesorio accesorioSeleccionado = accesorios.get( semilla % accesorios.size() );
         ObjetoTienda accesorioTienda = new ObjetoTienda();
         accesorioTienda.setNombre( accesorioSeleccionado.getNombreAccesorio() );
+        accesorioTienda.setTipo( accesorioSeleccionado.getTipo() );
+        accesorioTienda.setUrl( accesorioSeleccionado.getUrl() );
         accesorioTienda.setBonusAtaque( accesorioSeleccionado.getBonusAtaque() );
         accesorioTienda.setBonusVida( accesorioSeleccionado.getBonusVida() );
         accesorioTienda.setCoste( accesorioSeleccionado.getCoste() );
         accesorioTienda.setDescripcion( accesorioSeleccionado.getDescripcion() );
         accesorioTienda.setDineroTotal( oro );
         objetos.add( accesorioTienda );
+        
+        System.out.println( user + " recibe la tienda." );
 
         return objetos;
 
@@ -317,6 +401,13 @@ public class Servicio {
                     index= i;
                 }
               }
+        } else if( tipo.equals( "accesorio" ) ) {
+            for( int i = 0; i < accesorios.size() && !paro; i++ ) {
+                if( accesorios.get(i).getNombreAccesorio().equals( nombre ) ) {
+                    paro = true;
+                    index = i;
+                }
+            }
         }
 
         return index;
