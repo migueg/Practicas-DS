@@ -45,6 +45,13 @@ public class Jugador {
                     index= i;
                 }
               }
+        }else if( tipo.equals( "accesorio" ) ) {
+            for( int i = 0; i < accesorios.size() && !paro; i++ ) {
+                if( accesorios.get(i).getNombreAccesorio().equals( nombre ) ) {
+                    paro = true;
+                    index = i;
+                }
+            }
         }
         
         return index;
@@ -119,6 +126,13 @@ public class Jugador {
         this.armaduras = armaduras;
     }
     
+    public ArrayList<Accesorio> getAccesorios() { return accesorios; }
+    public void setAccesorios( ArrayList<Accesorio> accesorios ) { 
+        this.accesorios = accesorios;
+    }
+    
+    public Accesorio getAccesorio() { return accesorio; }
+    public void setAccesorio( Accesorio accesorio ) { this.accesorio = accesorio; }
     
     public int getOro() { return oro; }
     
@@ -136,24 +150,51 @@ public class Jugador {
         if(index != -1){
             if(tipo.equals("arma")){
                 Arma antigua = this.equipada;
-                this.personaje.modificarPA(-(antigua.getPlusDaño()));
                 Arma nueva = armas.get(index);
-                this.personaje.modificarPA(nueva.getPlusDaño());
-                armas.remove(index);
-                armas.add(antigua);
                 
-                this.equipada = nueva;
+                if( antigua != nueva ) {
+                    this.personaje.modificarPA(-(antigua.getPlusDaño()));
+                    this.personaje.modificarPA(nueva.getPlusDaño());
+                    armas.remove(index);
+                    armas.add(antigua);
+
+                    this.equipada = nueva;
+                }
             }else if(tipo.equals("armadura")){
                 Armadura antigua = this.armadura;
-                this.personaje.modificarPV(-(antigua.getPlusVida()));
                 Armadura nueva = armaduras.get(index);
-                this.personaje.modificarPA(nueva.getPlusVida());
-                armaduras.remove(index);
-                armaduras.add(antigua);
                 
-                this.armadura = nueva;
+                if( antigua != nueva ) {
+                    this.personaje.modificarPV(-(antigua.getPlusVida()));
+                    this.personaje.modificarPA(nueva.getPlusVida());
+                    armaduras.remove(index);
+                    armaduras.add(antigua);
+
+                    this.armadura = nueva;
+                }
+            } else if( tipo.equals( "accesorio" ) ) {
+                Accesorio antiguo = this.accesorio;
+                Accesorio nuevo = accesorios.get( index );
+                
+                if( antiguo != nuevo ) {
+                    this.personaje.modificarPA( -antiguo.getBonusAtaque() );
+                    this.personaje.modificarPV( -antiguo.getBonusVida() );
+                    this.accesorio = nuevo;
+                    accesorios.remove( index );
+                    accesorios.add( antiguo );
+                    this.personaje.modificarPA( accesorio.getBonusAtaque() );
+                    this.personaje.modificarPV( accesorio.getBonusVida() );
+                }
             }
         }
+    }
+
+    public int getRecord() {
+        return record;
+    }
+
+    public void setRecord(int record) {
+        this.record = record;
     }
     
     

@@ -47,6 +47,9 @@ public class Servicio {
     static {
         jugadores.add( new Jugador( "juanfrandm98", "jfdm" ) );
         jugadores.add( new Jugador("administrador", "admin"));
+        jugadores.add(new Jugador("migue" ,"migue"));
+        
+        jugadores.get(2).setRecord(200);
         
         
         personajes.add( new Personaje( "GRR0", "Guerrero", 50, 5, "https://image.freepik.com/vector-gratis/ilustracion-dibujos-animados-guerrero-vikingo_14588-144.jpg" ) );
@@ -91,6 +94,46 @@ public class Servicio {
     public String compruebaConexion() {
         return "Servidor levantado";
     }
+    @GET
+    @Produces({"application/json"})
+     @Path("ranking")
+    public ArrayList<ranking>  getRanking(){
+        ArrayList<ranking> lista = new ArrayList();
+        ArrayList<Jugador> aux = new ArrayList();
+        aux = this.jugadores;
+      
+        
+        Jugador tmp ;
+         for(int i = 1 ; i < aux.size() ; i++){
+              for(int j = aux.size()-1 ; j >= i ; j--){
+                    if(aux.get(j).getRecord()> aux.get(j-1).getRecord()){
+                        tmp = aux.get(j);
+                        aux.set(j, aux.get(j-1));
+                        aux.set(j-1, tmp);
+                    }else if(aux.get(j).getRecord() == aux.get(j-1).getRecord()){
+                        if(aux.get(j).getOro()> aux.get(j-1).getOro()){
+                            tmp = aux.get(j);
+                            aux.set(j, aux.get(j-1));
+                            aux.set(j-1, tmp);
+                        }
+                    }
+              }
+         }
+        
+       
+        for( int i = 0 ; i < aux.size(); i++ ){
+           ranking r = new ranking();
+           if(!(aux.get(i).getUsername().equals("administrador"))){
+                r.setUsername(aux.get(i).getUsername());
+                r.setRecord(aux.get(i).getRecord());
+                r.setOro(aux.get(i).getOro());
+           
+                lista.add(r);
+           }
+         
+        }
+        return lista;
+    }
 
     @GET
     @Produces({"application/json"})
@@ -104,11 +147,14 @@ public class Servicio {
         // Obtengo el inventario
         ArrayList<Arma> armas = j.getArmas();
         ArrayList<Armadura> armaduras = j.getArmaduras();
+        ArrayList<Accesorio> accesorios = j.getAccesorios();
         
         //Obtengo el material equipado
         Arma equipada = j.getEquipada();
         Armadura armadura = j.getArmadura();
-        //La posicion 0 y 1 del json serán el arma y armadura por defecto
+        Accesorio accesorio = j.getAccesorio();
+        //La posicion 0, 1 y 2 serán el arma, la armadura y el accesorio
+        //equipados
         InventarioArma actual = new InventarioArma();
         actual.setPersonaje(j.getNombrePersonaje());
         actual.setDaño(j.getDaño());
@@ -126,6 +172,13 @@ public class Servicio {
         a.setTipo(armadura.getTipo());
         
         inventario.add(a);
+        
+        InventarioArma invAcc = new InventarioArma();
+        invAcc.setTipo( accesorio.getTipo() );
+        invAcc.setNombreAccesorio( accesorio.getNombreAccesorio());
+        invAcc.setAtaqueAccesorio( accesorio.getBonusAtaque() );
+        invAcc.setVidaAccesorio( accesorio.getBonusVida() );
+        inventario.add(invAcc);
          
         for(int i = 0; i < armas.size(); i++){
             System.out.println("GG");
@@ -154,6 +207,16 @@ public class Servicio {
             inventario.add(nuevo);
         }
         
+        System.out.println( "AA" );
+        for( int i = 0; i < accesorios.size(); i++ ) {
+            InventarioArma nuevo = new InventarioArma();
+            nuevo.setTipo( accesorios.get(i).getTipo() );
+            nuevo.setNombreAccesorio( accesorios.get(i).getNombreAccesorio() );
+            nuevo.setAtaqueAccesorio( accesorios.get(i).getBonusAtaque() );
+            nuevo.setVidaAccesorio( accesorios.get(i).getBonusVida() );
+            
+            inventario.add(nuevo);
+        }
          
          return inventario;
          
@@ -205,11 +268,20 @@ public class Servicio {
     @Path("registro")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public String registro( Jugador jugador ) {
-        
-        for ( Jugador j : jugadores )
-            if( j.getUsername() == jugador.getUsername() )
+    public String registro( datosConexion jugador ) {
+        Jugador jg ;
+      
+        for ( Jugador j : jugadores ){
+            if( j.getUsername().equals(jugador.getUsername())){
                 return "El usuario ya existe en la plataforma.";
+            }
+                
+        }
+        
+   
+        jg = new Jugador(jugador.getUsername(),jugador.getPassword());
+        this.jugadores.add(jg);
+            
         
         return "OK";
     }
@@ -246,10 +318,7 @@ public class Servicio {
         
     }
     
-    @PUT
-    @Path("equipar")
-    @Consumes({"application/json"})
-    public void cambiarArma(datosEquipo d){
+    private void equipar( datosEquipo d ) {
         System.out.println("ME LLEGA:");
         System.out.println(d.getUsername());
         Jugador j = jugadores.get(this.indexofJugador(d.getUsername()));
@@ -257,7 +326,25 @@ public class Servicio {
         j.equipar(d.getTipo(), d.getNombre());
     }
     
-       private int calcularSemilla() {
+    @PUT
+    @Path("equipar")
+    @Consumes({"application/json"})
+    public void cambiarArma(datosEquipo d){
+        equipar(d);
+    }
+    
+    @PUT
+    @Path("equiparConf")
+    @Consumes({"application/json"})
+    @Produces({"application/json"})
+    public jsonResponse cambiarEquipo( datosEquipo d ) {
+        equipar(d);
+        jsonResponse js = new jsonResponse();
+        js.setResultado("OK");
+        return js;
+    }
+    
+    private int calcularSemilla() {
 
         int semilla = 0;
 
