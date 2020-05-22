@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,26 +34,38 @@ public class BuyObject extends AppCompatActivity {
 
     private TextView nameObj;
     private TextView descripcionObj;
+    private TextView atkObj;
+    private TextView vidaObj;
     private TextView goldObj;
     private TextView goldPlayer;
+    private ImageView imageObj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buy_object);
 
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         Intent intent = getIntent();
         obj = (Objeto) intent.getSerializableExtra( "sampleObject" );
 
         nameObj = findViewById( R.id.nameObj );
         descripcionObj = findViewById( R.id.descripcionObj );
+        atkObj = findViewById( R.id.atkObj );
+        vidaObj = findViewById( R.id.vidaObj );
         goldObj = findViewById( R.id.goldObj );
         goldPlayer = findViewById( R.id.goldPlayer );
+        imageObj = findViewById( R.id.imageObj );
 
         nameObj.setText( obj.getNombre() );
         descripcionObj.setText( obj.getDescripcion() );
+        atkObj.setText( String.valueOf( obj.getBonusAtaque() ) );
+        vidaObj.setText( String.valueOf( obj.getBonusVida() ) );
         goldObj.setText( String.valueOf( obj.getCoste() ) );
         goldPlayer.setText( String.valueOf( obj.getDineroTotal() ) );
+        imageObj.setImageBitmap( obj.loadImageFromUrl() );
 
     }
 

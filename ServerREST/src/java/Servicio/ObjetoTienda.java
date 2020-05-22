@@ -14,6 +14,7 @@ public class ObjetoTienda {
     
     private String nombre;
     private String tipo;
+    private String url;
     private int bonusAtaque;
     private int bonusVida;
     private int coste;
@@ -26,6 +27,7 @@ public class ObjetoTienda {
     // GETTERS
     public String getNombre() { return nombre; }
     public String getTipo() { return tipo; }
+    public String getUrl() { return url; }
     public int getBonusAtaque() { return bonusAtaque; }
     public int getBonusVida() { return bonusVida; }
     public int getCoste() { return coste; }
@@ -35,6 +37,7 @@ public class ObjetoTienda {
     // SETTERS
     public void setNombre( String nombre ) { this.nombre = nombre; }
     public void setTipo( String tipo ) { this.tipo = tipo; }
+    public void setUrl( String url ) { this.url = url; }
     public void setBonusAtaque( int bonusAtaque ) { this.bonusAtaque = bonusAtaque; }
     public void setBonusVida( int bonusVida ) { this.bonusVida = bonusVida; }
     public void setCoste( int coste ) { this.coste = coste; }

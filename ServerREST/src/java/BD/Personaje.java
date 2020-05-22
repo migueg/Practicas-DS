@@ -14,14 +14,16 @@ public class Personaje {
      
     private String codigo;
     private String nombre;
+    private String url;
     private int PV;
     private int PA;
 
-    public Personaje( String codigo, String nombre, int PV, int PA ) {
+    public Personaje( String codigo, String nombre, int PV, int PA, String url ) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.PV = PV;
         this.PA = PA;
+        this.url = url;
     }
     
     public String getCodigo() {
@@ -67,7 +69,9 @@ public class Personaje {
     }
 
     public Personaje getBase() {
-        return new Personaje( codigo, nombre, PV, PA );
+        return new Personaje( codigo, nombre, PV, PA, url );
     }
+    
+    public String getUrl() { return url; }
     
 }

@@ -55,13 +55,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Para que la sesión se mantenga iniciada
         SharedPreferences preferences = getSharedPreferences( "temp", getApplicationContext().MODE_PRIVATE );
         String login_name = preferences.getString( "username", "" );
-/*
+
         if( login_name != "" ) {
             Intent i = new Intent( this, MainMenu.class );
 
             startActivity(i);
             finish();
-        }*/
+        }
     }
 
 
@@ -162,6 +162,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void goToRegistro( android.view.View V ) {
         Intent intent = new Intent( this, Registro.class );
         startActivity( intent );
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent( Intent.ACTION_MAIN );
+        intent.addCategory( Intent.CATEGORY_HOME );
+        intent.setFlags( Intent.FLAG_ACTIVITY_NEW_TASK );
+        startActivity(intent);
     }
 
 }

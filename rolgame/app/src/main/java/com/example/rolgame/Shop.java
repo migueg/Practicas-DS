@@ -4,7 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,7 +26,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,6 +37,7 @@ class Objeto implements Serializable {
 
     private String nombre;
     private String tipo;
+    private String url;
     private int bonusAtaque;
     private int bonusVida;
     private int coste;
@@ -41,6 +49,7 @@ class Objeto implements Serializable {
         try {
             this.nombre = js.getString("nombre");
             this.tipo = js.getString("tipo");
+            this.url = js.getString( "url" );
             this.bonusAtaque = js.getInt("bonusAtaque");
             this.bonusVida = js.getInt( "bonusVida" );
             this.coste = js.getInt( "coste" );
@@ -54,6 +63,7 @@ class Objeto implements Serializable {
     // Getters para mostrar
     public String getNombre() { return nombre; }
     public String getTipo() { return tipo; }
+    public String getUrl() { return url; }
     public int getBonusAtaque() { return bonusAtaque; }
     public int getBonusVida() { return bonusVida; }
     public int getCoste() { return coste; }
@@ -68,6 +78,21 @@ class Objeto implements Serializable {
     public void setCoste( int coste ) { this.coste = coste; }
     public void setDescripcion( String descripcion ) { this.descripcion = descripcion; }
     public void setDineroTotal( int dineroTotal ) { this.dineroTotal = dineroTotal; }
+
+    public Bitmap loadImageFromUrl() {
+        InputStream is = null;
+        Bitmap b = null;
+        try {
+            is = (InputStream) new URL(url).getContent();
+            b = BitmapFactory.decodeStream( is );
+            return b;
+        } catch (IOException e) {
+            System.out.println("ERROR EN LOADIMAGEFROMURL");
+            e.printStackTrace();
+        }
+
+        return b;
+    }
 
 }
 
@@ -84,6 +109,9 @@ public class Shop extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
         // Obtenemos los objetos que necesitamos de la vista
         nameShop0 = findViewById( R.id.nameShop0 );
@@ -119,12 +147,15 @@ public class Shop extends AppCompatActivity {
                         // Modificamos la vista en función de los objetos
                         nameShop0.setText( obj0.getNombre() );
                         typeShop0.setText( obj0.getTipo() );
+                        imageShop0.setImageBitmap( obj0.loadImageFromUrl() );
 
                         nameShop1.setText( obj1.getNombre() );
                         typeShop1.setText( obj1.getTipo() );
+                        imageShop1.setImageBitmap( obj1.loadImageFromUrl() );
 
                         nameShop2.setText( obj2.getNombre() );
                         typeShop2.setText( obj2.getTipo() );
+                        imageShop2.setImageBitmap( obj2.loadImageFromUrl() );
 
                     }
                 }, new Response.ErrorListener() {
