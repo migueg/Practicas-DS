@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,7 +26,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 class Inventario {
@@ -74,6 +74,17 @@ class Inventario {
     public int getBonusVida() { return bonusVida; }
     public int getDurabilidad() { return durabilidad; }
 
+    public String toString() {
+        String s = nombre + " (" + tipo + ")\n";
+        s += "Bonus ataque: " + bonusAtaque + "\n";
+        s += "Bonus vida: " + bonusVida;
+
+        if( tipo != "accesorio" )
+            s += "\nDurabilidad: " + durabilidad;
+
+        return s;
+    }
+
 }
 
 public class Equipment extends AppCompatActivity {
@@ -101,6 +112,11 @@ public class Equipment extends AppCompatActivity {
     private TextView etiqHP;
     private TextView etiqATK;
 
+    private int hpActual;
+    private int hpNuevo;
+    private int atkActual;
+    private int atkNuevo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,7 +141,17 @@ public class Equipment extends AppCompatActivity {
                     public void onResponse(JSONArray response) {
 
                         try {
-                            armas.add( new Inventario( response.getJSONObject(0) ) );
+                            JSONObject primero = response.getJSONObject(0);
+
+                            hpActual = hpNuevo = primero.getInt( "vida" );
+                            atkActual = atkNuevo = primero.getInt( "daño" );
+
+                            etiqATK.setText( String.valueOf(atkActual) );
+                            etiqHP.setText( String.valueOf(hpActual));
+                            etiqATK.setTextColor(Color.WHITE);
+                            etiqHP.setTextColor(Color.WHITE);
+
+                            armas.add( new Inventario( primero ) );
                             armaduras.add( new Inventario( response.getJSONObject(1) ) );
                             accesorios.add( new Inventario( response.getJSONObject(2) ) );
 
@@ -181,6 +207,27 @@ public class Equipment extends AppCompatActivity {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         armaSeleccionada = parent.getItemAtPosition( position ).toString();
+                        atkNuevo = atkActual - armas.get(0).getBonusAtaque() + armas.get(position).getBonusAtaque();
+                        hpNuevo = hpActual - armas.get(0).getBonusVida() + armas.get(position).getBonusVida();
+                        Toast.makeText(Equipment.this, armas.get(position).toString(), Toast.LENGTH_LONG).show();
+
+
+                        etiqATK.setText( String.valueOf( atkNuevo ) );
+                        etiqHP.setText( String.valueOf( hpNuevo ) );
+
+                        if( atkNuevo > atkActual )
+                            etiqATK.setTextColor(Color.GREEN);
+                        else if( atkNuevo < atkActual )
+                            etiqATK.setTextColor(Color.RED);
+                        else
+                            etiqATK.setTextColor(Color.WHITE);
+
+                        if( hpNuevo > hpActual )
+                            etiqHP.setTextColor(Color.GREEN);
+                        else if( hpNuevo < hpActual )
+                            etiqHP.setTextColor(Color.RED);
+                        else
+                            etiqHP.setTextColor(Color.WHITE);
                     }
 
                     @Override
@@ -195,6 +242,26 @@ public class Equipment extends AppCompatActivity {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         armaduraSeleccionada = parent.getItemAtPosition( position ).toString();
+                        atkNuevo = atkActual - armaduras.get(0).getBonusAtaque() + armaduras.get(position).getBonusAtaque();
+                        hpNuevo = hpActual - armaduras.get(0).getBonusVida() + armaduras.get(position).getBonusVida();
+                        Toast.makeText(Equipment.this, armaduras.get(position).toString(), Toast.LENGTH_LONG).show();
+
+                        etiqATK.setText( String.valueOf( atkNuevo ) );
+                        etiqHP.setText( String.valueOf( hpNuevo ) );
+
+                        if( atkNuevo > atkActual )
+                            etiqATK.setTextColor(Color.GREEN);
+                        else if( atkNuevo < atkActual )
+                            etiqATK.setTextColor(Color.RED);
+                        else
+                            etiqATK.setTextColor(Color.WHITE);
+
+                        if( hpNuevo > hpActual )
+                            etiqHP.setTextColor(Color.GREEN);
+                        else if( hpNuevo < hpActual )
+                            etiqHP.setTextColor(Color.RED);
+                        else
+                            etiqHP.setTextColor(Color.WHITE);
                     }
 
                     @Override
@@ -209,6 +276,26 @@ public class Equipment extends AppCompatActivity {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         accesorioSeleccionado = parent.getItemAtPosition( position ).toString();
+                        atkNuevo = atkActual - accesorios.get(0).getBonusAtaque() + accesorios.get(position).getBonusAtaque();
+                        hpNuevo = hpActual - accesorios.get(0).getBonusVida() + accesorios.get(position).getBonusVida();
+                        Toast.makeText(Equipment.this, accesorios.get(position).toString(), Toast.LENGTH_LONG).show();
+
+                        etiqATK.setText( String.valueOf( atkNuevo ) );
+                        etiqHP.setText( String.valueOf( hpNuevo ) );
+
+                        if( atkNuevo > atkActual )
+                            etiqATK.setTextColor(Color.GREEN);
+                        else if( atkNuevo < atkActual )
+                            etiqATK.setTextColor(Color.RED);
+                        else
+                            etiqATK.setTextColor(Color.WHITE);
+
+                        if( hpNuevo > hpActual )
+                            etiqHP.setTextColor(Color.GREEN);
+                        else if( hpNuevo < hpActual )
+                            etiqHP.setTextColor(Color.RED);
+                        else
+                            etiqHP.setTextColor(Color.WHITE);
                     }
 
                     @Override
