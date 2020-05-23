@@ -601,7 +601,7 @@ public class Servicio {
     @GET
     @Produces({"application/json"})
     @Path("inicioCombate/{user}")
-    public ArrayList<String> inicioCombate( @PathParam("user") String user ) {
+    public ArrayList<jsonResponse> inicioCombate( @PathParam("user") String user ) {
         
         Jugador j = this.jugadores.get( indexofJugador( user ) );
         
@@ -611,7 +611,17 @@ public class Servicio {
             System.out.println( "Jugador " + user + " quiere iniciar un nuevo combate." );
             j.setCombate( iniciarCombate( j ) );
         }
-        return j.getMovimientos();
+        
+        ArrayList<String> movs = j.getMovimientos();
+        ArrayList<jsonResponse> envio = new ArrayList();
+        
+        for( String s : movs ) {
+            jsonResponse nuevo = new jsonResponse();
+            nuevo.setResultado( s );
+            envio.add(nuevo);
+        }
+        
+        return envio;
         
     }
     
@@ -619,6 +629,8 @@ public class Servicio {
     @Produces({"application/json"})
     @Path("estadoCombate/{user}")
     public EnvioEstadoCombate getEstadoCombate( @PathParam("user") String user ) {
+        
+        System.out.println( "Jugador " + user + " pide los datos del combate." );
         
         EnvioEstadoCombate estado = new EnvioEstadoCombate();
         
@@ -643,6 +655,8 @@ public class Servicio {
     @Produces({"application/json"})
     @Path("turno")
     public EnvioEstadoCombate nuevoTurno( Turno turno ) {
+        
+        System.out.println( "Turno de " + turno.getUsername() );
         
         EnvioEstadoCombate estado = new EnvioEstadoCombate();
         

@@ -236,7 +236,7 @@
                 android:layout_height="17dp" />
 
             <Button
-                android:id="@+id/botonArma"
+                android:id="@+id/botonTurno"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="50dp"
