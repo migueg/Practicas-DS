@@ -103,11 +103,12 @@
                     android:id="@+id/PlayerName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Player"
                     android:textColor="#AA0F0F"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
                     app:fontFamily="sans-serif-medium" />
 
                 <TextView
@@ -118,19 +119,19 @@
                     android:gravity="center"
                     android:text="VS"
                     android:textColor="#AA0F0F"
-                    android:textSize="35sp"
+                    android:textSize="30sp"
                     app:fontFamily="sans-serif-condensed-medium" />
 
                 <TextView
                     android:id="@+id/EnemyName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Enemy"
                     android:textColor="#AA0F0F"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
                     app:fontFamily="sans-serif-medium" />
             </LinearLayout>
 
@@ -142,6 +143,38 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/PlayerActualHP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right|center_vertical"
+                    android:text="100"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="/"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/PlayerMaxHP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|center_vertical"
+                    android:text="100"
+                    android:textSize="20sp" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2" />
 
                 <TextView
                     android:id="@+id/EnemyActualHP"
@@ -171,37 +204,6 @@
                     android:text="100"
                     android:textSize="20sp" />
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2" />
-
-                <TextView
-                    android:id="@+id/PlayerActualHP"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right|center_vertical"
-                    android:text="100"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/textView18"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="/"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/PlayerMaxHP"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="left|center_vertical"
-                    android:text="100"
-                    android:textSize="20sp" />
             </LinearLayout>
 
             <Space

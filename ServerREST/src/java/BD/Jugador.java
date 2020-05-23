@@ -69,6 +69,12 @@ public class Jugador {
         this.equipada = new Arma( "Cachiporra", 5, 50, "Arma inútil, pero es mejor que nada", 20, "https://raicesdeperaleda.com/recursos/diccionario/af9190fc88e3c83936ef77ab9b16822e.jpg" );
         this.accesorio = new Accesorio( "Amuleto de la suerte", 1, 1, "Talismán que guardas desde pequeño", 10, "https://images-na.ssl-images-amazon.com/images/I/61YZjlF2U8L._AC_UX395_.jpg" );
         
+        /*
+        personaje.modificarPA( equipada.getPlusDaño() );
+        personaje.modificarPV( armadura.getPlusVida() );
+        personaje.modificarPA( accesorio.getBonusAtaque() );
+        personaje.modificarPV( accesorio.getBonusVida() );*/
+        
         this.armas.add(new Arma( "Arco sencillo", 10, 100, "Arco ideal para los que quieren aprender", 40, "https://w7.pngwing.com/pngs/472/879/png-transparent-longbow-larp-bows-bow-and-arrow-recurve-bow-arrow-bow-weapon-bow-and-arrow.png"));
         this.armaduras.add(new Armadura( "Armadura de cuero", 20, 100, "Armadura de piel básica", 60, "https://www.eltallerdelarosa.com/636-large_default/armadura-dragon.jpg" ));
         
@@ -208,5 +214,24 @@ public class Jugador {
     public Combate getCombate() { return combate; }
     public void setCombate( Combate combate ) { this.combate = combate; }
     public int getCombateActual() { return combateActual; }
+    
+    public void resultadosCombate() {
+        
+        EstadoCombate estado = combate.getEstado();
+        
+        switch( estado ) {
+            case GANADO:
+                oro += combate.getEnemigo().getRecompensa();
+                combateActual++;
+                if( combateActual > record )
+                    record = combateActual;
+                break;
+            case PERDIDO:
+                oro -= oro / 2;
+                combateActual = 0;
+                break;
+        }
+        
+    }
     
 }

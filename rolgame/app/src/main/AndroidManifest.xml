@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Equipment"></activity>
+        <activity android:name=".Results"></activity>
+        <activity android:name=".Equipment" />
         <activity android:name=".Combat" />
         <activity android:name=".BuyObject" />
         <activity android:name=".Shop" />

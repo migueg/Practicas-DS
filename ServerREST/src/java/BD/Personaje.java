@@ -28,6 +28,23 @@ public class Personaje {
         this.PA = PA;
         this.url = url;
         this.movimientos = new ArrayList();
+        
+        movimientos.add( new Movimiento( "Ataque básico", 5, "ninguno", 0 ) );
+        
+        switch( getClase() ) {
+            case "guerrero":
+                movimientos.add( new Movimiento( "Golpe contundente", 8, "animal", 2 ) );
+                movimientos.add( new Movimiento( "Embestida", 8, "material", 2 ) );
+                break;
+            case "arquero":
+                movimientos.add( new Movimiento( "Flechazo oscuro", 8, "demonio", 2 ) );
+                movimientos.add( new Movimiento( "Tiro de caza", 8, "animal", 2 ) );
+                break;
+            case "mago":
+                movimientos.add( new Movimiento( "Conjuro ígneo", 8, "material", 2 ) );
+                movimientos.add( new Movimiento( "Conjuro luminoso", 8, "demonio", 2 ) );
+                break;
+        }
     }
     
     public String getCodigo() {

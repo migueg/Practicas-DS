@@ -26,6 +26,7 @@ import java.net.URL;
 public class MainMenu extends AppCompatActivity {
 
     private static final String PHOTO_URL = "http://192.168.1.40:8080/ServerREST/demo/rolgame/fotoClase/";
+    String url_photo;
     private ImageView photoUser;
 
     @Override
@@ -40,7 +41,7 @@ public class MainMenu extends AppCompatActivity {
 
         SharedPreferences preferences = getSharedPreferences( "temp", getApplicationContext().MODE_PRIVATE );
         String login_name = preferences.getString( "username", "" );
-        String url_completa = PHOTO_URL + login_name;
+        final String url_completa = PHOTO_URL + login_name;
 
         RequestQueue requestQueue = Volley.newRequestQueue( this );
 
@@ -50,6 +51,7 @@ public class MainMenu extends AppCompatActivity {
                     public void onResponse(String response) {
 
                         InputStream is = null;
+                        url_photo = response;
 
                         try {
                             is = (InputStream) new URL(response).getContent();
@@ -81,6 +83,7 @@ public class MainMenu extends AppCompatActivity {
 
     public void goToCombat( android.view.View V ) {
         Intent intent = new Intent( this, Combat.class );
+        intent.putExtra( "url_photo", url_photo );
         startActivity( intent );
     }
 

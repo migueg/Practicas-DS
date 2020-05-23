@@ -58,12 +58,10 @@ public class Servicio {
         
         jugadores.get(2).setRecord(200);
         
-        
         personajes.add( new Personaje( "GRR0", "Guerrero", 50, 5, "https://image.freepik.com/vector-gratis/ilustracion-dibujos-animados-guerrero-vikingo_14588-144.jpg" ) );
         personajes.add( new Personaje( "ARQ1", "Arquero", 40, 10, "https://w7.pngwing.com/pngs/387/276/png-transparent-cartoon-longbow-drawing-archer-legendary-creature-bow-cartoon.png" ) );
         personajes.add( new Personaje( "MAG2", "Mago", 45, 7, "https://i0.pngocean.com/files/908/588/1003/chibi-magician-anime-drawing-dark-magician.jpg" ) );
         
-        jugadores.get(0).setPersonaje(personajes.get(0));
         armas.add( new Arma( "Cachiporra", 5, 50, "Arma inútil, pero es mejor que nada", 20, "https://raicesdeperaleda.com/recursos/diccionario/af9190fc88e3c83936ef77ab9b16822e.jpg" ) );
         armas.add( new Arma( "Espada de cobre", 12, 100, "Espada de metal algo roma", 60, "https://dragonquest.fandom.com/es/wiki/Espada_de_Cobre?file=Espada_de_cobre.png" ) );
         armas.add( new Arma( "Varita de olivo", 8, 100, "Varita que crea llamas con el poder del aceite", 50, "https://lh3.googleusercontent.com/proxy/7Ufi4jyEfUHjhenOjjP6MMP8V_JBB7NO50l9M0YIpapWCvDYRpb1jz1cAxp8e-HaND88n7cbDLrXkdqITr_l0TMKuJKHD8PPrK01dv0RSSGaBkN4qK8KwE6Fsph-vw" ) );
@@ -107,6 +105,11 @@ public class Servicio {
         personajes.get(2).addMovimiento( movimientos.get(5) );
         personajes.get(2).addMovimiento( movimientos.get(6) );
         
+        ArrayList<Movimiento> movs = new ArrayList();
+        movs.add( movimientos.get(0) );
+        movs.add( movimientos.get(1) );
+        movs.add( movimientos.get(2) );
+        
         // Creación monstruos fáciles
         monstruosNivel1.add( new Monstruo( "Murciélago", "animal", 15, 2, 3, "https://i0.pngocean.com/files/430/195/778/bat-drawing-cartoon-royalty-free-clip-art-bat.jpg" ) );
         monstruosNivel1.add( new Monstruo( "Vaca", "animal", 20, 1, 1, "https://w7.pngwing.com/pngs/276/357/png-transparent-beef-cattle-calf-free-content-white-cow-s-white-head-cartoon.png" ) );
@@ -139,7 +142,7 @@ public class Servicio {
         monstruosNivel2.get(2).addMovimiento( movimientos.get(0) );
         monstruosNivel2.get(2).addMovimiento( movimientos.get(13) );
         
-        jugadores.get(0).setPersonaje(personajes.get(1));
+        jugadores.get(0).setPersonaje(personajes.get(2));
     }
     
   
@@ -615,6 +618,8 @@ public class Servicio {
         ArrayList<String> movs = j.getMovimientos();
         ArrayList<jsonResponse> envio = new ArrayList();
         
+        System.out.println( "Tiene " + movs.size() + " movimientos." );
+        
         for( String s : movs ) {
             jsonResponse nuevo = new jsonResponse();
             nuevo.setResultado( s );
@@ -666,6 +671,9 @@ public class Servicio {
         
         combate.turno( movimiento );
         
+        if( combate.getEstado() != EstadoCombate.ENCURSO )
+            j.resultadosCombate();
+        
         estado.setEstado( combate.getEstado().toString() );
         estado.setEnemigo( combate.getEnemigo().getNombre() );
         estado.setUrl( combate.getEnemigo().getUrl() );
@@ -676,6 +684,34 @@ public class Servicio {
         estado.setRecompensa( combate.getEnemigo().getRecompensa() );
         
         return estado;
+        
+    }
+    
+    @GET
+    @Produces({"application/json"})
+    @Path("resultado/{user}")
+    public EnvioFinCombate getResultadoCombate( @PathParam("user") String user ) {
+        
+        System.out.println( "Jugador " + user + " consulta el estado de su último combate." );
+        
+        EnvioFinCombate envio = new EnvioFinCombate();
+        Jugador j = this.jugadores.get( indexofJugador( user ) );
+        
+        envio.setResultado( j.getCombate().getEstado().toString() );
+        envio.setOro( j.getOro() );
+        envio.setCombateActual( j.getCombateActual() );
+        envio.setRecord( j.getRecord() );
+        
+        switch( envio.getResultado() ) {
+            case "GANADO":
+                envio.setRecompensa( j.getCombate().getEnemigo().getRecompensa() );
+                break;
+            case "PERDIDO":
+                envio.setRecompensa( j.getOro() );
+                break;
+        }
+        
+        return envio;
         
     }
     

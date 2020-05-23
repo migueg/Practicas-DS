@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Results">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#AA0F0F">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                app:srcCompat="@drawable/rolgameicon" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#817B7B"
+            android:orientation="vertical">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="150dp" />
+
+            <TextView
+                android:id="@+id/viewResultado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="RESULTADO"
+                android:textColor="#AA0F0F"
+                android:textSize="50sp"
+                app:fontFamily="sans-serif-condensed-medium" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="43dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/labelOro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right|center_vertical"
+                    android:text="Oro ganado:"
+                    android:textColor="#AA0F0F"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginRight="5sp"
+                    app:fontFamily="sans-serif-medium" />
+
+                <TextView
+                    android:id="@+id/viewOroActual"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|center_vertical"
+                    android:text=" "
+                    android:layout_marginLeft="5sp"
+                    android:layout_marginRight="20sp"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginRight="5sp"
+                    android:layout_weight="1"
+                    android:gravity="right|center_vertical"
+                    android:text="Oro acumulado:"
+                    android:textColor="#AA0F0F"
+                    android:textSize="20sp"
+                    app:fontFamily="sans-serif-medium" />
+
+                <TextView
+                    android:id="@+id/viewOroAcumulado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5sp"
+                    android:layout_marginRight="20sp"
+                    android:layout_weight="1"
+                    android:gravity="left|center_vertical"
+                    android:text=" "
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="50sp" />
+
+            <TextView
+                android:id="@+id/viewRecord"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="¡Nuevo record alcanzado!"
+                android:textColor="#AA0F0F"
+                android:textSize="30sp"
+                app:fontFamily="sans-serif-condensed-medium" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="50sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginRight="10sp"
+                    android:layout_weight="1"
+                    android:background="#AA0F0F"
+                    android:onClick="goToMainMenu"
+                    android:text="Volver al menú" />
+
+                <Button
+                    android:id="@+id/button12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginRight="20sp"
+                    android:layout_weight="1"
+                    android:background="#AA0F0F"
+                    android:onClick="goToNextCombat"
+                    android:text="Siguiente combate" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
