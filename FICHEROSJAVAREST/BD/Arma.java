@@ -66,6 +66,9 @@ public class Arma {
         this.coste = coste;
     }
     
+    public void restaVida(){
+        this.vida -= 10;
+    }
     public void setUrl( String url ) { this.url = url; }
     public String getUrl() { return url; }
 }

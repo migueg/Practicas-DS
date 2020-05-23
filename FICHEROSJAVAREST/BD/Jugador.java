@@ -23,6 +23,7 @@ public class Jugador {
     private Arma equipada;
     private Armadura  armadura;
     private Accesorio accesorio;
+    private Combate combate;
     
     private ArrayList<Arma> armas =  new ArrayList();
     private ArrayList<Armadura> armaduras =  new ArrayList();
@@ -45,6 +46,13 @@ public class Jugador {
                     index= i;
                 }
               }
+        }else if( tipo.equals( "accesorio" ) ) {
+            for( int i = 0; i < accesorios.size() && !paro; i++ ) {
+                if( accesorios.get(i).getNombreAccesorio().equals( nombre ) ) {
+                    paro = true;
+                    index = i;
+                }
+            }
         }
         
         return index;
@@ -61,9 +69,16 @@ public class Jugador {
         this.equipada = new Arma( "Cachiporra", 5, 50, "Arma inútil, pero es mejor que nada", 20, "https://raicesdeperaleda.com/recursos/diccionario/af9190fc88e3c83936ef77ab9b16822e.jpg" );
         this.accesorio = new Accesorio( "Amuleto de la suerte", 1, 1, "Talismán que guardas desde pequeño", 10, "https://images-na.ssl-images-amazon.com/images/I/61YZjlF2U8L._AC_UX395_.jpg" );
         
+        /*
+        personaje.modificarPA( equipada.getPlusDaño() );
+        personaje.modificarPV( armadura.getPlusVida() );
+        personaje.modificarPA( accesorio.getBonusAtaque() );
+        personaje.modificarPV( accesorio.getBonusVida() );*/
+        
         this.armas.add(new Arma( "Arco sencillo", 10, 100, "Arco ideal para los que quieren aprender", 40, "https://w7.pngwing.com/pngs/472/879/png-transparent-longbow-larp-bows-bow-and-arrow-recurve-bow-arrow-bow-weapon-bow-and-arrow.png"));
         this.armaduras.add(new Armadura( "Armadura de cuero", 20, 100, "Armadura de piel básica", 60, "https://www.eltallerdelarosa.com/636-large_default/armadura-dragon.jpg" ));
-        
+    
+        this.combate = new Combate( null, null, true );
     }
     
     public String getUsername() { return username; }
@@ -119,6 +134,13 @@ public class Jugador {
         this.armaduras = armaduras;
     }
     
+    public ArrayList<Accesorio> getAccesorios() { return accesorios; }
+    public void setAccesorios( ArrayList<Accesorio> accesorios ) { 
+        this.accesorios = accesorios;
+    }
+    
+    public Accesorio getAccesorio() { return accesorio; }
+    public void setAccesorio( Accesorio accesorio ) { this.accesorio = accesorio; }
     
     public int getOro() { return oro; }
     
@@ -136,22 +158,50 @@ public class Jugador {
         if(index != -1){
             if(tipo.equals("arma")){
                 Arma antigua = this.equipada;
-                this.personaje.modificarPA(-(antigua.getPlusDaño()));
                 Arma nueva = armas.get(index);
-                this.personaje.modificarPA(nueva.getPlusDaño());
-                armas.remove(index);
-                armas.add(antigua);
                 
-                this.equipada = nueva;
+                if( antigua != nueva ) {
+                    System.out.println("Daño antigua: ");
+                    System.out.println(antigua.getPlusDaño());
+                    System.out.println("Daño nueva: ");
+                    System.out.println(nueva.getPlusDaño());
+                    
+                    this.personaje.modificarPA(-(antigua.getPlusDaño()));
+                    this.personaje.modificarPA(nueva.getPlusDaño());
+                    armas.remove(index);
+                    armas.add(antigua);
+
+                    this.equipada = nueva;
+                }
             }else if(tipo.equals("armadura")){
                 Armadura antigua = this.armadura;
-                this.personaje.modificarPV(-(antigua.getPlusVida()));
                 Armadura nueva = armaduras.get(index);
-                this.personaje.modificarPA(nueva.getPlusVida());
-                armaduras.remove(index);
-                armaduras.add(antigua);
                 
-                this.armadura = nueva;
+                if( antigua != nueva ) {
+                         System.out.println("Vida antigua: ");
+                    System.out.println(antigua.getPlusVida());
+                    System.out.println("Vida nueva: ");
+                    System.out.println(nueva.getPlusVida());
+                    this.personaje.modificarPV(-(antigua.getPlusVida()));
+                    this.personaje.modificarPV(nueva.getPlusVida());
+                    armaduras.remove(index);
+                    armaduras.add(antigua);
+
+                    this.armadura = nueva;
+                }
+            } else if( tipo.equals( "accesorio" ) ) {
+                Accesorio antiguo = this.accesorio;
+                Accesorio nuevo = accesorios.get( index );
+                
+                if( antiguo != nuevo ) {
+                    this.personaje.modificarPA( -antiguo.getBonusAtaque() );
+                    this.personaje.modificarPV( -antiguo.getBonusVida() );
+                    this.accesorio = nuevo;
+                    accesorios.remove( index );
+                    accesorios.add( antiguo );
+                    this.personaje.modificarPA( accesorio.getBonusAtaque() );
+                    this.personaje.modificarPV( accesorio.getBonusVida() );
+                }
             }
         }
     }
@@ -164,5 +214,49 @@ public class Jugador {
         this.record = record;
     }
     
+    public Personaje getPersonaje() { return personaje; }
+    
+    public ArrayList<String> getMovimientos() {
+        return personaje.getNombresMovimientos();
+    }
+    
+    public Combate getCombate() { return combate; }
+    public void setCombate( Combate combate ) { this.combate = combate; }
+    public int getCombateActual() { return combateActual; }
+    
+    public void resultadosCombate() {
+        
+        EstadoCombate estado = combate.getEstado();
+        this.equipada.restaVida();
+        this.armadura.restaVida();
+        
+        switch( estado ) {
+            case GANADO:
+                oro += combate.getEnemigo().getRecompensa();
+                combateActual++;
+                if( combateActual > record )
+                    record = combateActual;
+                break;
+            case PERDIDO:
+                oro -= oro / 2;
+                combateActual = 0;
+                break;
+        }
+        
+        if(this.equipada.getVida()<= 0){
+            this.equipada = this.armas.get(0);
+            this.armas.remove(0);
+        }
+        
+         if(this.armadura.getVida()<= 0){
+            this.armadura = this.armaduras.get(0);
+            this.armaduras.remove(0);
+        }
+    }
+    
+    public void modificarPuntos(){
+        this.personaje.modificarPA(5);
+        this.personaje.modificarPV(5);
+    }
     
 }

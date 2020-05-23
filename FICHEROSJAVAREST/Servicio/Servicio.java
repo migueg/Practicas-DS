@@ -6,11 +6,24 @@
 
 package Servicio;
 
+import BD.Accesorio;
+import BD.Arma;
+import BD.Armadura;
+import BD.Combate;
+import BD.EstadoCombate;
+import BD.InventarioArma;
+import BD.Jugador;
+import BD.Monstruo;
+import BD.Movimiento;
+import BD.Personaje;
+import com.eclipsesource.json.JsonObject;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import java.util.Random;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -22,16 +35,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import java.util.Calendar;
-import com.eclipsesource.json.JsonObject;
-
-import BD.Jugador;
-import BD.Personaje;
-import BD.InventarioArma;
-import BD.Arma;
-import BD.Armadura;
-import BD.Accesorio;
-
 /**
  *
  * @author juanfrandm98
@@ -39,11 +42,15 @@ import BD.Accesorio;
 @Path("rolgame")
 public class Servicio {
     
-    private static ArrayList<Jugador> jugadores = new ArrayList();
-    private static ArrayList<Personaje> personajes = new ArrayList();
-     private static ArrayList<Arma> armas = new ArrayList();
-    private static ArrayList<Armadura> armaduras = new ArrayList();
-    private static ArrayList<Accesorio> accesorios = new ArrayList();
+    private static ArrayList<Jugador> jugadores = new ArrayList();              // Lista de jugadores
+    private static ArrayList<Personaje> personajes = new ArrayList();           // Lista de personajes jugables
+    private static ArrayList<Arma> armas = new ArrayList();                     // Lista de armas
+    private static ArrayList<Armadura> armaduras = new ArrayList();             // Lista de armaduras
+    private static ArrayList<Accesorio> accesorios = new ArrayList();           // Lista de accesorios
+    private static ArrayList<Movimiento> movimientos = new ArrayList();         // Lista de movimientos (ataques)
+    private static ArrayList<Monstruo> monstruosNivel1 = new ArrayList();       // Lista de monstruos fáciles
+    private static ArrayList<Monstruo> monstruosNivel2 = new ArrayList();       // Lista de monstruos difíciles
+    
     static {
         jugadores.add( new Jugador( "juanfrandm98", "jfdm" ) );
         jugadores.add( new Jugador("administrador", "admin"));
@@ -51,12 +58,10 @@ public class Servicio {
         
         jugadores.get(2).setRecord(200);
         
-        
         personajes.add( new Personaje( "GRR0", "Guerrero", 50, 5, "https://image.freepik.com/vector-gratis/ilustracion-dibujos-animados-guerrero-vikingo_14588-144.jpg" ) );
         personajes.add( new Personaje( "ARQ1", "Arquero", 40, 10, "https://w7.pngwing.com/pngs/387/276/png-transparent-cartoon-longbow-drawing-archer-legendary-creature-bow-cartoon.png" ) );
         personajes.add( new Personaje( "MAG2", "Mago", 45, 7, "https://i0.pngocean.com/files/908/588/1003/chibi-magician-anime-drawing-dark-magician.jpg" ) );
         
-        jugadores.get(0).setPersonaje(personajes.get(0));
         armas.add( new Arma( "Cachiporra", 5, 50, "Arma inútil, pero es mejor que nada", 20, "https://raicesdeperaleda.com/recursos/diccionario/af9190fc88e3c83936ef77ab9b16822e.jpg" ) );
         armas.add( new Arma( "Espada de cobre", 12, 100, "Espada de metal algo roma", 60, "https://dragonquest.fandom.com/es/wiki/Espada_de_Cobre?file=Espada_de_cobre.png" ) );
         armas.add( new Arma( "Varita de olivo", 8, 100, "Varita que crea llamas con el poder del aceite", 50, "https://lh3.googleusercontent.com/proxy/7Ufi4jyEfUHjhenOjjP6MMP8V_JBB7NO50l9M0YIpapWCvDYRpb1jz1cAxp8e-HaND88n7cbDLrXkdqITr_l0TMKuJKHD8PPrK01dv0RSSGaBkN4qK8KwE6Fsph-vw" ) );
@@ -71,7 +76,73 @@ public class Servicio {
         accesorios.add( new Accesorio( "Anillo rojo", 5, 0, "Anillo que te hace sentir más fuerte", 80, "https://di2ponv0v5otw.cloudfront.net/posts/2020/01/13/5e1d0c4808d2c25532d3a458/m_5e1d0c522cc51523773cb525.jpg" ) );
         accesorios.add( new Accesorio( "Biblia", 3, 8, "Libro que te inspira en la batalla", 100, "https://www.christiantruthcenter.com/wp-content/uploads/2016/10/Bible-is-not-the-Word-1024x1024.jpg" ) );
 
-        jugadores.get(0).setPersonaje(personajes.get(1));
+        // Movimientos para los personajes
+        movimientos.add( new Movimiento( "Ataque básico", 5, "ninguno", 0 ) );      // 0 - Ataque básico
+        movimientos.add( new Movimiento( "Golpe contundente", 8, "animal", 2 ) );   // 1 - Golpe contundente
+        movimientos.add( new Movimiento( "Embestida", 8, "material", 2 ) );         // 2 - Embestida
+        movimientos.add( new Movimiento( "Conjuro ígneo", 8, "material", 2 ) );     // 3 - Conjuro ígneo
+        movimientos.add( new Movimiento( "Conjuro luminoso", 8, "demonio", 2 ) );   // 4 - Conjuro luminoso
+        movimientos.add( new Movimiento( "Flechazo oscuro", 8, "demonio", 2 ) );    // 5 - Flechazo oscuro
+        movimientos.add( new Movimiento( "Tiro de caza", 8, "animal", 2 ) );        // 6 - Tiro de caza
+        
+        // Movimientos para los monstruos
+        movimientos.add( new Movimiento( "Mordisco", 7, "mago", 2 ) );              // 7 - Mordisco
+        movimientos.add( new Movimiento( "Placaje", 7, "arquero", 2 ) );            // 8 - Placaje
+        movimientos.add( new Movimiento( "Lanzamiento", 7, "guerrero", 2 ) );       // 9 - Lanzamiento
+        movimientos.add( new Movimiento( "Susto", 7, "guerrero", 2 ) );             // 10 - Susto
+        movimientos.add( new Movimiento( "Llamarada", 10, "arquero", 3 ) );         // 11 - Llamarada
+        movimientos.add( new Movimiento( "Superpuñetazo", 11, "mago", 3 ) );        // 12 - Superpuñetazo
+        movimientos.add( new Movimiento( "Golpe sombrío", 13, "ninguno", 0 ) );     // 13 - Golpe sombrío
+        
+        // Añadir ataques a personajes
+        personajes.get(0).addMovimiento( movimientos.get(0) );
+        personajes.get(0).addMovimiento( movimientos.get(1) );
+        personajes.get(0).addMovimiento( movimientos.get(2) );
+        personajes.get(1).addMovimiento( movimientos.get(0) );
+        personajes.get(1).addMovimiento( movimientos.get(3) );
+        personajes.get(1).addMovimiento( movimientos.get(4) );
+        personajes.get(2).addMovimiento( movimientos.get(0) );
+        personajes.get(2).addMovimiento( movimientos.get(5) );
+        personajes.get(2).addMovimiento( movimientos.get(6) );
+        
+        ArrayList<Movimiento> movs = new ArrayList();
+        movs.add( movimientos.get(0) );
+        movs.add( movimientos.get(1) );
+        movs.add( movimientos.get(2) );
+        
+        // Creación monstruos fáciles
+        monstruosNivel1.add( new Monstruo( "Murciélago", "animal", 15, 2, 3, "https://i0.pngocean.com/files/430/195/778/bat-drawing-cartoon-royalty-free-clip-art-bat.jpg" ) );
+        monstruosNivel1.add( new Monstruo( "Vaca", "animal", 20, 1, 1, "https://w7.pngwing.com/pngs/276/357/png-transparent-beef-cattle-calf-free-content-white-cow-s-white-head-cartoon.png" ) );
+        monstruosNivel1.add( new Monstruo( "Pedrolo", "material", 25, 0, 5, "https://media.istockphoto.com/vectors/crazy-stone-character-cartoon-style-vector-id882102002" ) );
+        monstruosNivel1.add( new Monstruo( "Fantasma", "demonio", 13, 5, 3, "https://i.pinimg.com/736x/1d/15/2f/1d152f20e0ec63179132a47c0dde3069.jpg" ) );
+        monstruosNivel1.add( new Monstruo( "Diablillo", "demonio", 18, 2, 5, "https://cdn5.dibujos.net/dibujos/pintados/201043/3a209491639c9e8fe046189e0209966b.png" ) );
+        
+        // Ataques para monstruos fáciles
+        monstruosNivel1.get(0).addMovimiento( movimientos.get(0) );
+        monstruosNivel1.get(0).addMovimiento( movimientos.get(7) );
+        monstruosNivel1.get(1).addMovimiento( movimientos.get(0) );
+        monstruosNivel1.get(1).addMovimiento( movimientos.get(8) );
+        monstruosNivel1.get(2).addMovimiento( movimientos.get(0) );
+        monstruosNivel1.get(2).addMovimiento( movimientos.get(8) );
+        monstruosNivel1.get(3).addMovimiento( movimientos.get(0) );
+        monstruosNivel1.get(3).addMovimiento( movimientos.get(10) );
+        monstruosNivel1.get(4).addMovimiento( movimientos.get(0) );
+        monstruosNivel1.get(4).addMovimiento( movimientos.get(9) );
+        
+        // Creación monstruos difíciles
+        monstruosNivel2.add( new Monstruo( "Dragón alado", "animal", 40, 5, 30, "https://image.freepik.com/vector-gratis/dragon-rojo-dibujos-animados-sobre-fondo-blanco_29190-4722.jpg" ) );
+        monstruosNivel2.add( new Monstruo( "Golem", "material", 50, 4, 30,  "https://vignette.wikia.nocookie.net/villains/images/d/d8/Golemdq.png/revision/latest?cb=20130408202459" ) );
+        monstruosNivel2.add( new Monstruo( "Demonio guerrero", "demonio", 35, 7, 50, "https://i0.pngocean.com/files/570/576/840/devil-deviantart-drawing-witchcraft-demon-devil.jpg" ) );
+        
+        // Ataques para monstruos difíciles
+        monstruosNivel2.get(0).addMovimiento( movimientos.get(0) );
+        monstruosNivel2.get(0).addMovimiento( movimientos.get(11) );
+        monstruosNivel2.get(1).addMovimiento( movimientos.get(0) );
+        monstruosNivel2.get(1).addMovimiento( movimientos.get(12) );
+        monstruosNivel2.get(2).addMovimiento( movimientos.get(0) );
+        monstruosNivel2.get(2).addMovimiento( movimientos.get(13) );
+        
+        jugadores.get(0).setPersonaje(personajes.get(2));
     }
     
   
@@ -88,6 +159,51 @@ public class Servicio {
         }
        
         return index;
+    }
+    
+    private int indexofMovimiento( String movimiento ) {
+        int index = -1;
+        
+        for( int i = 0; i < movimientos.size(); i++ )
+            if( movimientos.get(i).getNombre().equals( movimiento ) )
+                return i;
+        
+        return index;
+    }
+    private Personaje getPersonaje(String nombre){
+        Personaje p = null;
+        
+        for(Personaje per : personajes){
+            if(per.getNombre().equals(nombre))
+                p = per;
+        }
+        
+        return p;
+    }
+    
+    private int indexofMonstruo(String nombre , int nivel){
+        int index = -1;
+        boolean paro = false;
+        if(nivel == 1){
+            for(int i = 0 ; i < monstruosNivel1.size()  && !paro; i++ ){
+                if(monstruosNivel1.get(i).getNombre().equals(nombre)){
+                    index = i;
+                    paro = true;
+                }
+            }
+        }
+        
+         if(nivel == 2){
+            for(int i = 0 ; i < monstruosNivel2.size()  && !paro; i++ ){
+                if(monstruosNivel2.get(i).getNombre().equals(nombre)){
+                    index = i;
+                    paro = true;
+                }
+            }
+        }
+        
+         return index;
+        
     }
     @GET
     @Produces( MediaType.TEXT_PLAIN )
@@ -135,6 +251,19 @@ public class Servicio {
         return lista;
     }
 
+    @GET 
+    @Produces({"application/json"})
+    @Path("personajes")
+    public ArrayList<jsonResponse> getPersonajes (){
+        ArrayList<jsonResponse> respuestas = new ArrayList();
+        
+        for(Personaje p : personajes ){
+            jsonResponse r = new jsonResponse();
+            r.setResultado(p.getNombre());
+            respuestas.add(r);
+        }
+        return respuestas;
+    }
     @GET
     @Produces({"application/json"})
     @Path("inventario/{user}")
@@ -147,11 +276,14 @@ public class Servicio {
         // Obtengo el inventario
         ArrayList<Arma> armas = j.getArmas();
         ArrayList<Armadura> armaduras = j.getArmaduras();
+        ArrayList<Accesorio> accesorios = j.getAccesorios();
         
         //Obtengo el material equipado
         Arma equipada = j.getEquipada();
         Armadura armadura = j.getArmadura();
-        //La posicion 0 y 1 del json serán el arma y armadura por defecto
+        Accesorio accesorio = j.getAccesorio();
+        //La posicion 0, 1 y 2 serán el arma, la armadura y el accesorio
+        //equipados
         InventarioArma actual = new InventarioArma();
         actual.setPersonaje(j.getNombrePersonaje());
         actual.setDaño(j.getDaño());
@@ -169,6 +301,13 @@ public class Servicio {
         a.setTipo(armadura.getTipo());
         
         inventario.add(a);
+        
+        InventarioArma invAcc = new InventarioArma();
+        invAcc.setTipo( accesorio.getTipo() );
+        invAcc.setNombreAccesorio( accesorio.getNombreAccesorio());
+        invAcc.setAtaqueAccesorio( accesorio.getBonusAtaque() );
+        invAcc.setVidaAccesorio( accesorio.getBonusVida() );
+        inventario.add(invAcc);
          
         for(int i = 0; i < armas.size(); i++){
             System.out.println("GG");
@@ -197,13 +336,97 @@ public class Servicio {
             inventario.add(nuevo);
         }
         
+        System.out.println( "AA" );
+        for( int i = 0; i < accesorios.size(); i++ ) {
+            InventarioArma nuevo = new InventarioArma();
+            nuevo.setTipo( accesorios.get(i).getTipo() );
+            nuevo.setNombreAccesorio( accesorios.get(i).getNombreAccesorio() );
+            nuevo.setAtaqueAccesorio( accesorios.get(i).getBonusAtaque() );
+            nuevo.setVidaAccesorio( accesorios.get(i).getBonusVida() );
+            
+            inventario.add(nuevo);
+        }
          
          return inventario;
          
     }
     
+    @GET 
+    @Produces({"application/json"})
+    @Path("monstruos")
+    public ArrayList<datosMonstruo> getMonstruos(){
+        ArrayList<datosMonstruo> lista = new ArrayList();
+        
+        for(Monstruo m : monstruosNivel1 ){
+            datosMonstruo d = new datosMonstruo();
+            d.setNivel(1);
+            d.setUrl(m.getUrl());
+            d.setNombre(m.getNombre());
+            d.setTipo(m.getTipo());
+            d.setPuntosVida(m.getPuntosVida());
+            d.setPuntosAtaque(m.getPuntosAtaque());
+            d.setRecompensa(m.getRecompensa());
+            d.setMovimientos(m.getnumMovimientos());
+            
+            lista.add(d);
+        }
+        
+        for(Monstruo m : monstruosNivel2 ){
+            datosMonstruo d = new datosMonstruo();
+            d.setNivel(2);
+            d.setUrl(m.getUrl());
+            d.setNombre(m.getNombre());
+            d.setTipo(m.getTipo());
+            d.setPuntosVida(m.getPuntosVida());
+            d.setPuntosAtaque(m.getPuntosAtaque());
+            d.setRecompensa(m.getRecompensa());
+            d.setMovimientos(m.getnumMovimientos());
+            
+            lista.add(d);
+        }
+        return lista;
+    }
     
+    @POST
+    @Path("addMonstruo")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
+    public String addMonstruo(datosMonstruo d){
+        if(d.getNivel() == 1){
+           this.monstruosNivel1.add(new Monstruo(d.getNombre(),d.getTipo(),d.getPuntosVida(),d.getPuntosAtaque(),d.getRecompensa(),d.getUrl()));
+           return "OK";
+        }
+         if(d.getNivel() == 2){
+           this.monstruosNivel2.add(new Monstruo(d.getNombre(),d.getTipo(),d.getPuntosVida(),d.getPuntosAtaque(),d.getRecompensa(),d.getUrl()));
+           return "OK";
+        }
+         
+         return "Error";
+    }
     
+    @POST
+    @Path("addMove")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
+    public String addMovimiento(datosMovimiento d){
+        Monstruo m ;
+        String mensaje = "Error";
+        switch(d.getNivel()){
+            case 1:
+               m = monstruosNivel1.get(this.indexofMonstruo(d.getMonstruo(), 1));
+               m.addMovimiento(new Movimiento(d.getNombre(),d.getPotencia(),d.getTipoConBonus(),d.getBonus()));
+               mensaje = "OK";
+               break;
+            case 2:
+               m = monstruosNivel2.get(this.indexofMonstruo(d.getMonstruo(), 1));
+               m.addMovimiento(new Movimiento(d.getNombre(),d.getPotencia(),d.getTipoConBonus(),d.getBonus()));
+               mensaje = "OK";
+               break;
+                
+        }
+        return mensaje;
+    }
+   
     @POST
     @Path("login")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -248,11 +471,23 @@ public class Servicio {
     @Path("registro")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public String registro( Jugador jugador ) {
-        
-        for ( Jugador j : jugadores )
-            if( j.getUsername() == jugador.getUsername() )
+    public String registro( datosRegistro jugador ) {
+        Jugador jg ;
+      
+        for ( Jugador j : jugadores ){
+            if( j.getUsername().equals(jugador.getUsername())){
                 return "El usuario ya existe en la plataforma.";
+            }
+                
+        }
+        
+   
+        jg = new Jugador(jugador.getUsername(),jugador.getPassword());
+        jg.setPersonaje(this.getPersonaje(jugador.getPersonaje()));
+        jg.modificarPuntos();
+        this.jugadores.add(jg);
+        
+            
         
         return "OK";
     }
@@ -289,10 +524,7 @@ public class Servicio {
         
     }
     
-    @PUT
-    @Path("equipar")
-    @Consumes({"application/json"})
-    public void cambiarArma(datosEquipo d){
+    private void equipar( datosEquipo d ) {
         System.out.println("ME LLEGA:");
         System.out.println(d.getUsername());
         Jugador j = jugadores.get(this.indexofJugador(d.getUsername()));
@@ -300,7 +532,25 @@ public class Servicio {
         j.equipar(d.getTipo(), d.getNombre());
     }
     
-       private int calcularSemilla() {
+    @PUT
+    @Path("equipar")
+    @Consumes({"application/json"})
+    public void cambiarArma(datosEquipo d){
+        equipar(d);
+    }
+    
+    @PUT
+    @Path("equiparConf")
+    @Consumes({"application/json"})
+    @Produces({"application/json"})
+    public jsonResponse cambiarEquipo( datosEquipo d ) {
+        equipar(d);
+        jsonResponse js = new jsonResponse();
+        js.setResultado("OK");
+        return js;
+    }
+    
+    private int calcularSemilla() {
 
         int semilla = 0;
 
@@ -460,4 +710,133 @@ public class Servicio {
 
         return js;
     }
+    
+    private Combate iniciarCombate( Jugador jugador ) {
+        
+        Random random = new Random();
+        Monstruo mon;
+        
+        if( jugador.getCombateActual() >= 7 )
+            mon = monstruosNivel2.get( random.nextInt( monstruosNivel2.size() ) );
+        else
+            mon = monstruosNivel1.get( random.nextInt( monstruosNivel1.size() ) );
+        
+        return new Combate( mon, jugador.getPersonaje(), false );
+        
+    }
+    
+    @GET
+    @Produces({"application/json"})
+    @Path("inicioCombate/{user}")
+    public ArrayList<jsonResponse> inicioCombate( @PathParam("user") String user ) {
+        
+        Jugador j = this.jugadores.get( indexofJugador( user ) );
+        
+        if( j.getCombate().getEstado() == EstadoCombate.ENCURSO ) {
+            System.out.println( "Jugador " + user + " quiere continuar con el combate." );
+        } else {
+            System.out.println( "Jugador " + user + " quiere iniciar un nuevo combate." );
+            j.setCombate( iniciarCombate( j ) );
+        }
+        
+        ArrayList<String> movs = j.getMovimientos();
+        ArrayList<jsonResponse> envio = new ArrayList();
+        
+        System.out.println( "Tiene " + movs.size() + " movimientos." );
+        
+        for( String s : movs ) {
+            jsonResponse nuevo = new jsonResponse();
+            nuevo.setResultado( s );
+            envio.add(nuevo);
+        }
+        
+        return envio;
+        
+    }
+    
+    @GET
+    @Produces({"application/json"})
+    @Path("estadoCombate/{user}")
+    public EnvioEstadoCombate getEstadoCombate( @PathParam("user") String user ) {
+        
+        System.out.println( "Jugador " + user + " pide los datos del combate." );
+        
+        EnvioEstadoCombate estado = new EnvioEstadoCombate();
+        
+        Jugador j = this.jugadores.get( indexofJugador( user ) );
+        Combate combate = j.getCombate();
+        
+        estado.setEstado( combate.getEstado().toString() );
+        estado.setEnemigo( combate.getEnemigo().getNombre() );
+        estado.setUrl( combate.getEnemigo().getUrl() );
+        estado.setPvEnemigo( combate.getPvEnemigo() );
+        estado.setPvJugador( combate.getPvJugador() );
+        estado.setDanioRecibido( combate.getUltDanio() );
+        estado.setMovimientoRecibido( combate.getUltMov() );
+        estado.setRecompensa( combate.getEnemigo().getRecompensa() );
+        
+        return estado;
+        
+    }
+    
+    @POST
+    @Consumes({"application/json"})
+    @Produces({"application/json"})
+    @Path("turno")
+    public EnvioEstadoCombate nuevoTurno( Turno turno ) {
+        
+        System.out.println( "Turno de " + turno.getUsername() );
+        
+        EnvioEstadoCombate estado = new EnvioEstadoCombate();
+        
+        Jugador j = this.jugadores.get( indexofJugador( turno.getUsername() ) );
+        Combate combate = j.getCombate();
+        Movimiento movimiento = this.movimientos.get( indexofMovimiento( turno.getMovimiento() ) );
+        
+        combate.turno( movimiento );
+        
+        if( combate.getEstado() != EstadoCombate.ENCURSO )
+            j.resultadosCombate();
+        
+        estado.setEstado( combate.getEstado().toString() );
+        estado.setEnemigo( combate.getEnemigo().getNombre() );
+        estado.setUrl( combate.getEnemigo().getUrl() );
+        estado.setPvEnemigo( combate.getPvEnemigo() );
+        estado.setPvJugador( combate.getPvJugador() );
+        estado.setDanioRecibido( combate.getUltDanio() );
+        estado.setMovimientoRecibido( combate.getUltMov() );
+        estado.setRecompensa( combate.getEnemigo().getRecompensa() );
+        
+        return estado;
+        
+    }
+    
+    @GET
+    @Produces({"application/json"})
+    @Path("resultado/{user}")
+    public EnvioFinCombate getResultadoCombate( @PathParam("user") String user ) {
+        
+        System.out.println( "Jugador " + user + " consulta el estado de su último combate." );
+        
+        EnvioFinCombate envio = new EnvioFinCombate();
+        Jugador j = this.jugadores.get( indexofJugador( user ) );
+        
+        envio.setResultado( j.getCombate().getEstado().toString() );
+        envio.setOro( j.getOro() );
+        envio.setCombateActual( j.getCombateActual() );
+        envio.setRecord( j.getRecord() );
+        
+        switch( envio.getResultado() ) {
+            case "GANADO":
+                envio.setRecompensa( j.getCombate().getEnemigo().getRecompensa() );
+                break;
+            case "PERDIDO":
+                envio.setRecompensa( j.getOro() );
+                break;
+        }
+        
+        return envio;
+        
+    }
+    
 }

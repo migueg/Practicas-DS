@@ -62,7 +62,9 @@ public class Armadura {
         this.vida = vida;
     }
 
-
+    public void restaVida(){
+        this.vida -= 10;
+    }
     public String getDescripcion() { return descripcion; }
     public int getCoste() { return coste; }
     public String getUrl() { return url; }

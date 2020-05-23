@@ -28,6 +28,10 @@ public class InventarioArma {
     private String nombreArmadura;
     private int  plusVida;
     private int vidaArmadura;
+
+    private String nombreAccesorio;
+    private int ataqueAccesorio;
+    private int vidaAccesorio;
     
     public InventarioArma(){}
 
@@ -120,5 +124,22 @@ public class InventarioArma {
         this.dañoArma = dañoArma;
     }
  
+    public void setNombreAccesorio( String nombreAccesorio ) {
+        this.nombreAccesorio = nombreAccesorio;
+    }
+    
+    public String getNombreAccesorio() { return nombreAccesorio; }
+    
+    public void setAtaqueAccesorio( int ataqueAccesorio ) {
+        this.ataqueAccesorio = ataqueAccesorio;
+    }
+    
+    public int getAtaqueAccesorio() { return ataqueAccesorio; }
+    
+    public void setVidaAccesorio( int vidaAccesorio ) {
+        this.vidaAccesorio = vidaAccesorio;
+    }
+    
+    public int getVidaAccesorio() { return vidaAccesorio; }
   
 }
