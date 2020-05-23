@@ -6,6 +6,8 @@
 
 package BD;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author juanfrandm98
@@ -17,6 +19,7 @@ public class Personaje {
     private String url;
     private int PV;
     private int PA;
+    private ArrayList<Movimiento> movimientos;
 
     public Personaje( String codigo, String nombre, int PV, int PA, String url ) {
         this.codigo = codigo;
@@ -24,6 +27,7 @@ public class Personaje {
         this.PV = PV;
         this.PA = PA;
         this.url = url;
+        this.movimientos = new ArrayList();
     }
     
     public String getCodigo() {
@@ -73,5 +77,33 @@ public class Personaje {
     }
     
     public String getUrl() { return url; }
+    
+    public void addMovimiento( Movimiento movimiento ) {
+        movimientos.add( movimiento );
+    }
+    
+    public ArrayList<Movimiento> getMovimientos() { return movimientos; }
+    
+    public String getClase() {
+        
+        switch( codigo ) {
+            case "GRR0":
+                return "guerrero";
+            case "ARQ1":
+                return "arquero";
+            default:
+                return "mago";
+        }
+        
+    }
+    
+    public ArrayList<String> getNombresMovimientos() {
+        ArrayList<String> movs = new ArrayList();
+        
+        for( Movimiento m : movimientos )
+            movs.add( m.getNombre() );
+        
+        return movs;
+    }
     
 }

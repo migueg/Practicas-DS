@@ -23,6 +23,7 @@ public class Jugador {
     private Arma equipada;
     private Armadura  armadura;
     private Accesorio accesorio;
+    private Combate combate;
     
     private ArrayList<Arma> armas =  new ArrayList();
     private ArrayList<Armadura> armaduras =  new ArrayList();
@@ -71,6 +72,7 @@ public class Jugador {
         this.armas.add(new Arma( "Arco sencillo", 10, 100, "Arco ideal para los que quieren aprender", 40, "https://w7.pngwing.com/pngs/472/879/png-transparent-longbow-larp-bows-bow-and-arrow-recurve-bow-arrow-bow-weapon-bow-and-arrow.png"));
         this.armaduras.add(new Armadura( "Armadura de cuero", 20, 100, "Armadura de piel básica", 60, "https://www.eltallerdelarosa.com/636-large_default/armadura-dragon.jpg" ));
         
+        this.combate = new Combate( null, null, true );
     }
     
     public String getUsername() { return username; }
@@ -197,5 +199,14 @@ public class Jugador {
         this.record = record;
     }
     
+    public Personaje getPersonaje() { return personaje; }
+    
+    public ArrayList<String> getMovimientos() {
+        return personaje.getNombresMovimientos();
+    }
+    
+    public Combate getCombate() { return combate; }
+    public void setCombate( Combate combate ) { this.combate = combate; }
+    public int getCombateActual() { return combateActual; }
     
 }
