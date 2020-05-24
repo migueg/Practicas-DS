@@ -29,6 +29,16 @@ public class Armadura {
         this.coste = coste;
         this.url = url;
     }
+    
+    public Armadura( Armadura armadura ) {
+        this.nombre = armadura.nombre;
+        this.tipo = armadura.tipo;
+        this.url = armadura.url;
+        this.descripcion = armadura.descripcion;
+        this.coste = armadura.coste;
+        this.plusVida = armadura.plusVida;
+        this.vida = armadura.vida;
+    }
 
     public String getNombre() {
         return nombre;
@@ -62,7 +72,10 @@ public class Armadura {
         this.vida = vida;
     }
 
-
+    public void restaVida(){
+        if( nombre != "Nada" )
+            this.vida -= 10;
+    }
     public String getDescripcion() { return descripcion; }
     public int getCoste() { return coste; }
     public String getUrl() { return url; }

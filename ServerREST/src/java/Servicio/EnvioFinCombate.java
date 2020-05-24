@@ -17,6 +17,7 @@ public class EnvioFinCombate {
     private int oro;
     private int combateActual;
     private int record;
+    private boolean algoRoto;
     
     public EnvioFinCombate(){}
     
@@ -26,6 +27,7 @@ public class EnvioFinCombate {
     public void setOro( int oro ) { this.oro = oro; }
     public void setCombateActual( int combateActual ) { this.combateActual = combateActual; }
     public void setRecord( int record ) { this.record = record; }
+    public void setAlgoRoto( boolean algoRoto ) { this.algoRoto = algoRoto; }
     
     // Getters
     public String getResultado() { return resultado; }
@@ -33,5 +35,6 @@ public class EnvioFinCombate {
     public int getOro() { return oro; }
     public int getCombateActual() { return combateActual; }
     public int getRecord() { return record; }
+    public boolean getAlgoRoto() { return algoRoto; }
     
 }

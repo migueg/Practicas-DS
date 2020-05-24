@@ -131,6 +131,19 @@
 
             <Space
                 android:layout_width="match_parent"
+                android:layout_height="24dp" />
+
+            <TextView
+                android:id="@+id/viewRoto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="#AA0F0F"
+                android:textSize="18sp"
+                app:fontFamily="sans-serif-medium" />
+
+            <Space
+                android:layout_width="match_parent"
                 android:layout_height="50sp" />
 
             <LinearLayout

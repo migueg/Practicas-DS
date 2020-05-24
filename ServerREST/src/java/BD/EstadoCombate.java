@@ -13,5 +13,6 @@ package BD;
 public enum EstadoCombate {
     GANADO,
     PERDIDO,
-    ENCURSO
+    ENCURSO,
+    RENDIDO
 }

@@ -82,11 +82,11 @@ public class Personaje {
     }
     
     public void modificarPA(int v){
-        this.PA += v;
+        this.PA = this.PA + v;
     }
     
     public void modificarPV(int v){
-        this.PV += v;
+        this.PV = this.PV + v;
     }
 
     public Personaje getBase() {

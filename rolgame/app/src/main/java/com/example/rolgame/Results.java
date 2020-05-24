@@ -29,6 +29,7 @@ public class Results extends AppCompatActivity {
     private TextView viewOroActual;
     private TextView viewOroAcumulado;
     private TextView viewRecord;
+    private TextView viewRoto;
     private TextView labelOro;
 
     @Override
@@ -43,6 +44,7 @@ public class Results extends AppCompatActivity {
         viewOroActual = findViewById( R.id.viewOroActual );
         viewOroAcumulado = findViewById( R.id.viewOroAcumulado );
         viewRecord = findViewById( R.id.viewRecord );
+        viewRoto = findViewById( R.id.viewRoto );
         labelOro = findViewById( R.id.labelOro );
 
         SharedPreferences preferences = getSharedPreferences( "temp", getApplicationContext().MODE_PRIVATE );
@@ -70,6 +72,14 @@ public class Results extends AppCompatActivity {
 
                                 if( record > combateActual )
                                     viewRecord.setText("");
+                                else
+                                    viewRecord.setText("¡Nuevo record alcanzado: " + record + "!" );
+
+                                if( response.getBoolean( "algoRoto" ) )
+                                    viewRoto.setText( "Algo que estaba equipado se ha roto..." );
+                                else
+                                    viewRoto.setText("");
+
                             } else {
                                 viewResultado.setText( "DERROTA..." );
                                 viewOroActual.setText( response.getString( "recompensa" ) );

@@ -102,7 +102,7 @@ public class Combat extends AppCompatActivity {
     private static final String GETMOVS_URL = "http://192.168.1.40:8080/ServerREST/demo/rolgame/inicioCombate/";
     private static final String GETSTATUS_URL = "http://192.168.1.40:8080/ServerREST/demo/rolgame/estadoCombate/";
     private static final String ATTACK_URL = "http://192.168.1.40:8080/ServerREST/demo/rolgame/turno";
-    private static final String GIVEUP_URL = "http://localhost:8080/ServerREST/server/rolgame/giveup";
+    private static final String GIVEUP_URL = "http://192.168.1.40:8080/ServerREST/demo/rolgame/giveup/";
 
     private String username;
     private String url_user;
@@ -221,6 +221,7 @@ public class Combat extends AppCompatActivity {
                                 ataques[i] = obj.getString( "resultado" );
                             }
                             updateList();
+                            firstStatus();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -233,7 +234,16 @@ public class Combat extends AppCompatActivity {
                     }
         }){};
 
-        JsonObjectRequest primerEstado = new JsonObjectRequest(GETSTATUS_URL + username, null,
+        requestQueue.add( ataquesRequest );
+        ataquesRequest.setRetryPolicy( new DefaultRetryPolicy(50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT ) );
+
+    }
+
+    private void firstStatus() {
+
+        RequestQueue requestQueue = Volley.newRequestQueue( this );
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest( Request.Method.GET, GETSTATUS_URL + username, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -258,13 +268,11 @@ public class Combat extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText( Combat.this, error.toString(), Toast.LENGTH_LONG ).show();
                     }
-        }){};
+        }) {};
 
-        requestQueue.add( ataquesRequest );
-        ataquesRequest.setRetryPolicy( new DefaultRetryPolicy(50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT ) );
+        requestQueue.add( jsonObjectRequest );
+        jsonObjectRequest.setRetryPolicy( new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT ) );
 
-        requestQueue.add( primerEstado );
-        primerEstado.setRetryPolicy( new DefaultRetryPolicy(50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT ) );
 
     }
 
@@ -327,7 +335,27 @@ public class Combat extends AppCompatActivity {
     }
 
     public void giveUp( android.view.View V ) {
-        goBack(V);
+
+        RequestQueue requestQueue = Volley.newRequestQueue( this );
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, GIVEUP_URL + username, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        goToResults();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText( Combat.this, error.toString(), Toast.LENGTH_LONG ).show();
+            }
+        }) {
+
+        };
+
+        requestQueue.add( jsonObjectRequest );
+        jsonObjectRequest.setRetryPolicy( new DefaultRetryPolicy(50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT ) );
+
     }
 
     public void goToResults() {

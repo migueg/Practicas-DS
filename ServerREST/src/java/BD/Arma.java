@@ -32,6 +32,16 @@ public class Arma {
         this.coste = coste;
         this.url = url;
     }
+     
+     public Arma( Arma arma ) {
+         this.nombreArma = arma.nombreArma;
+         this.tipo = arma.tipo;
+         this.descripcion = arma.descripcion;
+         this.url = arma.url;
+         this.plusDaño = arma.plusDaño;
+         this.vida = arma.vida;
+         this.coste = arma.coste;
+     }
 
     
     public String getNombreArma() {
@@ -66,6 +76,10 @@ public class Arma {
         this.coste = coste;
     }
     
+    public void restaVida(){
+        if( nombreArma != "Nada" )
+            this.vida -= 10;
+    }
     public void setUrl( String url ) { this.url = url; }
     public String getUrl() { return url; }
 }

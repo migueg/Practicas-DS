@@ -52,4 +52,8 @@ public class Monstruo {
         
     }
     
+    
+    public int getnumMovimientos(){
+        return this.movimientos.size();
+    }
 }

@@ -32,6 +32,16 @@ public class Accesorio {
         
     }
     
+    public Accesorio( Accesorio accesorio ) {
+        this.nombreAccesorio = accesorio.nombreAccesorio;
+        this.tipo = accesorio.tipo;
+        this.url = accesorio.url;
+        this.bonusAtaque = accesorio.bonusAtaque;
+        this.bonusVida = accesorio.bonusVida;
+        this.descripcion = accesorio.descripcion;
+        this.coste = accesorio.coste;
+    }
+    
     public String getNombreAccesorio() { return nombreAccesorio; }
     public String getTipo() { return tipo; }
     public int getBonusAtaque() { return bonusAtaque; }

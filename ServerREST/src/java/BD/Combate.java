@@ -19,6 +19,7 @@ public class Combate {
     private int pvEnemigo;
     private int ultDanio;
     private String ultMov;
+    private boolean algoRoto;
     
     public Combate( Monstruo enemigo, Personaje personaje, boolean first ) {
         if( !first ) {
@@ -27,6 +28,7 @@ public class Combate {
             this.estado = EstadoCombate.ENCURSO;
             this.pvJugador = personaje.getPV();
             this.pvEnemigo = enemigo.getPuntosVida();
+            this.algoRoto = false;
         } else {
             this.estado = EstadoCombate.GANADO;
         }
@@ -35,7 +37,7 @@ public class Combate {
     public int turno( Movimiento movimiento ) {
         
         String tipoConBonus = movimiento.getTipoConBonus();
-        int danio = movimiento.getPotencia();
+        int danio = personaje.getPA() + movimiento.getPotencia();
         
         if( tipoConBonus.equals( enemigo.getTipo() ) )
             danio += movimiento.getBonus();
@@ -49,7 +51,7 @@ public class Combate {
             
             Movimiento movimientoRival = enemigo.movimientoAleatorio();
             tipoConBonus = movimientoRival.getTipoConBonus();
-            danio = movimientoRival.getPotencia();
+            danio = enemigo.getPuntosAtaque() + movimientoRival.getPotencia();
             
             if( tipoConBonus.equals( personaje.getClase() ) );
                 danio += movimientoRival.getBonus();
@@ -75,5 +77,8 @@ public class Combate {
     public int getPvJugador() { return pvJugador; }
     public int getUltDanio() { return ultDanio; }
     public String getUltMov() { return ultMov; }
+    public void setAlgoRoto( boolean algoRoto ) { this.algoRoto = algoRoto; }
+    public boolean getAlgoRoto() { return algoRoto; }
+    public void setEstado( EstadoCombate estado ) { this.estado = estado; }
     
 }
