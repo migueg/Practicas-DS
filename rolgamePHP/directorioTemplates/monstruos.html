@@ -1,0 +1,48 @@
+{% extends "funcionalidad.html" %}
+{% block scripts %}
+    {{ parent() }}
+    <link rel="stylesheet" href="./css/ranking.css">
+{% endblock %}
+{% block centro %}
+<style>
+    #añadir{
+        text-align: center;
+        padding: 1%;
+        width: 20%;
+        background-color: rgba(0, 174, 255, 0.692);
+    }
+
+    #añadir a:link, a:visited , a:active{
+        text-decoration: none;
+        color: cornsilk;
+    }
+</style>
+<div id="añadir">
+    <a href="añadirMonstruo.php" >+ Añadir nuevo personaje</a>
+</div>
+
+<table>
+    <tr>
+        <th>Imagen</th>
+        <th>Nombre</th>
+        <th>Tipo</th>
+        <th>Nivel</th>
+        <th>Vida</th>
+        <th>Ataque</th>
+        <th>Recompensa</th>
+        <th>Movimientos</th>
+    </tr>
+    {% for m in monsters %}
+    <tr>
+        <td><img src="{{ m.url }}" width="50px"></td>
+        <td>{{ m.nombre }}</td>
+        <td>{{ m.tipo }}</td>
+        <td>{{ m.nivel }}</td>
+        <td>{{ m.puntosVida }}</td>
+        <td>{{ m.puntosAtaque }}</td>
+        <td>{{ m.recompensa }}</td>
+        <td>{{ m.movimientos }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

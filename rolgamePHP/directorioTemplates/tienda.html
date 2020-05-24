@@ -1,0 +1,46 @@
+{% extends "funcionalidad.html" %}
+{% block scripts %}   
+ {{ parent() }}
+ <link rel="stylesheet" href="./css/tienda.css">
+{% endblock %}
+
+{% block centro %}
+<h1 id="tit">Bienvenido a la Tienda</h1>
+
+{% if not msg %}
+<div class="tienda">
+<h2 id="saldo">Tu saldo es de:  {{ dinero }}</h2>
+{% for o in objetos %}
+    <div class="objeto">
+  
+            <div id=img>
+                <img src="{{ o.url }}" width="175px">
+            </div>
+            <div id="info">
+            <p>Nombre: {{ o.nombre }}</p>
+            <p>Coste: {{ o.coste }}</p>
+            <p>Tipo: {{ o.tipo }}</p>
+            {% if o.tipo == 'arma' %}
+            <p>Bonus Ataque: {{ o.bonusAtaque }}</p>
+            {% else %}
+            <p>Bonus Vida: {{ o.bonusVida }}</p>
+            {% endif %}
+
+            <form class="form" action="tienda.php" method="POST">
+                <input type="text" style="display: none;" name="nombre" value="{{ o.nombre }}">
+                <input type='text' style="display: none;" name="tipo" value="{{ o.tipo }}">
+                <input type="submit" value = "Comprar" id="boton">
+            </form>
+  
+            </div>
+            
+          
+  
+    </div>
+   
+{% endfor %}
+</div>
+{% else %}
+<h2 id="saldo">{{ msg }}</h2>
+{% endif %}
+{% endblock %}

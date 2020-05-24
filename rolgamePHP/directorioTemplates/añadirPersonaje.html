@@ -1,0 +1,25 @@
+{% extends "funcionalidad.html" %}
+
+{% block scripts %}
+    {{ parent() }}
+    <link rel="stylesheet" href="./css/inisesion.css">
+{% endblock %}
+{% block titulo %}
+<div class="titulo">
+    <h1>Añadir Pers</h1>
+</div>
+{% endblock %}
+
+{% block centro %}
+        <form action="#" method="POST" enctype="multipart/form-data" >
+            <label for="user">Nombre Personaje:</label><br>
+            <input type="text" id="usuario" name="user"><br>
+            <label for="daño">Daño:</label><br>
+            <input type="text" id="daño" name="daño"><br>
+            <label for="imagen">Imagen:</label><br>
+            <input type="file" name="imagen" id="im"/>
+            <input type="submit" value="añadir">
+         
+        </form>
+       
+{% endblock %}

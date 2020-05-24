@@ -1,0 +1,23 @@
+{% extends "padre.html" %}
+
+{% block scripts %}
+    <link rel="stylesheet" href="./css/inisesion.css">
+{% endblock %}
+{% block titulo %}
+<div class="titulo">
+    <h1>Inicio de sesión</h1>
+</div>
+{% endblock %}
+
+{% block centro %}
+        <form action="iniciarSesion.php" method="POST" >
+            <label for="user">User:</label><br>
+            <input type="text" id="usuario" name="user"><br>
+            <label for="pass">Password:</label><br>
+            <input type="password" id="contraseña" name="pass"><br>
+            <input type="submit" value="Login">
+            
+        </form>
+        <span>{{ msg }}</span><br>
+        <a href="registrarse.php">Registrarse</a>
+{% endblock %}

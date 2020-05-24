@@ -1,0 +1,127 @@
+.personaje{
+    float: left;
+    width: 33%;
+    margin-left: 10%;
+    padding-bottom: 1%;
+    background-color:  rgba(240, 93, 93, 0.411);
+    
+    font-weight: bold;
+    border-radius: 20%;
+    border-style: groove;
+}
+.personaje h2{
+    text-align: center;
+}
+#per{
+    width: 40%;
+    background-color:   rgba(240, 93, 93, 0.877);
+   
+    font-weight: bold;
+    border-radius: 20%;
+    border-style: dotted;
+    margin-left: 30%;
+}
+
+.equipada{
+    float: right;
+    width: 40%;
+    margin-right: 10%;
+    margin-bottom: 2%;
+    background-color:  rgba(240, 93, 93, 0.411);
+    padding-bottom: 1%;
+    font-weight: bold;
+    border-radius: 20%;
+    border-style: groove;
+}
+
+
+.equipada h2{
+    text-align: center;
+   
+
+
+}
+
+#arma{
+    float: left;
+    width: 40%;
+    background-color:  rgba(240, 93, 93, 0.877);
+    text-align: center;
+    margin-left: 7%;
+    border-style: dotted;
+    border-radius: 20%;
+}
+#armadura{
+    float: right;
+    margin-right: 7%;
+    width: 40%;
+    background-color:  rgba(240, 93, 93, 0.877);
+    text-align: center;
+    border-style: dotted;
+    border-radius: 20%;
+}
+.inventario{
+    float: left;
+    width: 98%;
+    margin-left: 1%;
+    background-color:  rgba(240, 93, 93, 0.411);
+    text-align: center;
+   
+    border-radius: 20%;
+    border-style: groove;
+    padding-bottom: 5%;
+}
+
+#tArmadura{
+    float: left;
+    width: 40%;
+    margin-left: 5%;
+    background-color:  rgb(240, 93, 93);
+    text-align: center;
+   
+    padding-bottom: 2%;
+    border-style: dotted;
+}
+
+#tArmadura table{
+    margin-left: 5%;
+    border-collapse: collapse;
+}
+
+#tArmadura table, td, th {
+    border: 1px solid black;
+}
+
+
+#tArmadura  th {
+    font-weight: bold;
+
+
+
+}
+
+#tArmas{
+    float: right;
+    width: 40%;
+    margin-right: 5%;
+    background-color:  rgb(240, 93, 93);
+    text-align: center;
+   
+    padding-bottom: 2%;
+    border-style: dotted;
+}
+
+#tArmas table{
+    margin-left: 5%;
+    border-collapse: collapse;
+}
+
+#tArmas table, td, th {
+    border: 1px solid black;
+}
+
+
+#tArmas  th {
+    font-weight: bold;
+
+}

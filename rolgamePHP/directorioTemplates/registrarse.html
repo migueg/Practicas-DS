@@ -1,0 +1,38 @@
+{% extends "padre.html" %}
+
+{% block scripts %}
+    <link rel="stylesheet" href="./css/inisesion.css">
+{% endblock %}
+{% block titulo %}
+<div class="titulo">
+    <h1>Registrarse</h1>
+</div>
+{% endblock %}
+
+{% block centro %}
+
+{% if not mensaje %}
+        <form action="registrarse.php" method="POST" >
+            <label for="user">User:</label><br>
+            <input type="text" id="usuario" name="user"><br>
+            <label for="pass">Password:</label><br>
+            <input type="password" id="contraseña" name="pass"><br>
+            <p>Selecciona tu personaje: </p>
+            <select name="personajes" id="personajes">
+                {% for p in personajes %}
+                <option value="{{ p.personaje }}">{{ p.personaje }}</option>
+                {% endfor %}
+              </select>
+              <br>
+            <input type="submit" value="Sign up">
+          
+        </form>
+        
+        {% if err %}
+        <span style="color: azure;">* {{ err }}</span>
+        {% endif %}
+
+{% else %}
+<h2>{{ mensaje }}</h2>
+{% endif %}
+{% endblock %}

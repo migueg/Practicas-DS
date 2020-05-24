@@ -1,0 +1,44 @@
+{% extends "funcionalidad.html" %}
+
+{% block scripts %}
+{{ parent() }}
+    <link rel="stylesheet" href="./css/inisesion.css">
+{% endblock %}
+{% block titulo %}
+<h1 id="tit">Añadir Monstruo</h1>
+{% endblock %}
+
+{% block centro %}
+  
+            {% if not msg %}
+            <h3>Paso 2:</h3><h4>Movimientos</h4>
+            <form action="añadirMovimiento.php" method="POST" >
+                <input type="text" style="display: none;" name='monstruo' value="{{ datos.nombre }}">
+                <input type="number" style="display: none;" name='nivel' value="{{ datos.nivel }}">
+                <p>Movimiento 1</p>
+                <label for="nombre">Nombre:</label><br>
+                <input type="text"  name="nombre"><br>
+                <label for="tipoConBonus">Personaje con bonus:</label><br>
+                <input type="text"  name="tipoConBonus"><br>
+                <label for="potencia">Potencia:</label><br>
+                <input type="number"  name="potencia"><br>
+                <label for="bonus">Bunus:</label><br>
+                <input type="number"  name="bonus"><br>
+                <p>Movimiento 2</p>
+                <label for="nombre2">Nombre:</label><br>
+                <input type="text"  name="nombre2"><br>
+                <label for="tipoConBonus2">Personaje con bonus:</label><br>
+                <input type="text"  name="tipoConBonus2"><br>
+                <label for="potencia2">Potencia:</label><br>
+                <input type="number"  name="potencia2"><br>
+                <label for="bonus2">Bunus:</label><br>
+                <input type="number"  name="bonus2"><br>
+                <input type="submit" value="Añadir">
+                
+            </form>
+            {% else %}
+            <h2>{{ msg }}</h2>
+            {% endif %}
+
+        
+{% endblock %}

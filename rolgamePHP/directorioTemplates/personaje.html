@@ -1,0 +1,30 @@
+{% extends "padre.html" %}
+  
+{% block centro %}
+<style>
+    .img{
+        float: left;
+        width: 50%;
+    }
+    .datos{
+        float: right;
+        margin-right: 20%;
+        margin-top: 10%;
+        background-color: rgba(218, 64, 64, 0.774);
+        padding: 5%;
+        border-style: hidden;
+        border-radius: 20%;
+        font-weight: bold;
+        font-size: x-large;
+    }
+</style>
+    <div class="img">
+        <img src="{{ datos.url }}" width="80%">
+    </div>
+    <div class = "datos">
+        <p>Nombre: {{ datos.nombre }}</p>
+        <p>Codigo: {{ datos.codigo }}</p>
+        <p>Puntos de  Vidad : {{ datos.pv }}</p>
+        <p>Puntos de Ataque: {{ datos.pa }}</p>
+    </div>
+{% endblock %}

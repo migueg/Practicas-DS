@@ -1,0 +1,56 @@
+{% extends "funcionalidad.html" %}
+{% block scripts %}
+    {{ parent() }}
+  
+{% endblock %}
+
+{% block centro %}
+<style>
+    .datos{
+        background-color: rgba(199, 62, 62, 0.808);
+        width: 20%;
+        float:right;
+        text-align: center;
+        padding: 3%;
+        margin-top: 5%;
+        margin-right: 10%;
+        font-size: large;
+        font-weight: bold;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    .pass{
+        background-color: rgba(199, 62, 62, 0.808);
+        width: 20%;
+        float: left;
+        text-align: center;
+        padding: 3%;
+        margin-left: 10%;
+        margin-top: 5%;
+        
+        font-weight: bold;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+</style>
+<div class="datos">
+
+    <h1>Tu perfil</h1>
+    <p>Personaje: {{ datos.personaje }}</p>
+    <p>Record: {{ datos.record }}</p>
+    <p>Oro: {{ datos.oro }}</p>
+    <p>Combate Actual: {{ datos.ccambombateActual }}</p>
+</div>
+
+<div class="pass">
+    <h2>Cambio Contrseña</h2>
+    <form action="perfil.php" method="POST">
+       Antigua: <input type="password" name="antigua"><br>
+       Nueva: <input type="password" name="nueva"><br>
+       <input type="submit" name="Cambiar">
+     
+    </form>
+    {% if msg %}
+    <span>* {{ msg }}</span>
+    {% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends "funcionalidad.html" %}
+
+{% block scripts %}   
+ {{ parent() }}
+ <link rel="stylesheet" href="./css/inventario.css">
+{% endblock %}
+
+{% block centro %}
+<h1 id="tit">Inventario</h1>
+
+<div class='personaje'>
+    <h2>Personaje Actual</h2>
+    <div id="per">
+       
+        <p>Nombre: {{ personaje.personaje }}</p>
+        <p>Vida: {{ personaje.vida }}</p>
+        <p>Daño: {{ personaje.daño }}</p>
+    </div>
+  
+</div>
+
+<div class='equipada'>
+    <h2>Equipado</h2>
+    <div id="arma">
+        <h3>Arma</h3>
+        <p>Nombre: {{ arma.nombreArma }}</p>
+        <p>Tipo: {{ arma.tipo }}</p>
+        <p>Vida: {{ arma.vidaArma }}</p>
+        <p>Daño: {{ arma.dañoArma }}</p>
+    </div>
+
+   <div id="armadura">
+        
+    <h3>Armadura</h3>
+    <p>Nombre: {{ armadura.nombreArmadura }}</p>
+    <p>Tipo: {{ armadura.tipo }}</p>
+    <p>Vida: {{ armadura.plusVida }}</p>
+    <p>Daño: {{ armadura.vidaArmadura }}</p>
+
+   </div>
+
+    
+</div>
+
+<div class="inventario">
+    <h2>Objetos adquiridos</h2>
+    <div id="tArmadura">
+        <h3>Armaduras Disponibles</h3>
+        <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Ventaja De Vida</th>
+            <th>Vida Armadura</th>
+        </tr>
+        {% for ad in armaduras %}
+        <tr>
+            <td>{{ ad.nombreArmadura }}</td>
+            <td>{{ ad.plusVida }}</td>
+            <td>{{ ad.vidaArmadura }}</td>
+            <td>
+                <form action="inventario.php?tipo=armadura&arma={{ ad.nombreArmadura }}" method="POST">
+                    <input type="submit" name="cambio" value="Equipar">
+                </form>
+            </td>
+        </tr>
+       
+        
+        {% endfor %}
+
+        </table>
+        
+    </div>
+    <div id="tArmas">
+        <h3>Armas Disponibles</h3>
+        <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Ventaja De Daño</th>
+            <th>Vida Arma</th>
+        </tr>
+        {% for a in armas %}
+        <tr>
+            <td>{{ a.nombreArma }}</td>
+            <td>{{ a.dañoArma }}</td>
+            <td>{{ a.vidaArma }}</td>
+
+            <td>
+            <form action="inventario.php?tipo=arma&arma={{ a.nombreArma }}" method="POST">
+                <input type="submit" name="cambio" value="Equipar">
+            </form>
+            </td>
+        </tr>
+        
+        {% endfor %}
+
+        </table>
+        
+    </div>
+   
+</div>
+{% endblock %}

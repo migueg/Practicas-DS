@@ -1,0 +1,93 @@
+{% extends "funcionalidad.html" %}
+{% block scripts %}   
+ {{ parent() }}
+ <link rel="stylesheet" href="./css/ranking.css">
+{% endblock %}
+
+{% block centro %}
+<script>
+    function abrir(nombre){
+        document.getElementById("mySidebar").style.width = "50%";
+        document.getElementById("jugador").innerHTML = nombre;
+        document.getElementById("nombre").value = nombre;
+    }
+    function cerrar() {
+    document.getElementById("mySidebar").style.width = "0";
+  }
+</script>
+<table>
+    <tr>
+        <th>Posición</th>
+        <th>Usuario</th>
+        <th>Record</th>
+        <th>Oro</th>
+        {% if user.rol == 'admin' %}
+        <th> </th>
+        {% endif %}
+    </tr>
+    {% for r in ranking %}
+    <tr>
+        <td>{{ r.puesto }}º</td>
+        <td >{{ r.nombre }}</td>
+        <td>{{ r.record }}</td>
+        <td>{{ r.oro }}</td>
+        {% if user.rol == 'admin' %}
+        <div id="main">
+            <td> <button id="boton" onclick="abrir('{{ r.nombre }}')" >Premiar</button></td>
+            
+        </div>
+        
+       
+        {% endif %}
+    </tr>
+    <style>
+         .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            }
+
+            .sidebar a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+            }
+
+            .sidebar a:hover {
+            color: #f1f1f1;
+            }
+
+            .sidebar .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+}
+    </style>
+    {% if user.rol == 'admin' %}
+        <div id="mySidebar" class="sidebar">
+            <a href="javascript:void(0)" class="closebtn" onclick="cerrar()">×</a>
+                <h2>Vas a premiar a: <span id="jugador"></span></h2>
+                <form action="ranking.php" method="POST">
+                    <input type="text" id="nombre" name="nombre" style="display: none;" >
+                    <input type="number" name="cantidad">
+                    <input type="submit" value="premiar">
+             
+            </form>
+        </div>
+    
+    {% endif %}
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "padre.html" %}
+  
+{% block centro %}
+           <div class="ini">
+               <h1> ¡Inicia sesión! </h1>
+               <a href= "iniciarSesion.php" class="boton">Iniciar sesion</a>
+           </div>
+           <div class="registro">
+            <h1> ¡Únete a nuestra comunidad! </h1>
+               <a href= "registrarse.php" class="boton">Registrar</a>
+           </div>
+       </div>
+       <h1 id="sub"> Conoce a nuestros personajes</h1>
+       <div class="gallery">
+        <a target="_blank" href="personaje.php?id=0">
+          <img src="https://image.freepik.com/vector-gratis/ilustracion-dibujos-animados-guerrero-vikingo_14588-144.jpg" alt="Cinque Terre" width="600" height="400">
+        </a>
+        <div class="desc">Personaje 1</div>
+      </div>
+      
+    
+      <div class="gallery">
+        <a target="_blank" href="personaje.php?id=1">
+          <img src="https://w7.pngwing.com/pngs/387/276/png-transparent-cartoon-longbow-drawing-archer-legendary-creature-bow-cartoon.png" alt="Cinque Terre" width="600" height="400">
+        </a>
+        <div class="desc">Personaje 2</div>
+      </div>
+      
+      
+      <div class="gallery">
+        <a target="_blank" href="personaje.php?id=2">
+          <img src="https://i0.pngocean.com/files/908/588/1003/chibi-magician-anime-drawing-dark-magician.jpg" alt="Cinque Terre" width="600" height="400">
+        </a>
+        <div class="desc">Personaje 3</div>
+      
+{% endblock %}

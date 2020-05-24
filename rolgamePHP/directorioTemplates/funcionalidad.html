@@ -1,0 +1,47 @@
+{% extends "padre.html" %}
+
+{% block scripts %}   
+ <link rel="stylesheet" href="./css/lateral.css">
+
+{% endblock %}
+{% block user %}
+<style>
+  #user{
+    float: right;
+    margin-left: 80%;
+    width: 15%;
+  }
+  #bye img{
+    float: left;
+    margin-left: 10%;
+  }
+  #user p{
+    float:right;
+  }
+
+</style>
+<div id="user" >
+<a href="logout.php" id="bye"><img src="img/cerrarSesion.png" href="index.html" alt="icon" width="30px"/></a>
+<p>{{ user.usuario }}</p>
+</div>
+{% endblock %}
+{% block lateral %}
+
+<div class="topnav">
+    {% if user.rol== 'admin' %}
+    <a href="logueados.php">Home</a>
+    <a href="monstruos.php">Monstruos</a>
+    <a href="ranking.php">Ranking</a>
+  
+ 
+    {% else %}
+    <a href="logueados.php">Home</a>
+    <a href="perfil.php">Perfil</a>
+    <a  href="tienda.php">Tienda</a>
+    <a href="ranking.php">Ranking</a>
+    <a href="inventario.php">Inventario</a>
+    {% endif %}
+  </div>
+
+{% endblock %}
+

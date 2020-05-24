@@ -1,0 +1,26 @@
+{% extends "funcionalidad.html" %}
+{% block css %}
+    {{ parent() }}
+    <link rel="stylesheet" href="./css/inisesion.css">
+{% endblock %}
+{% block centro %}
+    <style>
+        .c{
+            float: left;
+            width: 33%;
+            margin-left: 35%;
+            background-color:  rgba(240, 93, 93, 0.712);
+            text-align: center;
+            padding-bottom: 5%;
+            border-radius: 20%;
+            border-style: groove;
+            margin-top: 2%;
+        }
+    </style>
+    <div class="c">
+        <h1>Bienvenido {{ user.suario }}</h1>
+        <h2>Disfruta de la experiencia rolgame</h2>
+    </div>
+   
+
+{% endblock %}

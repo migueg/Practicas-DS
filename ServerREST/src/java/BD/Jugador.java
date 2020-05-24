@@ -281,4 +281,8 @@ public class Jugador {
         this.personaje.modificarPV( accesorio.getBonusVida() );
     }
     
+    public void modificarOro(int premio ){
+        this.oro += premio;
+    }
+    
 }

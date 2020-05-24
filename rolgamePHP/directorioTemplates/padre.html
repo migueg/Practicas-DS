@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<htm lang="es">
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="firefox">
+        <link rel="icon" type="image/png" href="img/favicon.png" sizes="256x256">
+        
+        
+        <link rel="stylesheet" href="./css/cabecera.css">
+        {% block scripts %}
+        {% endblock %}
+        <title>RolGame</title>
+     
+</head>
+
+<body>
+       <header>
+           <h1>RolGame</h1>
+           <div id="imcabecera">
+            <a href="index.php"><img src="img/favicon.png" href="index.html" alt="icon" width="70px"/></a>
+            </div>
+            {% block user %}{% endblock %}
+       </header>
+       {% block lateral %}{% endblock %}
+       {% block titulo %}{% endblock %}
+       
+       
+       <div class="centro clearfix">
+       
+        {% block centro %}{% endblock %}
+
+      </div>
+  
+      
+       
+
+</body>
+</htm>

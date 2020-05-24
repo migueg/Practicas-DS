@@ -1,0 +1,43 @@
+
+
+{% extends "funcionalidad.html" %}
+
+{% block scripts %}
+{{ parent() }}
+    <link rel="stylesheet" href="./css/inisesion.css">
+{% endblock %}
+{% block titulo %}
+<h1 id="tit">Añadir Monstruo</h1>
+{% endblock %}
+
+{% block centro %}
+       
+        <h3>Paso 1:</h3><h4>Datos</h4>
+        
+        <form action="añadirMonstruo.php" method="POST" >
+            <label for="nombre">Nombre:</label><br>
+            <input type="text"  name="nombre"><br>
+            <label for="tipo">Tipo:</label><br>
+            <input type="text"  name="tipo"><br>
+            <br>
+            <label for="nivel">Nivel:</label>
+            <select name="nivel" >
+              <option value="1">1</option>
+              <option value="2">2</option>   
+            </select><br>
+            <br>
+            <label for="vida">Vida:</label><br>
+            <input type="number"  name="vida"><br>
+            <label for="ataque">Ataque:</label><br>
+            <input type="number"  name="ataque"><br>
+            <label for="recompensa">Recompensa:</label><br>
+            <input type="number"  name="recompensa"><br>
+            <label for="url">Url imagen:</label><br>
+            <input type="url"  name="url"><br>
+            <input type="submit" value="Añadir">
+            
+        </form>
+      
+         
+
+{% endblock %}

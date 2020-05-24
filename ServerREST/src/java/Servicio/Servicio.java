@@ -61,7 +61,7 @@ public class Servicio {
         personajes.add( new Personaje( "GRR0", "Guerrero", 40, 4, "https://image.freepik.com/vector-gratis/ilustracion-dibujos-animados-guerrero-vikingo_14588-144.jpg" ) );
         personajes.add( new Personaje( "ARQ1", "Arquero", 30, 6, "https://w7.pngwing.com/pngs/387/276/png-transparent-cartoon-longbow-drawing-archer-legendary-creature-bow-cartoon.png" ) );
         personajes.add( new Personaje( "MAG2", "Mago", 35, 3, "https://i0.pngocean.com/files/908/588/1003/chibi-magician-anime-drawing-dark-magician.jpg" ) );
-        
+        jugadores.get(2).setPersonaje(personajes.get(0));
         armas.add( new Arma( "Cachiporra", 5, 50, "Arma inútil, pero es mejor que nada", 20, "https://raicesdeperaleda.com/recursos/diccionario/af9190fc88e3c83936ef77ab9b16822e.jpg" ) );
         armas.add( new Arma( "Espada de cobre", 12, 100, "Espada de metal algo roma", 60, "https://dragonquest.fandom.com/es/wiki/Espada_de_Cobre?file=Espada_de_cobre.png" ) );
         armas.add( new Arma( "Varita de olivo", 8, 100, "Varita que crea llamas con el poder del aceite", 50, "https://lh3.googleusercontent.com/proxy/7Ufi4jyEfUHjhenOjjP6MMP8V_JBB7NO50l9M0YIpapWCvDYRpb1jz1cAxp8e-HaND88n7cbDLrXkdqITr_l0TMKuJKHD8PPrK01dv0RSSGaBkN4qK8KwE6Fsph-vw" ) );
@@ -204,6 +204,22 @@ public class Servicio {
     @Produces( MediaType.TEXT_PLAIN )
     public String compruebaConexion() {
         return "Servidor levantado";
+    }
+    @GET
+    @Produces({"application/json"})
+    @Path("personaje/{index}")
+    public datosPersonaje getPerson(@PathParam("index") String index){
+        int indice = Integer.parseInt(index);
+        datosPersonaje d = new datosPersonaje();
+        Personaje p = this.personajes.get(indice);
+        System.out.println(indice);
+        d.setCodigo(p.getCodigo());
+        d.setNombre(p.getNombre());
+        d.setPA(p.getPA());
+        d.setPV(p.getPV());
+        d.setUrl(p.getUrl());
+        
+        return d;
     }
     @GET
     @Produces({"application/json"})
@@ -570,7 +586,20 @@ public class Servicio {
         return semilla;
 
     }
-       
+    
+    @PUT 
+    @Consumes({"application/json"})
+    @Produces(MediaType.TEXT_PLAIN)
+    @Path("oro")
+    public String modificarOro(datosPremio p){
+        int index = this.indexofJugador(p.getUsername());
+        if(index != -1){
+            this.jugadores.get(index).modificarOro(p.getCantidad());
+            return "OK";
+        }
+        
+        return "No existe el jugador";
+    }
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     @Path("fotoClase/{user}")
