@@ -47,6 +47,15 @@ public class Personaje {
         }
     }
     
+    public Personaje( Personaje personaje ) {
+        this.codigo = personaje.codigo;
+        this.nombre = personaje.nombre;
+        this.url = personaje.url;
+        this.PA = personaje.PA;
+        this.PV = personaje.PV;
+        this.movimientos = personaje.movimientos;
+    }
+    
     public String getCodigo() {
         return codigo;
     }

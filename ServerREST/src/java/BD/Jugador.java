@@ -275,8 +275,10 @@ public class Jugador {
     }
     
     public void modificarPuntos(){
-        this.personaje.modificarPA(5);
-        this.personaje.modificarPV(5);
+        this.personaje.modificarPA( equipada.getPlusDaño() );
+        this.personaje.modificarPV( armadura.getPlusVida() );
+        this.personaje.modificarPA( accesorio.getBonusAtaque() );
+        this.personaje.modificarPV( accesorio.getBonusVida() );
     }
     
 }

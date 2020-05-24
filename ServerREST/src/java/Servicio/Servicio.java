@@ -170,7 +170,7 @@ public class Servicio {
         
         for(Personaje per : personajes){
             if(per.getNombre().equals(nombre))
-                p = per;
+                p = new Personaje( per );
         }
         
         return p;
@@ -475,47 +475,59 @@ public class Servicio {
             }
                 
         }
-        
-   
+         
         jg = new Jugador(jugador.getUsername(),jugador.getPassword());
         jg.setPersonaje(this.getPersonaje(jugador.getPersonaje()));
         jg.modificarPuntos();
         this.jugadores.add(jg);
-        
-            
-        
+           
         return "OK";
     }
     
     @POST
-    @Path("selectClass")
-    @Consumes(MediaType.TEXT_PLAIN)
-    public void selectClass( JsonObject js ) {
+    @Path("registroApp")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public jsonResponse registroApp( datosConexion datos ) {
         
-        Jugador jugador;
+        System.out.println( "Usuario quiere registrarse con username: " + datos.getUsername() );
         
-        String username = js.get( "username" ).toString();
-        String clase = js.get( "class" ).toString();
-        int pos;
+        boolean existe = false;
+        jsonResponse js = new jsonResponse();
         
-        for ( Jugador j : jugadores )
-            if( j.getUsername() == username ) {
-                
-            switch( clase ) {
-                case "GRR":
-                    pos = 0;
-                    break;
-                case "ARQ":
-                    pos = 1;
-                    break;
-                default:
-                    pos = 2;
-                    break;
-            }      
+        for( Jugador j : jugadores )
+            if( j.getUsername().equals( datos.getUsername() ) ) {
+                System.out.println( "El nombre ya está cogido." );
+                existe = true;
+            }
         
-            j.setPersonaje( personajes.get(pos) );
-            
+        if( existe ) {
+            js.setResultado( "El usuario ya existe en la plataforma." );
+        } else {
+            Jugador j = new Jugador( datos.getUsername(), datos.getPassword() );
+            this.jugadores.add(j);
+            js.setResultado( "OK" );
         }
+           
+        return js;
+    }
+    
+    @POST
+    @Path("selectClass")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public jsonResponse selectClass( DatosSeleccionClase js ) {
+        
+        System.out.println( "Jugador " + js.getUsername() + " selecciona su clase: " + js.getClase() );
+        
+        Jugador jugador = jugadores.get( indexofJugador( js.getUsername() ) );
+        
+        jugador.setPersonaje( getPersonaje( js.getClase() ) );
+        jugador.modificarPuntos();
+        
+        jsonResponse respuesta = new jsonResponse();
+        respuesta.setResultado( "OK" );
+        return respuesta;
         
     }
     
@@ -853,4 +865,43 @@ public class Servicio {
         
     }
     
+    @GET
+    @Produces({"application/json"})
+    @Path("perfil/{user}")
+    public DatosPerfil obtienePerfil( @PathParam("user") String user ) {
+        
+        Jugador j = jugadores.get( indexofJugador( user ) );
+        DatosPerfil datos = new DatosPerfil();
+        
+        datos.setPersonaje( j.getPersonaje().getNombre() );
+        datos.setRecord( j.getRecord() );
+        datos.setCombateActual( j.getCombateActual() );
+        datos.setOro( j.getOro() );
+        
+        return datos;
+        
+    }
+    
+    @POST
+    @Consumes({"application/json"}) 
+    @Produces({"application/json"})
+    @Path("changepass")
+    public jsonResponse cambioContrasenia( DatosCambioContrasenia datos ) {
+        
+        jsonResponse js = new jsonResponse();
+        Jugador j = jugadores.get( indexofJugador( datos.getUsername() ) );
+        
+        if( !j.getPassword().equals(datos.getOldpass()) ) {
+            js.setResultado( "Contraseña actual incorrecta" );
+        } else {
+            if ( datos.getOldpass().equals( datos.getNewpass() ) ) {
+                js.setResultado( "La nueva contraseña no puede ser igual que la vieja" );
+            } else {
+                j.setPassword( datos.getNewpass() );
+                js.setResultado( "OK" );
+            }
+        }
+        
+        return js;
+    }
 }

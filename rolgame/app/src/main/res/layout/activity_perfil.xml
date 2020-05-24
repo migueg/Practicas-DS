@@ -54,18 +54,92 @@
                 android:layout_height="75dp" />
 
             <TextView
-                android:id="@+id/nameObj"
+                android:id="@+id/nombreUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nombre de Usuario"
-                android:textAlignment="center"
+                android:gravity="center"
+                android:text="USUARIO"
                 android:textColor="#AA0F0F"
-                android:textSize="40sp"
+                android:textSize="35sp"
                 app:fontFamily="sans-serif-black" />
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="119dp" />
+                android:layout_height="90dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right|center_vertical"
+                    android:text="Personaje"
+                    android:textColor="#AA0F0F"
+                    android:textSize="24sp"
+                    app:fontFamily="sans-serif-medium" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/personajeUsuario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="left|center_vertical"
+                    android:text="personaje"
+                    android:textSize="24sp"
+                    app:fontFamily="sans-serif-condensed-medium" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="32dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="40sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right|center_vertical"
+                    android:text="Actual"
+                    android:textColor="#AA0F0F"
+                    android:textSize="24sp"
+                    app:fontFamily="sans-serif-medium" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/combateActualUsuario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="left|center_vertical"
+                    android:text="10"
+                    android:textSize="24sp"
+                    app:fontFamily="sans-serif-condensed-medium" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="32dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -96,7 +170,8 @@
                     android:layout_weight="1"
                     android:gravity="left|center_vertical"
                     android:text="50"
-                    android:textSize="24sp" />
+                    android:textSize="24sp"
+                    app:fontFamily="sans-serif-condensed-medium" />
 
             </LinearLayout>
 
@@ -126,7 +201,7 @@
                     android:layout_weight="1" />
 
                 <TextView
-                    android:id="@+id/textView14"
+                    android:id="@+id/oroUsuario"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -138,7 +213,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="122dp" />
+                android:layout_height="100dp" />
 
             <Button
                 android:id="@+id/botonTurno"
